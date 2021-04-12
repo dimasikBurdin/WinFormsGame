@@ -10,7 +10,7 @@ namespace MyGameModel.Domain
     public enum MapCell
     {
         Grass,
-        Path,//тропинка
+        Path,
         Land,//можно ходить
         Rock,
         Forest//нельзя ходить
@@ -24,8 +24,6 @@ namespace MyGameModel.Domain
         Sword, 
         Knife,
         Stick
-        //=> вместо меча можно по ходу игры увеличивать дамаг, наносимый player'ом, что упростит механику инвентаря
-        //однако если делать квесты, где нужны будут, например, ключи, надо будет делать все равно иначе
     }
 
     public class Game
@@ -34,7 +32,7 @@ namespace MyGameModel.Domain
         public List<Map> AllMaps;
     }
 
-    public class Inventory   //private?
+    public class Inventory   //private? мб нет, т к т.о. можно будет хранить лут во врагах, при убийстве которых он будет падать
     {
         public List<ObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
         public List<ObjectType> Keys { get; set; }//мб тоже отображаются на экране
@@ -77,20 +75,6 @@ namespace MyGameModel.Domain
                     break;
             }
         }
-
-        //public void UseObjectOfInventory(GameObject currentObject) ===> мб в player сделать
-        //{
-        //    switch(currentObject.ObjectType)
-        //    {
-        //        case ObjectType.Healer:
-        //            if (Player.Health <= Player.MaxHealth - 20) Player.Health += 20;
-        //            Healers.RemoveAt(0);
-        //            break;
-        //        throw new NotImplementedException();
-        //        //case ObjectType.Key: throw new NotImplementedException();
-        //            //TO DO ...
-        //    }
-        //}
     }
 
     public class GameObject
@@ -127,11 +111,11 @@ namespace MyGameModel.Domain
         {
             if (Inventory.Healers.Count != 0)
             {
-                if (Health <= MaxHealth - 20)
-                {
-                    Health += 20;
-                    Inventory.Healers.RemoveAt(0);
-                }
+                if (Health == 100) return;
+                Health += 20;
+                if (Health > MaxHealth) Health = MaxHealth;
+                Inventory.Healers.RemoveAt(0);
+                
             }
         }
     }
@@ -144,9 +128,9 @@ namespace MyGameModel.Domain
         public GameObject[] Objects { get; private set; }
         public Enemy[] Enemies { get; private set; }
         public Npc[] Npcs { get; private set; }
-        public Point[] Puzzles { get; private set; }//???
+        public Puzzle[] Puzzles { get; private set; }//???
 
-        public Map(MapCell[,] terrain, Point initialPosition, Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Point[] puzzles)
+        public Map(MapCell[,] terrain, Point initialPosition, Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
         {
             Terrain = terrain;
             InitialPosition = initialPosition;
@@ -199,6 +183,8 @@ namespace MyGameModel.Domain
 
     public class Puzzle
     {
+        public Point Position { get; private set; }
+        //ToDo
         /*    ____
          *   |0__0|
          *    /||\

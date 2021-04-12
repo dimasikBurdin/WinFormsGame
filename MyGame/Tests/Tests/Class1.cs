@@ -36,5 +36,27 @@ namespace Tests
             Assert.AreEqual(70, player.Health);
         }
 
+        [Test]
+        public void UseHealerWhenHealthMoreFull()
+        {
+            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var inventory = new Inventory();
+            var player = new Player(90, 30, 30, Point.Empty, inventory);
+            player.Inventory.AddToInventory(firstItem);
+            player.UseHealer();
+            Assert.AreEqual(100, player.Health);
+        }
+
+        [Test]
+        public void UseHealerWhenHealthFull()
+        {
+            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var inventory = new Inventory();
+            var player = new Player(100, 30, 30, Point.Empty, inventory);
+            player.Inventory.AddToInventory(firstItem);
+            player.UseHealer();
+            Assert.AreEqual(100, player.Health);
+            Assert.AreEqual(1, player.Inventory.CountHealers);
+        }
     }
 }
