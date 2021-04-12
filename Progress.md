@@ -41,5 +41,8 @@
 	2. Написать методы, использующие классы и работающие с ними. 
 	3. Написать тесты на методы.
 
+	#### Прогреss к 14.04.21: 
+	см. https://github.com/dimasikBurdin/WinFormsGame/tree/main/MyGame
+
 
 
