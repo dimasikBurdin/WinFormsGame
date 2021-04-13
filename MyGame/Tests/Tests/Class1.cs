@@ -15,8 +15,8 @@ namespace Tests
         [Test]
         public void AddItemsToEmptyInventory()
         {
-            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
-            var seconItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
+            var seconItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
             var player = new Player(100, 30, 30, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
@@ -27,7 +27,7 @@ namespace Tests
         [Test]
         public void UseAndDeleteHealerOfInventoryCountOne()
         {
-            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
             var player = new Player(50, 30, 30, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
@@ -39,7 +39,7 @@ namespace Tests
         [Test]
         public void UseHealerWhenHealthMoreFull()
         {
-            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
             var player = new Player(90, 30, 30, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
@@ -50,7 +50,7 @@ namespace Tests
         [Test]
         public void UseHealerWhenHealthFull()
         {
-            var firstItem = new GameObject(Point.Empty, ObjectType.Healer);
+            var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
             var player = new Player(100, 30, 30, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);

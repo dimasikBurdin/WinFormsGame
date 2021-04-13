@@ -1,6 +1,6 @@
 ﻿namespace MyGameModel.Domain
 {
-    public enum ObjectType
+    public enum GameObjectType
     {
         Healer,
         Key,

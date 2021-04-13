@@ -4,15 +4,15 @@ namespace MyGameModel.Domain
 {
     public class Inventory   //private? мб нет, т к т.о. можно будет хранить лут во врагах, при убийстве которых он будет падать
     {
-        public List<ObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
-        public List<ObjectType> Keys { get; set; }//мб тоже отображаются на экране
-        public List<ObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка
+        public List<GameObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
+        public List<GameObjectType> Keys { get; set; }//мб тоже отображаются на экране
+        public List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка
 
         public Inventory()
         {
-            Healers = new List<ObjectType>();
-            Keys = new List<ObjectType>();
-            Weapon = new List<ObjectType>();
+            Healers = new List<GameObjectType>();
+            Keys = new List<GameObjectType>();
+            Weapon = new List<GameObjectType>();
         }
 
         public int CountHealers
@@ -34,13 +34,13 @@ namespace MyGameModel.Domain
         {
             switch(newObject.ObjectType)
             {
-                case ObjectType.Healer: 
+                case GameObjectType.Healer: 
                     Healers.Add(newObject.ObjectType);
                     break;
-                case ObjectType.Key:
+                case GameObjectType.Key:
                     Keys.Add(newObject.ObjectType);
                     break;
-                case var a when newObject.ObjectType == ObjectType.Knife || newObject.ObjectType == ObjectType.Stick || newObject.ObjectType == ObjectType.Sword:
+                case var a when newObject.ObjectType == GameObjectType.Knife || newObject.ObjectType == GameObjectType.Stick || newObject.ObjectType == GameObjectType.Sword:
                     Weapon.Add(newObject.ObjectType);
                     break;
             }

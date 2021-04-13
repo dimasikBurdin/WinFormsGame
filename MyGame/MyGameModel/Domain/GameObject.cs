@@ -5,9 +5,9 @@ namespace MyGameModel.Domain
     public class GameObject
     {
         public Point Position { get; private set; }
-        public ObjectType ObjectType { get; private set; }
+        public GameObjectType ObjectType { get; private set; }
 
-        public GameObject(Point position, ObjectType objectType)
+        public GameObject(Point position, GameObjectType objectType)
         {
             Position = position;
             ObjectType = objectType;

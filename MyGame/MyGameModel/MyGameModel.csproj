@@ -53,7 +53,7 @@
     <Compile Include="Domain\Map.cs" />
     <Compile Include="Domain\MapCell.cs" />
     <Compile Include="Domain\Npc.cs" />
-    <Compile Include="Domain\ObjectType.cs" />
+    <Compile Include="Domain\GameObjectType.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Puzzle.cs" />
     <Compile Include="Form1.cs">
