@@ -46,7 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Enemy.cs" />
     <Compile Include="Domain\Game.cs" />
+    <Compile Include="Domain\GameObject.cs" />
+    <Compile Include="Domain\Inventory.cs" />
+    <Compile Include="Domain\Map.cs" />
+    <Compile Include="Domain\MapCell.cs" />
+    <Compile Include="Domain\Npc.cs" />
+    <Compile Include="Domain\ObjectType.cs" />
+    <Compile Include="Domain\Player.cs" />
+    <Compile Include="Domain\Puzzle.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
