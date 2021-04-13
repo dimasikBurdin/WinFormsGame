@@ -5,7 +5,7 @@ namespace MyGameModel.Domain
     public class Puzzle
     {
         public Point Position { get; private set; }
-        //ToDo
+        //ToDo ...How?
         /*    ____
          *   |0__0|
          *    /||\
