@@ -4,9 +4,9 @@ namespace MyGameModel.Domain
 {
     public class Inventory   //private? мб нет, т к т.о. можно будет хранить лут во врагах, при убийстве которых он будет падать
     {
-        public List<GameObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
-        public List<GameObjectType> Keys { get; set; }//мб тоже отображаются на экране
-        public List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка
+        private List<GameObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
+        private List<GameObjectType> Keys { get; set; }//мб тоже отображаются на экране
+        private List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка
 
         public Inventory()
         {
@@ -28,6 +28,15 @@ namespace MyGameModel.Domain
             {
                 return Keys.Count;
             }
+        }
+
+        public int PlayerUseHealer(int currentHealthPlayer, int maxHealthPlayer)
+        { 
+            if (Healers.Count == 0 || currentHealthPlayer == maxHealthPlayer) return currentHealthPlayer;            
+            currentHealthPlayer += 20;
+            if (currentHealthPlayer > maxHealthPlayer) currentHealthPlayer = maxHealthPlayer;
+            Healers.RemoveAt(0);
+            return currentHealthPlayer;
         }
 
         public void AddToInventory(GameObject newObject)

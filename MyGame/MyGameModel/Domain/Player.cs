@@ -23,14 +23,7 @@ namespace MyGameModel.Domain
 
         public void UseHealer()
         {
-            if (Inventory.Healers.Count != 0)
-            {
-                if (Health == 100) return;
-                Health += 20;
-                if (Health > MaxHealth) Health = MaxHealth;
-                Inventory.Healers.RemoveAt(0);
-                
-            }
+            Health = Inventory.PlayerUseHealer(Health, MaxHealth);
         }
     }
 }
