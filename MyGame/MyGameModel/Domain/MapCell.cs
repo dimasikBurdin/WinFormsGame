@@ -3,9 +3,10 @@
     public enum MapCell
     {
         Grass,
-        Path,
+        Trail,
         Land,//можно ходить
         Rock,
-        Forest//нельзя ходить
+        Forest,//нельзя ходить
+        Empty
     }
 }
