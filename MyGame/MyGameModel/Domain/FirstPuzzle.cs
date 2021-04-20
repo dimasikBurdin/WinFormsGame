@@ -14,5 +14,6 @@ namespace MyGameModel.Domain
             Position = position;
             IsFinished = false;
         }
+        //надо свой собственный controll...
     }
 }

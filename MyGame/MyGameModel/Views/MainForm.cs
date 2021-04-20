@@ -17,9 +17,7 @@ namespace MyGameModel.Domain
         {
             base.OnLoad(e);
             DoubleBuffered = true;
-            //WindowState = FormWindowState.Minimized;
-            ClientSize = new Size(700, 700);
-            
+            ClientSize = new Size(700, 700);//как синхронизировать с размером карты или же делать фулскрин 0_о            
         }
 
         public MainForm()
@@ -29,8 +27,6 @@ namespace MyGameModel.Domain
             var scenePainter = new ScenePainter(levels);
             var terrainControl = new TerrainControl(scenePainter);
             Controls.Add(terrainControl);
-            //var gameControl = new GameControl();
-            //Controls.Add(gameControl);
         }
 
         private static IEnumerable<Map> LoadLevels()

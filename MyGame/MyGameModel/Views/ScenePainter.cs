@@ -42,13 +42,17 @@ namespace MyGameModel.Views
                             case MapCell.Grass:
                                 image = Properties.Resources.MyGrass;
                                 break;
-                            //case MapCell.Land:
-                            //    image = Properties.Resources...
+                            case MapCell.Land:
+                                image = Properties.Resources.Land;
+                                break;
                             case MapCell.Rock:
                                 image = Properties.Resources.Rock;
                                 break;
                             case MapCell.Trail:
                                 image = Properties.Resources.MyTrail;
+                                break;
+                            case MapCell.Water:
+                                image = Properties.Resources.Water;
                                 break;
                         }
                         graphics.DrawImage(image, new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight));

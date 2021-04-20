@@ -81,6 +81,16 @@ namespace MyGameModel.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Land {
+            get {
+                object obj = ResourceManager.GetObject("Land", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MyGrass {
             get {
                 object obj = ResourceManager.GetObject("MyGrass", resourceCulture);
@@ -114,15 +124,25 @@ namespace MyGameModel.Properties {
         ///RGGGTTGTGR
         ///RGGGTGGTGR
         ///RGGTTTTTGR
-        ///RGGTTGGGGR
-        ///RGGTTGGGGR
-        ///RGTTTGGGGR
-        ///RGTGGGGGGR
-        ///RRRRRRRRRR.
+        ///RGGTTGGGGL
+        ///RGGTTGGGLL
+        ///RGTTTGGLLL
+        ///RGTGGGLLLL
+        ///RRRRLLLLLL.
         /// </summary>
         internal static string TestMap {
             get {
                 return ResourceManager.GetString("TestMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Water {
+            get {
+                object obj = ResourceManager.GetObject("Water", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

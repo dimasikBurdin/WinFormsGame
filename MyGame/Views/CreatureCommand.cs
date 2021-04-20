@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Views
 {
-    class CreatureCommand
+    public class CreatureCommand
     {
         public int DeltaX;
         public int DeltaY;

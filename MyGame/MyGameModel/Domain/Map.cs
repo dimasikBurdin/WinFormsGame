@@ -74,6 +74,9 @@ namespace MyGameModel.Domain
                             terrain[x, y] = MapCell.Empty;
                             initialPosition = new Point(x, y);
                             break;
+                        case 'W':
+                            terrain[x, y] = MapCell.Water;
+                            break;
                         case 'G':
                             terrain[x, y] = MapCell.Grass;
                             break;

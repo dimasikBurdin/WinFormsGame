@@ -66,11 +66,11 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\GameControl.cs">
+    <Compile Include="Views\TEST_GameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\GameControl.Designer.cs">
-      <DependentUpon>GameControl.cs</DependentUpon>
+    <Compile Include="Views\TEST_GameControl.Designer.cs">
+      <DependentUpon>TEST_GameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <Compile Include="Views\TerrainControl.Designer.cs">
       <DependentUpon>TerrainControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\GameControl.resx">
-      <DependentUpon>GameControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\TEST_GameControl.resx">
+      <DependentUpon>TEST_GameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -110,13 +110,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Land.bmp" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TestMap.txt" />
     <None Include="Resources\Rock.bmp" />
     <None Include="Resources\MyTrail.bmp" />
     <None Include="Resources\Trail.bmp" />
     <None Include="Resources\Image1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Water.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
