@@ -1,4 +1,5 @@
-﻿ using System;
+﻿using MyGameModel.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,22 @@ namespace MyGameModel.Domain
 {
     public partial class MainForm : Form
     {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            DoubleBuffered = true;
+            //WindowState = FormWindowState.Minimized;
+            ClientSize = new Size(700, 700);
+            
+        }
+
         public MainForm()
         {
-            InitializeComponent();
+            //InitializeComponent();
             var levels = LoadLevels().ToArray();
-
+            var scenePainter = new ScenePainter(levels);
+            var terrainControl = new TerrainControl(scenePainter);
+            Controls.Add(terrainControl);
             //var gameControl = new GameControl();
             //Controls.Add(gameControl);
         }

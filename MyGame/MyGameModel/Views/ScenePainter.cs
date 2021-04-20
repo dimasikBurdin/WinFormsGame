@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
 
 namespace MyGameModel.Views
 {
@@ -53,6 +54,33 @@ namespace MyGameModel.Views
                         graphics.DrawImage(image, new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight));
                     }
                 }
+            }
+        }
+
+        public void Paint(Graphics g)
+        {
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            DrawLevel(g);
+        }
+
+        private void DrawLevel(Graphics graphics)
+        {
+            graphics.DrawImage(bitmap, 0, 0, LevelSize.Width, LevelSize.Height);
+            foreach(var e in currentMap.Enemies)
+            {
+
+            }
+            foreach(var e in currentMap.Objects)
+            {
+
+            }
+            foreach(var e in currentMap.Puzzles)
+            {
+
+            }
+            foreach(var e in currentMap.Npcs)
+            {
+
             }
         }
     }
