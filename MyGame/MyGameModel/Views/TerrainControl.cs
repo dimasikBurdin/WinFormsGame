@@ -19,7 +19,37 @@ namespace MyGameModel.Views
         {
            // InitializeComponent();
             painter = scenePainter;
+            DoubleBuffered = true;
+            //Click += TerrainControl_Click;
+            KeyPress += TerrainControl_KeyPress;
         }
+
+        private void TerrainControl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var delta = Point.Empty;
+            switch(e.KeyChar)
+            {
+                case 'd':
+                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X + 1, Y = ScenePainter.PlayerPosition.Y };
+                    break;
+                case 'a':
+                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X - 1, Y = ScenePainter.PlayerPosition.Y };
+                    break;
+                case 'w':
+                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X, Y = ScenePainter.PlayerPosition.Y - 1 };
+                    break;
+                case 's':
+                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X, Y = ScenePainter.PlayerPosition.Y + 1 };
+                    break;
+            }
+            
+            Invalidate();
+        }
+
+        //private void TerrainControl_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public float ZoomScale
         {
@@ -40,7 +70,7 @@ namespace MyGameModel.Views
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.Clear(Color.Red);
+            e.Graphics.Clear(Color.White);
             if (painter == null) return;
             var sceneSize = painter.Size;
             var vMargin = sceneSize.Height * ClientSize.Width < ClientSize.Height * sceneSize.Width;

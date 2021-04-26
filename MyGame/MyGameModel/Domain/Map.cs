@@ -6,6 +6,7 @@ namespace MyGameModel.Domain
 {
     public class Map
     {
+        public Player Player { get; set; }
         public MapCell[,] Terrain { get; private set; }
         public Point InitialPosition { get; private set; }
         public Point ExitPosition { get; private set; }//точки перехода с одной части карты на другую
@@ -14,10 +15,10 @@ namespace MyGameModel.Domain
         public Npc[] Npcs { get; private set; }
         public Puzzle[] Puzzles { get; private set; }//???
 
-        public Map(MapCell[,] terrain, Point initialPosition, Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
+        public Map(MapCell[,] terrain, Player player, Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
         {
             Terrain = terrain;
-            InitialPosition = initialPosition;
+            Player = player;
             ExitPosition = exitPosition;
             Objects = objects;
             Enemies = enemies;
@@ -34,6 +35,7 @@ namespace MyGameModel.Domain
         public static Map FromLines(string[] lines)
         {
             var terrain = new MapCell[lines[0].Length, lines.Length];
+            var player = default(Player);
             var initialPosition = Point.Empty;
             var exitPosition = Point.Empty;
             var enemies = new List<Enemy>();
@@ -42,7 +44,7 @@ namespace MyGameModel.Domain
             var puzzles = new List<Puzzle>();
             for(var y = 0; y < lines.Length; y++)
             {
-                for(var x = 0; x < lines[0].Length; x++)
+                for(var x = 0; x < lines[0].Length; x++)//если у всего нестатичного текстуры будут не квадратные, а нормальные, то мб и не стоит на место этих сущностей ставить пустую клетку
                 {
                     switch (lines[y][x])
                     {
@@ -71,8 +73,9 @@ namespace MyGameModel.Domain
                             objects.Add(new GameObject(new Point(x, y), GameObjectType.Knife));
                             break;
                         case 'P':
-                            terrain[x, y] = MapCell.Empty;
+                            terrain[x, y] = MapCell.Trail;//                            
                             initialPosition = new Point(x, y);
+                            player = new Player(100, 30, 30, initialPosition, new Inventory());//
                             break;
                         case 'W':
                             terrain[x, y] = MapCell.Water;
@@ -102,7 +105,7 @@ namespace MyGameModel.Domain
                     }
                 }            
             }
-            return new Map(terrain, initialPosition, exitPosition, objects.ToArray(), enemies.ToArray(), npcS.ToArray(), puzzles.ToArray());
+            return new Map(terrain, player, exitPosition, objects.ToArray(), enemies.ToArray(), npcS.ToArray(), puzzles.ToArray());
         }
     }
 }

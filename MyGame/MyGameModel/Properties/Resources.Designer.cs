@@ -119,20 +119,34 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на RRRRRRRRRR
-        ///RGGGGTGGGR
-        ///RGGGTTGTGR
-        ///RGGGTGGTGR
-        ///RGGTTTTTGR
-        ///RGGTTGGGGL
-        ///RGGTTGGGLL
-        ///RGTTTGGLLL
-        ///RGTGGGLLLL
-        ///RRRRLLLLLL.
+        ///   Ищет локализованную строку, похожую на WWWRRRRRRRWWWW
+        ///WWWGGTGGGRWWWW
+        ///WWGGTTGTGRWWWW
+        ///RGGGTGGTGRWWWW
+        ///RGGTTTTTGRWWWW
+        ///RGGTTGGGGGWWGG
+        ///RGGTTGGGGGGGGG
+        ///RGTTTTTTTTTTTT
+        ///RGTGGGGGGGGWGG
+        ///GTTGGGGGGGGGGG
+        ///GGTGGGWWWWGGLL
+        ///GGTTGGWWWWGGGL
+        ///GTTTTWWWWWGGGG
+        ///GTTTTWWWWWGGGG.
         /// </summary>
         internal static string TestMap {
             get {
                 return ResourceManager.GetString("TestMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap testPlayer {
+            get {
+                object obj = ResourceManager.GetObject("testPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

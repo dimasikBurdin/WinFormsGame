@@ -16,10 +16,14 @@ namespace MyGameModel.Views
 
         private Map currentMap;
         private Bitmap bitmap;
+        public static Point PlayerPosition { get; set; }
+        public static Player Player { get; set; }
 
         public ScenePainter(Map[] maps)
         {
-            currentMap = maps[0];
+            currentMap = maps[0];            
+            Player = currentMap.Player;
+            PlayerPosition = Player.Position;
             CreateMap();
         }
 
@@ -55,7 +59,8 @@ namespace MyGameModel.Views
                                 image = Properties.Resources.Water;
                                 break;
                         }
-                        graphics.DrawImage(image, new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight));
+                        //if(image != null)
+                            graphics.DrawImage(image, new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight));
                     }
                 }
             }
@@ -65,6 +70,7 @@ namespace MyGameModel.Views
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
             DrawLevel(g);
+            DrawPlayer(g);
         }
 
         private void DrawLevel(Graphics graphics)
@@ -86,6 +92,15 @@ namespace MyGameModel.Views
             {
 
             }
+        }
+
+        private void DrawPlayer(Graphics graphics)
+        {
+            PlayerPosition = Player.Position;
+            var cellWidth = Properties.Resources.Rock.Width;
+            var cellHeight = Properties.Resources.Rock.Height;
+            
+            graphics.DrawImage(Properties.Resources.testPlayer, new Rectangle(PlayerPosition.X, PlayerPosition.Y, 1, 1));
         }
     }
 }

@@ -13,11 +13,17 @@ namespace MyGameModel.Domain
 {
     public partial class MainForm : Form
     {
+        //size +
+        //index / zIndex
+        //в форме есть событие, принимающее нажатие клафиш. Для управления написать методы в моделе (в игроке например), которые будут реагировать на эти нажатия
+
+        private TerrainControl terrainControl;
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
-            ClientSize = new Size(700, 700);//как синхронизировать с размером карты или же делать фулскрин 0_о            
+            ClientSize = terrainControl.ClientSize;
         }
 
         public MainForm()
@@ -25,7 +31,7 @@ namespace MyGameModel.Domain
             //InitializeComponent();
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);
-            var terrainControl = new TerrainControl(scenePainter);
+            terrainControl = new TerrainControl(scenePainter);
             Controls.Add(terrainControl);
         }
 
