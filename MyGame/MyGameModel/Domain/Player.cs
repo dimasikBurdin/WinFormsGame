@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using MyGameModel.Views;
+using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace MyGameModel.Domain
 {
@@ -24,6 +26,38 @@ namespace MyGameModel.Domain
         public void UseHealer()
         {
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
+        }
+
+        public void MovePlayer(KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case 'd':
+                    if(IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
+                        Position = new Point() { X = Position.X + 1, Y = Position.Y };
+                    break;
+                case 'a':
+                    if (IsCanGo(new Point() { X = Position.X - 1, Y = Position.Y }))
+                        Position = new Point() { X = Position.X - 1, Y = Position.Y };
+                    break;
+                case 'w':
+                    if (IsCanGo(new Point() { X = Position.X, Y = Position.Y - 1 }))
+                        Position = new Point() { X = Position.X, Y = Position.Y - 1 };
+                    break;
+                case 's':
+                    if (IsCanGo(new Point() { X = Position.X, Y = Position.Y + 1 }))
+                        Position = new Point() { X = Position.X, Y = Position.Y + 1 };
+                    break;
+            }
+        }
+
+        private bool IsCanGo(Point position)
+        {
+            var terrain = ScenePainter.currentMap.Terrain;
+            if (position.X < 0 || position.X >= terrain.GetLength(0)
+                || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
+            var currentMapCellType = terrain[position.X, position.Y];
+            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
         }
     }
 }

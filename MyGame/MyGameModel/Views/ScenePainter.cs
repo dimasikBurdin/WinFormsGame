@@ -14,16 +14,14 @@ namespace MyGameModel.Views
         public SizeF Size => new SizeF(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
         public Size LevelSize => new Size(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
 
-        private Map currentMap;
+        public static Map currentMap = default;
         private Bitmap bitmap;
-        public static Point PlayerPosition { get; set; }
         public static Player Player { get; set; }
 
         public ScenePainter(Map[] maps)
         {
             currentMap = maps[0];            
             Player = currentMap.Player;
-            PlayerPosition = Player.Position;
             CreateMap();
         }
 
@@ -96,11 +94,10 @@ namespace MyGameModel.Views
 
         private void DrawPlayer(Graphics graphics)
         {
-            PlayerPosition = Player.Position;
             var cellWidth = Properties.Resources.Rock.Width;
             var cellHeight = Properties.Resources.Rock.Height;
             
-            graphics.DrawImage(Properties.Resources.testPlayer, new Rectangle(PlayerPosition.X, PlayerPosition.Y, 1, 1));
+            graphics.DrawImage(Properties.Resources.testPlayer, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
         }
     }
 }

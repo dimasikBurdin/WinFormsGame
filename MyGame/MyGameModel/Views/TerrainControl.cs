@@ -26,23 +26,7 @@ namespace MyGameModel.Views
 
         private void TerrainControl_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var delta = Point.Empty;
-            switch(e.KeyChar)
-            {
-                case 'd':
-                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X + 1, Y = ScenePainter.PlayerPosition.Y };
-                    break;
-                case 'a':
-                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X - 1, Y = ScenePainter.PlayerPosition.Y };
-                    break;
-                case 'w':
-                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X, Y = ScenePainter.PlayerPosition.Y - 1 };
-                    break;
-                case 's':
-                    ScenePainter.Player.Position = new Point() { X = ScenePainter.PlayerPosition.X, Y = ScenePainter.PlayerPosition.Y + 1 };
-                    break;
-            }
-            
+            ScenePainter.currentMap.Player.MovePlayer(e);            
             Invalidate();
         }
 
