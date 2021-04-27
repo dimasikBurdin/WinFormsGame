@@ -69,6 +69,7 @@ namespace MyGameModel.Views
             g.SmoothingMode = SmoothingMode.AntiAlias;
             DrawLevel(g);
             DrawPlayer(g);
+            UpdateInterface();
         }
 
         private void DrawLevel(Graphics graphics)
@@ -99,5 +100,11 @@ namespace MyGameModel.Views
             
             graphics.DrawImage(Properties.Resources.testPlayer, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
         }
+
+        private void UpdateInterface()
+        {
+            MainForm.label.Text = Player.Health.ToString();
+        }
+
     }
 }

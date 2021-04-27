@@ -28,23 +28,24 @@ namespace MyGameModel.Domain
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
         }
 
-        public void MovePlayer(KeyPressEventArgs e)
+        public void MovePlayer(KeyEventArgs e)
         {
-            switch (e.KeyChar)
+            switch (e.KeyCode)
             {
-                case 'd':
-                    if(IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
+                case Keys.D:
+                    Health -= 20;//fast test view health value
+                    if (IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
                         Position = new Point() { X = Position.X + 1, Y = Position.Y };
                     break;
-                case 'a':
+                case Keys.A:
                     if (IsCanGo(new Point() { X = Position.X - 1, Y = Position.Y }))
                         Position = new Point() { X = Position.X - 1, Y = Position.Y };
                     break;
-                case 'w':
+                case Keys.W:
                     if (IsCanGo(new Point() { X = Position.X, Y = Position.Y - 1 }))
                         Position = new Point() { X = Position.X, Y = Position.Y - 1 };
                     break;
-                case 's':
+                case Keys.S:
                     if (IsCanGo(new Point() { X = Position.X, Y = Position.Y + 1 }))
                         Position = new Point() { X = Position.X, Y = Position.Y + 1 };
                     break;

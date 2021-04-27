@@ -21,10 +21,10 @@ namespace MyGameModel.Views
             painter = scenePainter;
             DoubleBuffered = true;
             //Click += TerrainControl_Click;
-            KeyPress += TerrainControl_KeyPress;
+            KeyDown += TerrainControl_KeyDown;
         }
 
-        private void TerrainControl_KeyPress(object sender, KeyPressEventArgs e)
+        private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
         {
             ScenePainter.currentMap.Player.MovePlayer(e);            
             Invalidate();
@@ -54,7 +54,7 @@ namespace MyGameModel.Views
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.Clear(Color.White);
+            e.Graphics.Clear(Color.AliceBlue);
             if (painter == null) return;
             var sceneSize = painter.Size;
             var vMargin = sceneSize.Height * ClientSize.Width < ClientSize.Height * sceneSize.Width;
