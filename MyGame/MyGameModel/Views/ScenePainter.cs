@@ -98,7 +98,7 @@ namespace MyGameModel.Views
             var cellWidth = Properties.Resources.Rock.Width;
             var cellHeight = Properties.Resources.Rock.Height;
             
-            graphics.DrawImage(Properties.Resources.testPlayer, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
+            graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
         }
 
         private void UpdateInterface()

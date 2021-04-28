@@ -119,9 +119,9 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на WWWRRRRRRRWWWW
+        ///   Ищет локализованную строку, похожую на WWWRRGRRRRWWWW
         ///WWWGGTGGGRWWWW
-        ///WWGGTTGTGRWWWW
+        ///WWGGPTGTGRWWWW
         ///RGGGTGGTGRWWWW
         ///RGGTTTTTGRWWWW
         ///RGGTTGGGGGWWGG
@@ -146,6 +146,16 @@ namespace MyGameModel.Properties {
         internal static System.Drawing.Bitmap testPlayer {
             get {
                 object obj = ResourceManager.GetObject("testPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TestPng2 {
+            get {
+                object obj = ResourceManager.GetObject("TestPng2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
