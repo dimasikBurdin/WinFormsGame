@@ -1,6 +1,8 @@
 ﻿using MyGameModel.Views;
+using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MyGameModel.Domain
@@ -31,9 +33,9 @@ namespace MyGameModel.Domain
         public void MovePlayer(KeyEventArgs e)
         {
             switch (e.KeyCode)
-            {
+            {                
                 case Keys.D:
-                    Health -= 20;//fast test view health value
+                    //Health -= 20;//fast test view health value
                     if (IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
                         Position = new Point() { X = Position.X + 1, Y = Position.Y };
                     break;

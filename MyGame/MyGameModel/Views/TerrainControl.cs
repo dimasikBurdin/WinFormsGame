@@ -14,21 +14,53 @@ namespace MyGameModel.Views
     {
         private readonly ScenePainter painter;
         private float zoomScale = 1;
+        private KeyEventArgs keyEvent;
+        private HashSet<KeyEventArgs> keyEvents = new HashSet<KeyEventArgs>();
 
         public TerrainControl(ScenePainter scenePainter)
         {
            // InitializeComponent();
             painter = scenePainter;
             DoubleBuffered = true;
+            var timer = new Timer();
+            timer.Interval = 30;
+            timer.Tick += TimerTick;
+            timer.Start();
             //Click += TerrainControl_Click;
             KeyDown += TerrainControl_KeyDown;
         }
 
-        private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
+        private void TimerTick(object sender, EventArgs args)
         {
-            ScenePainter.currentMap.Player.MovePlayer(e);            
+            var map = ScenePainter.currentMap;
+            if (keyEvent != null && IsPlayerKeys(keyEvent))
+                map.Player.MovePlayer(keyEvent);
+            map.Enemies[0].Move();//test
             Invalidate();
         }
+
+        private bool IsPlayerKeys(KeyEventArgs e)
+        {
+            return e.KeyCode == Keys.A || e.KeyCode == Keys.S
+                || e.KeyCode == Keys.D || e.KeyCode == Keys.W;
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            keyEvent = null;
+            //keyEvents.Remove(e);
+        }
+
+        private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            keyEvents.Add(e);
+            keyEvent = e;
+            //if(e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D || e.KeyCode == Keys.W)
+            //    ScenePainter.currentMap.Player.MovePlayer(e);      
+            //Invalidate();
+        }
+
+        //digger_window -> timer (4 str)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //private void TerrainControl_Click(object sender, EventArgs e)
         //{

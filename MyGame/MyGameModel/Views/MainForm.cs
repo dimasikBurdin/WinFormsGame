@@ -37,7 +37,7 @@ namespace MyGameModel.Domain
                 Left = 710,
                 Font = new Font(FontFamily.GenericSerif, 30, FontStyle.Bold),
                 ForeColor = Color.Purple
-                };
+            };
 
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);
@@ -49,6 +49,7 @@ namespace MyGameModel.Domain
         private static IEnumerable<Map> LoadLevels()
         {
             yield return Map.FromText(Properties.Resources.TestMap);
+            //yield return Map.FromText(Properties.Resources.TestMap_2);
         }
     }
 }

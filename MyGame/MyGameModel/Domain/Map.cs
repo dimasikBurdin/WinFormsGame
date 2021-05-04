@@ -53,7 +53,7 @@ namespace MyGameModel.Domain
                             npcS.Add(new Npc(new Point(x, y), null));//
                             break;
                         case 'E':
-                            terrain[x, y] = MapCell.Empty;
+                            terrain[x, y] = MapCell.Trail;
                             enemies.Add(new Enemy(100, 30, 15, new Point(x, y)));
                             break;
                         case 'Z':  //puzzle

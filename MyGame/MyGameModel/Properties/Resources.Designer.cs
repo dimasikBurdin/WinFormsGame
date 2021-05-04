@@ -119,7 +119,7 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на WWWRRGRRRRWWWW
+        ///   Ищет локализованную строку, похожую на WWWRRTRRRRWWWW
         ///WWWGGTGGGRWWWW
         ///WWGGPTGTGRWWWW
         ///RGGGTGGTGRWWWW
@@ -141,6 +141,21 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+        ///GGGGGGGGGGGGGGGGGGGG [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string TestMap_2 {
+            get {
+                return ResourceManager.GetString("TestMap_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap testPlayer {
@@ -156,6 +171,16 @@ namespace MyGameModel.Properties {
         internal static System.Drawing.Bitmap TestPng2 {
             get {
                 object obj = ResourceManager.GetObject("TestPng2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TestPng3 {
+            get {
+                object obj = ResourceManager.GetObject("TestPng3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

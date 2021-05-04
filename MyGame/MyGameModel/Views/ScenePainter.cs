@@ -57,8 +57,9 @@ namespace MyGameModel.Views
                                 image = Properties.Resources.Water;
                                 break;
                         }
-                        //if(image != null)
+                        if(image != null)
                             graphics.DrawImage(image, new Rectangle(x * cellWidth, y * cellHeight, cellWidth, cellHeight));
+                        else throw new ArgumentException($"{image} с таким названием не существует");
                     }
                 }
             }
@@ -75,9 +76,9 @@ namespace MyGameModel.Views
         private void DrawLevel(Graphics graphics)
         {
             graphics.DrawImage(bitmap, 0, 0, LevelSize.Width, LevelSize.Height);
-            foreach(var e in currentMap.Enemies)
+            foreach(var enemy in currentMap.Enemies)
             {
-
+                graphics.DrawImage(Properties.Resources.TestPng3, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
             }
             foreach(var e in currentMap.Objects)
             {
@@ -95,15 +96,14 @@ namespace MyGameModel.Views
 
         private void DrawPlayer(Graphics graphics)
         {
-            var cellWidth = Properties.Resources.Rock.Width;
-            var cellHeight = Properties.Resources.Rock.Height;
-            
-            graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
+            if(Player != null)
+                graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
         }
 
         private void UpdateInterface()
         {
-            MainForm.label.Text = Player.Health.ToString();
+            if (Player != null)
+                MainForm.label.Text = Player.Health.ToString();
         }
 
     }

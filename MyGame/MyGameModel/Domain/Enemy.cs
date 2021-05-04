@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using MyGameModel.Views;
+using System.Drawing;
 
 namespace MyGameModel.Domain
 {
@@ -16,6 +17,30 @@ namespace MyGameModel.Domain
             Speed = speed;
             Damage = damage;
             Position = position;
+        }
+
+        bool isLeftEnd;        
+
+        public void Move()//test
+        {
+            if (IsCanGo(new Point(Position.X - 1, Position.Y)) && !isLeftEnd)
+                Position = new Point { X = Position.X - 1, Y = Position.Y };
+            else if (IsCanGo(new Point(Position.X + 1, Position.Y)))
+            {
+                isLeftEnd = true;
+                Position = new Point { X = Position.X + 1, Y = Position.Y };
+                if (Position.X == ScenePainter.currentMap.Terrain.GetLength(0)) isLeftEnd = false;
+            }
+            else isLeftEnd = false;
+        }
+
+        private bool IsCanGo(Point position)
+        {
+            var terrain = ScenePainter.currentMap.Terrain;
+            if (position.X < 0 || position.X >= terrain.GetLength(0)
+                || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
+            var currentMapCellType = terrain[position.X, position.Y];
+            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
         }
     }
 }
