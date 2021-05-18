@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyGameModel.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Point = MyGameModel.Domain.Point;
 
 namespace MyGameModel.Views
 {
@@ -14,28 +16,40 @@ namespace MyGameModel.Views
     {
         private readonly ScenePainter painter;
         private float zoomScale = 1;
-        private KeyEventArgs keyEvent;
-        private HashSet<KeyEventArgs> keyEvents = new HashSet<KeyEventArgs>();
+        private int tickCount;
+        public Size TerrainClientSize { get; private set; }
+        public Timer Timer { get; private set; }
 
         public TerrainControl(ScenePainter scenePainter)
         {
-           // InitializeComponent();
+            TerrainClientSize = new Size(800, 800);
             painter = scenePainter;
             DoubleBuffered = true;
-            var timer = new Timer();
-            timer.Interval = 30;
-            timer.Tick += TimerTick;
-            timer.Start();
-            //Click += TerrainControl_Click;
+
+            //var timer = new Timer();
+            Timer = new Timer();
+            Timer.Interval = 15;
+            Timer.Tick += TimerTick;
+            Timer.Start();
+
             KeyDown += TerrainControl_KeyDown;
+            KeyUp += OnKeyUp;
         }
+                
 
         private void TimerTick(object sender, EventArgs args)
         {
             var map = ScenePainter.currentMap;
-            if (keyEvent != null && IsPlayerKeys(keyEvent))
-                map.Player.MovePlayer(keyEvent);
-            map.Enemies[0].Move();//test
+            var player = map.Player;
+
+            if (tickCount == 1)
+                foreach (var enemy in map.Enemies)
+                    enemy.Move();//test
+            if (player != null && player.IsMoving && tickCount == 3)
+                player.Act();
+            
+            tickCount++;
+            if (tickCount == 4) tickCount = 0;
             Invalidate();
         }
 
@@ -45,29 +59,63 @@ namespace MyGameModel.Views
                 || e.KeyCode == Keys.D || e.KeyCode == Keys.W;
         }
 
-        protected override void OnKeyUp(KeyEventArgs e)
+        private void OnKeyUp(object sender, KeyEventArgs e)
         {
-            keyEvent = null;
-            //keyEvents.Remove(e);
+            var player = ScenePainter.currentMap.Player;
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    player.Delta.Y = 0;
+                    break;
+                case Keys.S:
+                    player.Delta.Y = 0;
+                    break;
+                case Keys.A:
+                    player.Delta.X = 0;
+                    break;
+                case Keys.D:
+                    player.Delta.X = 0;
+                    break;
+            }
+            if(player.Delta == Point.Empty)
+            {
+                player.IsMoving = false;
+            }
         }
 
         private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
         {
-            keyEvents.Add(e);
-            keyEvent = e;
-            //if(e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D || e.KeyCode == Keys.W)
-            //    ScenePainter.currentMap.Player.MovePlayer(e);      
-            //Invalidate();
+            var player = ScenePainter.currentMap.Player;
+            if (IsPlayerKeys(e))
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D:
+                        player.Delta = new Point { X = 1, Y = 0 };
+                        player.IsMoving = true;
+                        break;
+                    case Keys.A:
+                        player.Delta = new Point { X = -1, Y = 0 };
+                        player.IsMoving = true;
+                        break;
+                    case Keys.W:
+                        player.Delta = new Point { X = 0, Y = -1 };
+                        player.IsMoving = true;
+                        break;
+                    case Keys.S:
+                        player.Delta = new Point { X = 0, Y = 1 };
+                        player.IsMoving = true;
+                        break;
+                }
+            }
         }
 
-        //digger_window -> timer (4 str)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        private void TerrainControl_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-        //private void TerrainControl_Click(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public float ZoomScale
+        private float ZoomScale
         {
             get { return zoomScale; }
             set
@@ -79,7 +127,7 @@ namespace MyGameModel.Views
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            ClientSize = new Size(700, 700);
+            ClientSize = TerrainClientSize;
 
         }
 

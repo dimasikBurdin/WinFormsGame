@@ -29,20 +29,20 @@ namespace MyGameModel.Views
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // TerrainControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "TerrainControl";
-            this.Size = new System.Drawing.Size(800, 800);
-            //this.Size = new System.Drawing.Size(TerrainControl, 800);
-            this.ResumeLayout(false);
+        //private void InitializeComponent()
+        //{
+        //    this.SuspendLayout();
+        //    // 
+        //    // TerrainControl
+        //    // 
+        //    this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+        //    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        //    this.Name = "TerrainControl";
+        //    this.Size = new System.Drawing.Size(800, 800);
+        //    //this.Size = new System.Drawing.Size(TerrainControl, 800);
+        //    this.ResumeLayout(false);
 
-        }
+        //}
 
         #endregion
     }

@@ -15,10 +15,11 @@ namespace MyGameModel.Domain
         public Npc[] Npcs { get; private set; }
         public Puzzle[] Puzzles { get; private set; }//???
 
-        public Map(MapCell[,] terrain, Player player, Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
+        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
         {
             Terrain = terrain;
             Player = player;
+            InitialPosition = initialPosition;
             ExitPosition = exitPosition;
             Objects = objects;
             Enemies = enemies;
@@ -96,7 +97,7 @@ namespace MyGameModel.Domain
                             terrain[x, y] = MapCell.Forest;
                             break;
                         case 'X'://exit
-                            terrain[x, y] = MapCell.Empty;
+                            terrain[x, y] = MapCell.Trail;
                             exitPosition = new Point(x, y);
                             break;
                         default:
@@ -105,7 +106,7 @@ namespace MyGameModel.Domain
                     }
                 }            
             }
-            return new Map(terrain, player, exitPosition, objects.ToArray(), enemies.ToArray(), npcS.ToArray(), puzzles.ToArray());
+            return new Map(terrain, player, initialPosition, exitPosition, objects.ToArray(), enemies.ToArray(), npcS.ToArray(), puzzles.ToArray());
         }
     }
 }

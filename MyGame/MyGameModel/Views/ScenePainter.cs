@@ -6,23 +6,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using Point = MyGameModel.Domain.Point;
 
 namespace MyGameModel.Views
 {
     public class ScenePainter
     {
+        private int mapNumber;
+        private Map[] maps = null;
+        private Bitmap bitmap;
         public SizeF Size => new SizeF(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
         public Size LevelSize => new Size(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
 
         public static Map currentMap = default;
-        private Bitmap bitmap;
+        
         public static Player Player { get; set; }
 
         public ScenePainter(Map[] maps)
         {
-            currentMap = maps[0];            
+            this.maps = maps;
+            currentMap = maps[0];        
             Player = currentMap.Player;
             CreateMap();
+        }
+
+        public void NextMap()
+        {
+            if (mapNumber >= 0 && mapNumber < maps.Length)
+                currentMap = maps[mapNumber];
+            Player = currentMap.Player;            
+            CreateMap();            
         }
 
         private void CreateMap()
@@ -96,8 +110,47 @@ namespace MyGameModel.Views
 
         private void DrawPlayer(Graphics graphics)
         {
-            if(Player != null)
-                graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));
+            var exeptedPosition = Player.Position + Player.Delta;
+            if (currentMap.ExitPosition == Player?.Position)
+            {                
+                MainForm.TerrainControl.Timer.Stop();
+                var quest = MessageBox.Show("Хотите перейти на следующую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MainForm.TerrainControl.Timer.Start();
+                if (quest == DialogResult.Yes)
+                {
+                    mapNumber++;
+                    NextMap();
+                }
+                else
+                {
+                    Player.Position -= Player.Delta;                    
+                }
+                Player.Delta = Point.Empty;
+            }
+
+            if (currentMap.InitialPosition == Player.Position && Player.Delta != Point.Empty && currentMap != maps[0])
+            {
+                //при перехождении на след локацию сразу предлагается перейти обратно. Связано с тем, что перемещение игрока происходит через n-ое кол-во tick'ов
+                MainForm.TerrainControl.Timer.Stop();
+                var quest = MessageBox.Show("Хотите перейти на предыдущую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MainForm.TerrainControl.Timer.Start();
+                if (quest == DialogResult.Yes)
+                {
+                    mapNumber--;
+                    NextMap();
+                }
+                else
+                {
+                    if((Player.Position - Player.Delta).X >= 0 && (Player.Position - Player.Delta).Y >= 0)
+                        Player.Position -= Player.Delta;
+                    Player.Delta = Point.Empty;
+                }
+            }
+
+            if (Player != null)
+            {
+                graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
+            }
         }
 
         private void UpdateInterface()
@@ -105,6 +158,5 @@ namespace MyGameModel.Views
             if (Player != null)
                 MainForm.label.Text = Player.Health.ToString();
         }
-
     }
 }

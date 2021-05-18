@@ -15,6 +15,9 @@ namespace MyGameModel.Domain
         public static double Damage { get; private set; }
         public Point Position { get; set; }//??? как отрисовать при переходе с локации на локацию
         public Inventory Inventory { get; set; }
+        public bool IsMoving { get; set; }
+        public Point Delta { get; set; }
+
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
         {
@@ -23,36 +26,43 @@ namespace MyGameModel.Domain
             Damage = damage;
             Position = position;
             Inventory = inventory;
+            Delta = Point.Empty;
         }
 
         public void UseHealer()
         {
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
         }
-
-        public void MovePlayer(KeyEventArgs e)
+        
+        public void Act()
         {
-            switch (e.KeyCode)
-            {                
-                case Keys.D:
-                    //Health -= 20;//fast test view health value
-                    if (IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
-                        Position = new Point() { X = Position.X + 1, Y = Position.Y };
-                    break;
-                case Keys.A:
-                    if (IsCanGo(new Point() { X = Position.X - 1, Y = Position.Y }))
-                        Position = new Point() { X = Position.X - 1, Y = Position.Y };
-                    break;
-                case Keys.W:
-                    if (IsCanGo(new Point() { X = Position.X, Y = Position.Y - 1 }))
-                        Position = new Point() { X = Position.X, Y = Position.Y - 1 };
-                    break;
-                case Keys.S:
-                    if (IsCanGo(new Point() { X = Position.X, Y = Position.Y + 1 }))
-                        Position = new Point() { X = Position.X, Y = Position.Y + 1 };
-                    break;
-            }
+            if (IsCanGo(Position + Delta))
+                Position += Delta;
         }
+
+        //public void MovePlayer(KeyEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {                
+        //        case Keys.D:
+        //            //Health -= 20;//fast test view health value
+        //            if (IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
+        //                Position = new Point() { X = Position.X + 1, Y = Position.Y };
+        //            break;
+        //        case Keys.A:
+        //            if (IsCanGo(new Point() { X = Position.X - 1, Y = Position.Y }))
+        //                Position = new Point() { X = Position.X - 1, Y = Position.Y };
+        //            break;
+        //        case Keys.W:
+        //            if (IsCanGo(new Point() { X = Position.X, Y = Position.Y - 1 }))
+        //                Position = new Point() { X = Position.X, Y = Position.Y - 1 };
+        //            break;
+        //        case Keys.S:
+        //            if (IsCanGo(new Point() { X = Position.X, Y = Position.Y + 1 }))
+        //                Position = new Point() { X = Position.X, Y = Position.Y + 1 };
+        //            break;
+        //    }
+        //}
 
         private bool IsCanGo(Point position)
         {

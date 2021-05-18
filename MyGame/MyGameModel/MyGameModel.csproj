@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Point.cs" />
     <Compile Include="Domain\FirstPuzzle.cs" />
     <Compile Include="Domain\Enemy.cs" />
     <Compile Include="Domain\Game.cs" />
@@ -134,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TestPng3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestMap3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

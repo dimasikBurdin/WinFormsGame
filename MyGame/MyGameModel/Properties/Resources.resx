@@ -139,6 +139,9 @@
   <data name="TestMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TestMap.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="TestMap3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TestMap3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="TestMap_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TestMap_2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
