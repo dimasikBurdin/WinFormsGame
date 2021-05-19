@@ -16,6 +16,7 @@ namespace MyGameModel.Views
         private int mapNumber;
         private Map[] maps = null;
         private Bitmap bitmap;
+        private bool open = false;
         public SizeF Size => new SizeF(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
         public Size LevelSize => new Size(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
 
@@ -106,12 +107,11 @@ namespace MyGameModel.Views
             {
 
             }
-        }
+        }        
 
         private void DrawPlayer(Graphics graphics)
         {
-            var exeptedPosition = Player.Position + Player.Delta;
-            if (currentMap.ExitPosition == Player?.Position)
+            if (currentMap.ExitPosition == Player?.Position && open)
             {                
                 MainForm.TerrainControl.Timer.Stop();
                 var quest = MessageBox.Show("Хотите перейти на следующую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -120,6 +120,7 @@ namespace MyGameModel.Views
                 {
                     mapNumber++;
                     NextMap();
+                    open = false;
                 }
                 else
                 {
@@ -128,9 +129,8 @@ namespace MyGameModel.Views
                 Player.Delta = Point.Empty;
             }
 
-            if (currentMap.InitialPosition == Player.Position && Player.Delta != Point.Empty && currentMap != maps[0])
+            if (currentMap.InitialPosition == Player.Position && currentMap != maps[0] && open)
             {
-                //при перехождении на след локацию сразу предлагается перейти обратно. Связано с тем, что перемещение игрока происходит через n-ое кол-во tick'ов
                 MainForm.TerrainControl.Timer.Stop();
                 var quest = MessageBox.Show("Хотите перейти на предыдущую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 MainForm.TerrainControl.Timer.Start();
@@ -138,6 +138,7 @@ namespace MyGameModel.Views
                 {
                     mapNumber--;
                     NextMap();
+                    open = false;
                 }
                 else
                 {
@@ -150,6 +151,7 @@ namespace MyGameModel.Views
             if (Player != null)
             {
                 graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
+                if (currentMap.InitialPosition != Player.Position && currentMap.ExitPosition != Player.Position) open = true;
             }
         }
 
