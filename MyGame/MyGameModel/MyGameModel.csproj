@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\PointExtensions.cs" />
     <Compile Include="Domain\Point.cs" />
     <Compile Include="Domain\FirstPuzzle.cs" />
     <Compile Include="Domain\Enemy.cs" />

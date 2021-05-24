@@ -13,7 +13,7 @@ namespace MyGameModel.Domain
         public int Health { get; set; }
         public static double Speed { get; private set; }
         public static double Damage { get; private set; }
-        public Point Position { get; set; }//??? как отрисовать при переходе с локации на локацию
+        public Point Position { get; set; }
         public Inventory Inventory { get; set; }
         public bool IsMoving { get; set; }
         public Point Delta { get; set; }
@@ -36,8 +36,8 @@ namespace MyGameModel.Domain
         
         public void Act()
         {
-            if (IsCanGo(Position + Delta))
-                Position += Delta;
+            if (IsCanGo(Position.Add(Delta)))
+                Position = Position.Add(Delta);
         }
 
         //public void MovePlayer(KeyEventArgs e)

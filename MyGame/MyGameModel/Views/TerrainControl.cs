@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Point = MyGameModel.Domain.Point;
+//using Point = MyGameModel.Domain.Point;
 
 namespace MyGameModel.Views
 {
@@ -27,7 +27,6 @@ namespace MyGameModel.Views
             painter = scenePainter;
             DoubleBuffered = true;
 
-            //var timer = new Timer();
             Timer = new Timer();
             Timer.Interval = 15;
             Timer.Tick += TimerTick;
@@ -43,13 +42,9 @@ namespace MyGameModel.Views
             var map = ScenePainter.currentMap;
             var player = map.Player;
 
-            //if (map.Enemies[0].CanMove) 
-            //    map.Enemies[0].Move();//test smart
-
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
-                    //if (enemy.CanMove)
-                        enemy.Move();//test
+                        enemy.Move();
             if (player != null && player.IsMoving && tickCount == 3)
                 player.Act();
             
@@ -72,16 +67,20 @@ namespace MyGameModel.Views
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    player.Delta.Y = 0;
+                    //player.Delta.Y = 0;
+                    player.Delta = new Point() { X = player.Delta.X, Y = 0 };
                     break;
                 case Keys.S:
-                    player.Delta.Y = 0;
+                    //player.Delta.Y = 0;
+                    player.Delta = new Point() { X = player.Delta.X, Y = 0 };
                     break;
                 case Keys.A:
-                    player.Delta.X = 0;
+                    //player.Delta.X = 0;
+                    player.Delta = new Point() { X = 0, Y = player.Delta.Y };
                     break;
                 case Keys.D:
-                    player.Delta.X = 0;
+                    //player.Delta.X = 0;
+                    player.Delta = new Point() { X = 0, Y = player.Delta.Y };
                     break;
             }
             if(player.Delta == Point.Empty)

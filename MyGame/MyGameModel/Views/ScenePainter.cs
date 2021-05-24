@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Point = MyGameModel.Domain.Point;
+//using Point = MyGameModel.Domain.Point;
 
 namespace MyGameModel.Views
 {
@@ -123,9 +123,7 @@ namespace MyGameModel.Views
                     open = false;
                 }
                 else
-                {
-                    Player.Position -= Player.Delta;                    
-                }
+                    Player.Position = Player.Position.SubStract(Player.Delta);
                 Player.Delta = Point.Empty;
             }
 
@@ -142,8 +140,8 @@ namespace MyGameModel.Views
                 }
                 else
                 {
-                    if((Player.Position - Player.Delta).X >= 0 && (Player.Position - Player.Delta).Y >= 0)
-                        Player.Position -= Player.Delta;
+                    if (Player.Position.SubStract(Player.Delta).X >= 0 && Player.Position.SubStract(Player.Delta).Y >= 0)
+                        Player.Position = Player.Position.SubStract(Player.Delta);
                     Player.Delta = Point.Empty;
                 }
             }

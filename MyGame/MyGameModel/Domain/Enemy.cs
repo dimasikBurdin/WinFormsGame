@@ -41,6 +41,7 @@ namespace MyGameModel.Domain
         //}
         #endregion
 
+
         public void Move()
         {
             var playerPos = ScenePainter.currentMap.Player.Position;
@@ -51,7 +52,7 @@ namespace MyGameModel.Domain
                 CreateTrack();
             if (resTrack?.Count != 0)
             {
-                Position = resTrack?.First();
+                Position = resTrack.First();
                 resTrack?.RemoveAt(0);
             }
         }
@@ -82,46 +83,18 @@ namespace MyGameModel.Domain
                     {
                         if (dy != 0 && dx != 0) continue;
                         var nextPosition = new Point() { X = currentPosition.X + dx, Y = currentPosition.Y + dy };
-                        var contains = false;
-                        foreach (var e in track)//////////////////////////////
-                        {
-                            if (e.Key == nextPosition)
-                            {
-                                contains = true;
-                                break;
-                            }
-                        }
-                        if (contains || !IsCanGo(nextPosition)) continue;
+                        if (track.ContainsKey(nextPosition) || !IsCanGo(nextPosition)) continue;
                         track[nextPosition] = currentPosition;
                         queue.Enqueue(nextPosition);
                     }
-                var flag = false;
-                //if (track.ContainsKey(target)) break;
-                foreach (var e in track)////////////////////////////////////
-                {
-                    if (e.Key == target)
-                    {
-                        flag = true;
-                        break;
-                        
-                    }
-                }
-                if (flag) break;
+                if (track.ContainsKey(target)) break;                
             }
             var pathItem = target;
             var result = new List<Point>();
             while (pathItem != new Point(int.MinValue, int.MinValue))
             {
                 result.Add(pathItem);
-                foreach (var e in track)////////////////////////////////
-                {
-                    if (pathItem == e.Key)
-                    {
-                        pathItem = e.Value;
-                        break;
-                    }
-                    //pathItem = track[pathItem];
-                }
+                pathItem = track[pathItem];
             }
             result.Reverse();
             result.RemoveAt(0);//убираем точку, на которой стоит враг
