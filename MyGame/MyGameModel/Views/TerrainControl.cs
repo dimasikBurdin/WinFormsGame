@@ -92,7 +92,7 @@ namespace MyGameModel.Views
         private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
         {
             var player = ScenePainter.currentMap.Player;
-            if (IsPlayerKeys(e))
+            //if (IsPlayerKeys(e))
             {
                 switch (e.KeyCode)
                 {
@@ -116,6 +116,11 @@ namespace MyGameModel.Views
                         //player.Delta.Y = 1;
                         player.IsMoving = true;
                         break;
+                    case Keys.Escape:
+                        MainForm.TerrainControl.Hide();
+                        MainForm.MainMenu.Show();                        
+                        Timer.Stop();
+                        break;
                 }
             }
         }
@@ -138,7 +143,6 @@ namespace MyGameModel.Views
         {
             base.OnLoad(e);
             ClientSize = TerrainClientSize;
-
         }
 
         protected override void OnPaint(PaintEventArgs e)

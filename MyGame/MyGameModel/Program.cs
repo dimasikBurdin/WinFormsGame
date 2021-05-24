@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyGameModel.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace MyGameModel.Domain
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new MenuForm());
             Application.Run(new MainForm());
         }
     }

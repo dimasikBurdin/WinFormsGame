@@ -18,13 +18,21 @@ namespace MyGameModel.Domain
         //в форме есть событие, принимающее нажатие клафиш. Для управления написать методы в моделе (в игроке например), которые будут реагировать на эти нажатия +
         public static Label label;
         public static TerrainControl TerrainControl { get; set; }
+        public static MenuControl MainMenu { get; set; }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
+
+            MainMenu = new MenuControl();
+            Controls.Add(MainMenu);
+
             ClientSize = new Size(TerrainControl.ClientSize.Width + 100, TerrainControl.ClientSize.Height);
-        }
+            TerrainControl.Hide();
+            MainMenu.ClientSize = TerrainControl.ClientSize;
+            MainMenu.Show();
+        }        
 
         public MainForm()
         {
@@ -41,7 +49,7 @@ namespace MyGameModel.Domain
                 Font = new Font(FontFamily.GenericSerif, 30, FontStyle.Bold),
                 ForeColor = Color.Purple
             };
-            
+
             Controls.Add(TerrainControl);
             Controls.Add(label);
         }

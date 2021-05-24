@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\GameStage.cs" />
     <Compile Include="Domain\PointExtensions.cs" />
     <Compile Include="Domain\Point.cs" />
     <Compile Include="Domain\FirstPuzzle.cs" />
@@ -62,11 +63,23 @@
     <Compile Include="Domain\GameObjectType.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Puzzle.cs" />
+    <Compile Include="Views\MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TEST_GameControl.cs">
       <SubType>UserControl</SubType>
