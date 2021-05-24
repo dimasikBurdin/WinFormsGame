@@ -1,10 +1,15 @@
 ﻿using MyGameModel.Views;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace MyGameModel.Domain
 {
     public class Enemy
     {
+        private bool canMove = true;
+        private List<Point> resTrack = new List<Point>();
         public const int MaxHealth = 100;
         public static int Health { get; set; }
         public double Speed { get; private set; }
@@ -19,19 +24,108 @@ namespace MyGameModel.Domain
             Position = position;
         }
 
-        bool isLeftEnd;        
+        #region
+        //bool isLeftEnd;        
 
-        public void Move()//test
+        //public void Move()//test
+        //{
+        //    if (IsCanGo(new Point(Position.X - 1, Position.Y)) && !isLeftEnd)
+        //        Position = new Point { X = Position.X - 1, Y = Position.Y };
+        //    else if (IsCanGo(new Point(Position.X + 1, Position.Y)))
+        //    {
+        //        isLeftEnd = true;
+        //        Position = new Point { X = Position.X + 1, Y = Position.Y };
+        //        if (Position.X == ScenePainter.currentMap.Terrain.GetLength(0)) isLeftEnd = false;
+        //    }
+        //    else isLeftEnd = false;
+        //}
+        #endregion
+
+        public void Move()
         {
-            if (IsCanGo(new Point(Position.X - 1, Position.Y)) && !isLeftEnd)
-                Position = new Point { X = Position.X - 1, Y = Position.Y };
-            else if (IsCanGo(new Point(Position.X + 1, Position.Y)))
+            var playerPos = ScenePainter.currentMap.Player.Position;
+            var minRadius = new Point(Position.X - 5, Position.Y - 5);
+            var maxRadius = new Point(Position.X + 5, Position.Y + 5);
+
+            if(canMove && (playerPos.X >= minRadius.X && playerPos.Y >= minRadius.Y && playerPos.X <= maxRadius.X && playerPos.Y <= maxRadius.Y))
+                CreateTrack();
+            if (resTrack?.Count != 0)
             {
-                isLeftEnd = true;
-                Position = new Point { X = Position.X + 1, Y = Position.Y };
-                if (Position.X == ScenePainter.currentMap.Terrain.GetLength(0)) isLeftEnd = false;
+                Position = resTrack?.First();
+                resTrack?.RemoveAt(0);
             }
-            else isLeftEnd = false;
+        }
+        private void CreateTrack()
+        {
+            canMove = false;
+
+            resTrack = FindTrack(ScenePainter.currentMap.Player.Position);
+            if (resTrack.Count > 5) 
+                resTrack = new List<Point>();
+
+            canMove = true;
+        }
+
+        private List<Point> FindTrack(Point target)
+        {
+            var track = new Dictionary<Point, Point>();
+            track[Position] = new Point(int.MinValue, int.MinValue);
+
+            var queue = new Queue<Point>();
+            queue.Enqueue(Position);
+            while(queue.Count != 0)
+            {
+                //if (track.Count > 5) return null;
+                var currentPosition = queue.Dequeue();
+                for(var dx = -1; dx <=1; dx++)
+                    for(var dy = -1; dy <= 1; dy++)
+                    {
+                        if (dy != 0 && dx != 0) continue;
+                        var nextPosition = new Point() { X = currentPosition.X + dx, Y = currentPosition.Y + dy };
+                        var contains = false;
+                        foreach (var e in track)//////////////////////////////
+                        {
+                            if (e.Key == nextPosition)
+                            {
+                                contains = true;
+                                break;
+                            }
+                        }
+                        if (contains || !IsCanGo(nextPosition)) continue;
+                        track[nextPosition] = currentPosition;
+                        queue.Enqueue(nextPosition);
+                    }
+                var flag = false;
+                //if (track.ContainsKey(target)) break;
+                foreach (var e in track)////////////////////////////////////
+                {
+                    if (e.Key == target)
+                    {
+                        flag = true;
+                        break;
+                        
+                    }
+                }
+                if (flag) break;
+            }
+            var pathItem = target;
+            var result = new List<Point>();
+            while (pathItem != new Point(int.MinValue, int.MinValue))
+            {
+                result.Add(pathItem);
+                foreach (var e in track)////////////////////////////////
+                {
+                    if (pathItem == e.Key)
+                    {
+                        pathItem = e.Value;
+                        break;
+                    }
+                    //pathItem = track[pathItem];
+                }
+            }
+            result.Reverse();
+            result.RemoveAt(0);//убираем точку, на которой стоит враг
+            return result;
         }
 
         private bool IsCanGo(Point position)

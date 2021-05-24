@@ -37,7 +37,7 @@ namespace MyGameModel.Views
             if (mapNumber >= 0 && mapNumber < maps.Length)
                 currentMap = maps[mapNumber];
             Player = currentMap.Player;            
-            CreateMap();            
+            CreateMap();
         }
 
         private void CreateMap()

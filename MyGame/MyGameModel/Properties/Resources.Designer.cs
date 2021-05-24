@@ -61,6 +61,17 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на PTG
+        ///GTG
+        ///GTE.
+        /// </summary>
+        internal static string EnemyMoveTestMap1 {
+            get {
+                return ResourceManager.GetString("EnemyMoveTestMap1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на .
         /// </summary>
         internal static string FirstMapTest {
@@ -126,7 +137,7 @@ namespace MyGameModel.Properties {
         ///RGGTTTTTGRWWWW
         ///RGGTTGGGGGWWGG
         ///RGGTTGGGGGGGGG
-        ///RGTTTTTTTTTTTE
+        ///RGTTTTTTTTTTEX
         ///RGTGGGGGGGGWGG
         ///GTTGGGGGGGGGGG
         ///GGTGGGWWWWGGLL
@@ -162,21 +173,23 @@ namespace MyGameModel.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на WWWRRTRRRRWWWW
-        ///WWWGGTGGGRWWWW
-        ///WWGGPTGTGRWWWW
-        ///RGGGTGGTGRWWWW
-        ///RGGTTTTTGRWWWW
-        ///RGGTTGGGGGWWGG
-        ///RGGTTGGGGGGGGG
-        ///RGTTTTTTTTTTTE
-        ///RGTGGGGGGGGWGG
-        ///GTTGGGGGGGGGGG
-        ///GGTGGGWWWWGGLL
-        ///GGTTGGWWWWGGGL
-        ///GTTTTWWWWWGGGG
-        ///GTTTTWWWWWGGGG
-        ///.
+        ///   Ищет локализованную строку, похожую на WWWRRTRRRRWWWWGGGGGGGGGGGGGGG
+        ///WWWGGTGGGRWWWWGGGGGGGGGGGGGGG
+        ///WWGGTTGTGRWWWWGGGGGGGGGGGGGGG
+        ///RGGGTGGTGRWWWWGGGGGGGGGGGGGGG
+        ///RGGTTTTTGRWWWWGGGGGGGGGGGGGGG
+        ///RGGTTGGGGGWWGGGGGGGGGGGGGGGGG
+        ///RGGTTGGGGGGGGGGGGGGGGGGGGGGGG
+        ///RGTTTTTTTTTTTETTTTTTTTTTTTTTT
+        ///RGTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        ///GTTGGGGGGGGGGGGGGGGTTGGGGGGGG
+        ///GGTGGGWWWWGGLLGGGGGTTGGGGGGGG
+        ///GGTTGGWWWWGGGLGGGGGTTGEGGGGGG
+        ///GTTTTWWWWWGGGGGGGGGTTGGGGGGGG
+        ///GTTTTWWWWWGGGGGGGGGTTGGGGGGGG
+        ///WWWRRTRRRRWWWWGGGGGTTGGGGGGGG
+        ///WWWGGTGGGRWWWWGGGGGTTGGGGGGGG
+        ///WWGGTTGTGRWWWWGG [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string TestMap3 {
             get {

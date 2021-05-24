@@ -21,6 +21,7 @@ namespace MyGameModel.Domain
 
         public static Point operator +(Point firstPoint, Point secondPoint)
         => firstPoint == null || secondPoint == null ? Point.Empty : new Point(firstPoint.X + secondPoint.X, firstPoint.Y + secondPoint.Y);
+
         public static Point operator -(Point firstPoint, Point secondPoint)
         => firstPoint == null || secondPoint == null ? Point.Empty : new Point(firstPoint.X - secondPoint.X, firstPoint.Y - secondPoint.Y);
 
@@ -29,5 +30,10 @@ namespace MyGameModel.Domain
         
         public static bool operator !=(Point firstPoint, Point secondPoint)
         => firstPoint?.X != secondPoint?.X || firstPoint?.Y != secondPoint?.Y;
+
+        public override bool Equals(object obj)
+        {
+            return this == (Point)obj;
+        }
     }
 }

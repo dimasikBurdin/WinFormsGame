@@ -48,6 +48,7 @@ namespace MyGameModel.Domain
 
         private static IEnumerable<Map> LoadLevels()
         {
+            //yield return Map.FromText(Properties.Resources.EnemyMoveTestMap1);
             yield return Map.FromText(Properties.Resources.TestMap);
             yield return Map.FromText(Properties.Resources.TestMap3);
             //yield return Map.FromText(Properties.Resources.TestMap_2);

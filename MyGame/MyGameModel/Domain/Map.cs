@@ -37,8 +37,8 @@ namespace MyGameModel.Domain
         {
             var terrain = new MapCell[lines[0].Length, lines.Length];
             var player = default(Player);
-            var initialPosition = Point.Empty;
-            var exitPosition = Point.Empty;
+            var initialPosition = new Point(int.MinValue, int.MinValue);
+            var exitPosition = new Point(int.MinValue, int.MinValue);
             var enemies = new List<Enemy>();
             var objects = new List<GameObject>();
             var npcS = new List<Npc>();

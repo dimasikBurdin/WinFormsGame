@@ -17,6 +17,7 @@ namespace MyGameModel.Views
         private readonly ScenePainter painter;
         private float zoomScale = 1;
         private int tickCount;
+        private int EnemyTickCount;
         public Size TerrainClientSize { get; private set; }
         public Timer Timer { get; private set; }
 
@@ -42,14 +43,20 @@ namespace MyGameModel.Views
             var map = ScenePainter.currentMap;
             var player = map.Player;
 
-            if (tickCount == 1)
+            //if (map.Enemies[0].CanMove) 
+            //    map.Enemies[0].Move();//test smart
+
+            if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
-                    enemy.Move();//test
+                    //if (enemy.CanMove)
+                        enemy.Move();//test
             if (player != null && player.IsMoving && tickCount == 3)
                 player.Act();
             
             tickCount++;
+            EnemyTickCount++;
             if (tickCount == 4) tickCount = 0;
+            if (EnemyTickCount == 8) EnemyTickCount = 0;
             Invalidate();
         }
 
@@ -92,18 +99,22 @@ namespace MyGameModel.Views
                 {
                     case Keys.D:
                         player.Delta = new Point { X = 1, Y = 0 };
+                        //player.Delta.X = 1;
                         player.IsMoving = true;
                         break;
                     case Keys.A:
                         player.Delta = new Point { X = -1, Y = 0 };
+                        //player.Delta.X = -1;
                         player.IsMoving = true;
                         break;
                     case Keys.W:
                         player.Delta = new Point { X = 0, Y = -1 };
+                        //player.Delta.Y = -1;
                         player.IsMoving = true;
                         break;
                     case Keys.S:
                         player.Delta = new Point { X = 0, Y = 1 };
+                        //player.Delta.Y = 1;
                         player.IsMoving = true;
                         break;
                 }
