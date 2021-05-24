@@ -112,38 +112,19 @@ namespace MyGameModel.Views
         private void DrawPlayer(Graphics graphics)
         {
             if (currentMap.ExitPosition == Player?.Position && open)
-            {                
-                MainForm.TerrainControl.Timer.Stop();
-                var quest = MessageBox.Show("Хотите перейти на следующую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                MainForm.TerrainControl.Timer.Start();
-                if (quest == DialogResult.Yes)
-                {
-                    mapNumber++;
-                    NextMap();
-                    open = false;
-                }
-                else
-                    Player.Position = Player.Position.SubStract(Player.Delta);
+            {
+                mapNumber++;
+                NextMap();
+                open = false;
                 Player.Delta = Point.Empty;
             }
 
             if (currentMap.InitialPosition == Player.Position && currentMap != maps[0] && open)
             {
-                MainForm.TerrainControl.Timer.Stop();
-                var quest = MessageBox.Show("Хотите перейти на предыдущую локацию?", "....", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                MainForm.TerrainControl.Timer.Start();
-                if (quest == DialogResult.Yes)
-                {
-                    mapNumber--;
-                    NextMap();
-                    open = false;
-                }
-                else
-                {
-                    if (Player.Position.SubStract(Player.Delta).X >= 0 && Player.Position.SubStract(Player.Delta).Y >= 0)
-                        Player.Position = Player.Position.SubStract(Player.Delta);
-                    Player.Delta = Point.Empty;
-                }
+                mapNumber--;
+                NextMap();
+                open = false;
+                Player.Delta = Point.Empty;
             }
 
             if (Player != null)

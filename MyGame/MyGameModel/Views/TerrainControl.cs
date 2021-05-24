@@ -55,12 +55,6 @@ namespace MyGameModel.Views
             Invalidate();
         }
 
-        private bool IsPlayerKeys(KeyEventArgs e)
-        {
-            return e.KeyCode == Keys.A || e.KeyCode == Keys.S
-                || e.KeyCode == Keys.D || e.KeyCode == Keys.W;
-        }
-
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
             var player = ScenePainter.currentMap.Player;
@@ -92,36 +86,33 @@ namespace MyGameModel.Views
         private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
         {
             var player = ScenePainter.currentMap.Player;
-            //if (IsPlayerKeys(e))
+            switch (e.KeyCode)
             {
-                switch (e.KeyCode)
-                {
-                    case Keys.D:
-                        player.Delta = new Point { X = 1, Y = 0 };
-                        //player.Delta.X = 1;
-                        player.IsMoving = true;
-                        break;
-                    case Keys.A:
-                        player.Delta = new Point { X = -1, Y = 0 };
-                        //player.Delta.X = -1;
-                        player.IsMoving = true;
-                        break;
-                    case Keys.W:
-                        player.Delta = new Point { X = 0, Y = -1 };
-                        //player.Delta.Y = -1;
-                        player.IsMoving = true;
-                        break;
-                    case Keys.S:
-                        player.Delta = new Point { X = 0, Y = 1 };
-                        //player.Delta.Y = 1;
-                        player.IsMoving = true;
-                        break;
-                    case Keys.Escape:
-                        MainForm.TerrainControl.Hide();
-                        MainForm.MainMenu.Show();                        
-                        Timer.Stop();
-                        break;
-                }
+                case Keys.D:
+                    player.Delta = new Point { X = 1, Y = 0 };
+                    //player.Delta.X = 1;
+                    player.IsMoving = true;
+                    break;
+                case Keys.A:
+                    player.Delta = new Point { X = -1, Y = 0 };
+                    //player.Delta.X = -1;
+                    player.IsMoving = true;
+                    break;
+                case Keys.W:
+                    player.Delta = new Point { X = 0, Y = -1 };
+                    //player.Delta.Y = -1;
+                    player.IsMoving = true;
+                    break;
+                case Keys.S:
+                    player.Delta = new Point { X = 0, Y = 1 };
+                    //player.Delta.Y = 1;
+                    player.IsMoving = true;
+                    break;
+                case Keys.Escape:
+                    MainForm.TerrainControl.Hide();
+                    MainForm.MainMenu.Show();                        
+                    Timer.Stop();
+                    break;
             }
         }
 

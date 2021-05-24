@@ -12,11 +12,11 @@ using System.Windows.Forms;
 namespace MyGameModel.Views
 {
     public partial class MenuControl : UserControl
-    {
-        public bool Start = false;
-        
+    {        
         public MenuControl()
         {
+            DoubleBuffered = true;
+
             var terrainControl = MainForm.TerrainControl;
             //ClientSize = new Size(400, 400);
             ClientSize = terrainControl.ClientSize;
@@ -67,11 +67,10 @@ namespace MyGameModel.Views
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            Start = true;
             MainForm.MainMenu.Hide();
             MainForm.TerrainControl.Show();
             MainForm.TerrainControl.Timer.Start();
-            //ActiveControl(MainForm.TerrainControl);
+            MainForm.TerrainControl.Focus();
         }
     }
 }

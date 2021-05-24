@@ -63,12 +63,6 @@
     <Compile Include="Domain\GameObjectType.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Puzzle.cs" />
-    <Compile Include="Views\MenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\MenuForm.Designer.cs">
-      <DependentUpon>MenuForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +74,12 @@
     </Compile>
     <Compile Include="Views\MenuControl.Designer.cs">
       <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MessageBoxControl.Designer.cs">
+      <DependentUpon>MessageBoxControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TEST_GameControl.cs">
       <SubType>UserControl</SubType>
