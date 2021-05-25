@@ -10,6 +10,7 @@ namespace MyGameModel.Domain
     {
         private bool canMove = true;
         private List<Point> resTrack = new List<Point>();
+        private Random rnd;
         public const int MaxHealth = 100;
         public int Health { get; set; }
         public double Speed { get; private set; }
@@ -22,6 +23,7 @@ namespace MyGameModel.Domain
             Speed = speed;
             Damage = damage;
             Position = position;
+            rnd = new Random();
         }
 
         #region
@@ -75,10 +77,7 @@ namespace MyGameModel.Domain
             {
                 if (ScenePainter.currentMap.Player.Health == 0) return;
                 if (hitTick == 2)
-                {
-                    var rnd = new Random();
                     ScenePainter.currentMap.Player.Health -= rnd.Next(10, 30);
-                }
                 hitTick++;
                 if (hitTick == 4) hitTick = 0;
             }
