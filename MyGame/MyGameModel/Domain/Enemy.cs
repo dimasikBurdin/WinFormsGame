@@ -41,8 +41,10 @@ namespace MyGameModel.Domain
         //}
         #endregion
 
+        private Point lastPosition;
+        private int hitTick;
 
-        public void Move()
+        public void Act()
         {
             var playerPos = ScenePainter.currentMap.Player.Position;
             var minRadius = new Point(Position.X - 5, Position.Y - 5);
@@ -52,10 +54,26 @@ namespace MyGameModel.Domain
                 CreateTrack();
             if (resTrack?.Count != 0)
             {
+                lastPosition = Position;
                 Position = resTrack.First();
                 resTrack?.RemoveAt(0);
+                if (Position == playerPos) Position = lastPosition;
+            }
+            HitPlayer(playerPos);
+        }
+
+        private void HitPlayer(Point playerPos)
+        {
+            if (new Point() { X = Position.X + 1, Y = Position.Y } == playerPos || new Point() { X = Position.X - 1, Y = Position.Y } == playerPos
+                || new Point() { X = Position.X, Y = Position.Y + 1 } == playerPos || new Point() { X = Position.X, Y = Position.Y - 1 } == playerPos)
+            {
+                if (ScenePainter.currentMap.Player.Health == 0) return;
+                if(hitTick == 0) ScenePainter.currentMap.Player.Health -= 20;
+                hitTick++;
+                if (hitTick == 4) hitTick = 0;
             }
         }
+
         private void CreateTrack()
         {
             canMove = false;

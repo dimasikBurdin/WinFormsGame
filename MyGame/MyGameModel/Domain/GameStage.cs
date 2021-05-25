@@ -9,6 +9,7 @@ namespace MyGameModel.Domain
     public enum GameStage
     {
         Menu,
-        Game
+        Game,
+        GameOver
     }
 }

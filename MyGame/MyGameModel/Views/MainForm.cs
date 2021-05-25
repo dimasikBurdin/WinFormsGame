@@ -20,17 +20,18 @@ namespace MyGameModel.Domain
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static MessageBoxControl MessageBox { get; set; }
+        public static Game Game { get; set; }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
 
-            //MessageBox = new MessageBoxControl(); ///пригодится для диалогов с npc и не только
-            //MessageBox.Location = new Point(TerrainControl.ClientSize.Width / 2 - MessageBox.ClientSize.Width / 2,
-            //    TerrainControl.ClientSize.Height / 2 - MessageBox.ClientSize.Height / 2);
-            //Controls.Add(MessageBox);
-            //MessageBox.Hide();
+            MessageBox = new MessageBoxControl(); //пригодится для диалогов с npc и не только
+            MessageBox.Location = new Point(TerrainControl.ClientSize.Width / 2 - MessageBox.ClientSize.Width / 2,
+                TerrainControl.ClientSize.Height / 2 - MessageBox.ClientSize.Height / 2);
+            Controls.Add(MessageBox);
+            MessageBox.Hide();
 
             MainMenu = new MenuControl();
             MainMenu.ClientSize = TerrainControl.ClientSize;
@@ -45,6 +46,8 @@ namespace MyGameModel.Domain
 
         public MainForm()
         {
+            Game = new Game();
+
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);
             TerrainControl = new TerrainControl(scenePainter);

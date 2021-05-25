@@ -44,14 +44,15 @@ namespace MyGameModel.Views
 
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
-                        enemy.Move();
-            if (player != null && player.IsMoving && tickCount == 3)
+                        enemy.Act();
+            if (player != null  && tickCount == 3)
                 player.Act();
             
             tickCount++;
             EnemyTickCount++;
             if (tickCount == 4) tickCount = 0;
             if (EnemyTickCount == 8) EnemyTickCount = 0;
+
             Invalidate();
         }
 

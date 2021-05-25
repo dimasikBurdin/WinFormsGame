@@ -66,7 +66,7 @@ namespace MyGameModel.Views
         }
 
         private void StartButton_Click(object sender, EventArgs e)
-        {
+        {            
             MainForm.MainMenu.Hide();
             MainForm.TerrainControl.Show();
             MainForm.TerrainControl.Timer.Start();

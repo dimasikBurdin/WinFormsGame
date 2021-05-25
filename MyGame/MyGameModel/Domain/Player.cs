@@ -36,8 +36,19 @@ namespace MyGameModel.Domain
         
         public void Act()
         {
+            
             if (IsCanGo(Position.Add(Delta)))
                 Position = Position.Add(Delta);
+            EnemyCollision();
+            if (Health <= 0) 
+                MainForm.Game.Over();
+
+        }
+
+        private void EnemyCollision()
+        {
+            if (ScenePainter.currentMap.Enemies.Any(x => x.Position == Position))
+                Position = Position.SubStract(Delta);
         }
 
         //public void MovePlayer(KeyEventArgs e)
