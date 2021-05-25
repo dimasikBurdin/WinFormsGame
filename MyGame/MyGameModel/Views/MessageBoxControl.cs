@@ -33,6 +33,8 @@ namespace MyGameModel.Views
             label.Text = "              Вы проиграли. \nНажмите любую клавишу для \n            продолжения...";
             Controls.Add(label);
 
+            KeyPress += MessageBoxControl_KeyPress;
+
             //var yesButton = new Button();
             //yesButton.BackColor = Color.RosyBrown;
             //yesButton.Size = new Size(80, 40);
@@ -54,20 +56,14 @@ namespace MyGameModel.Views
             //Controls.Add(noButton);
 
             //yesButton.Click += YesButton_Click;
-            Click += MessageBoxControl_Click;
-            KeyPress += MessageBoxControl_KeyPress;
+
             //noButton.Click += NoButton_Click;
         }
 
         private void MessageBoxControl_KeyPress(object sender, KeyPressEventArgs e)
         {
             Application.Restart();
-        }
-
-        private void MessageBoxControl_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
+        }        
 
         //private void NoButton_Click(object sender, EventArgs e)
         //{

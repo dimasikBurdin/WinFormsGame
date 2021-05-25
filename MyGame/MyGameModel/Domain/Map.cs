@@ -11,11 +11,11 @@ namespace MyGameModel.Domain
         public Point InitialPosition { get; private set; }
         public Point ExitPosition { get; private set; }//точки перехода с одной части карты на другую
         public GameObject[] Objects { get; private set; }
-        public Enemy[] Enemies { get; private set; }
+        public List<Enemy> Enemies { get; private set; }
         public Npc[] Npcs { get; private set; }
         public Puzzle[] Puzzles { get; private set; }//???
 
-        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, GameObject[] objects, Enemy[] enemies, Npc[] npc, Puzzle[] puzzles)
+        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, GameObject[] objects, List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles)
         {
             Terrain = terrain;
             Player = player;
@@ -106,7 +106,7 @@ namespace MyGameModel.Domain
                     }
                 }            
             }
-            return new Map(terrain, player, initialPosition, exitPosition, objects.ToArray(), enemies.ToArray(), npcS.ToArray(), puzzles.ToArray());
+            return new Map(terrain, player, initialPosition, exitPosition, objects.ToArray(), enemies, npcS.ToArray(), puzzles.ToArray());
         }
     }
 }

@@ -11,7 +11,7 @@ namespace MyGameModel.Domain
         private bool canMove = true;
         private List<Point> resTrack = new List<Point>();
         public const int MaxHealth = 100;
-        public static int Health { get; set; }
+        public int Health { get; set; }
         public double Speed { get; private set; }
         public double Damage { get; private set; }
         public Point Position { get; set; }//???
@@ -46,18 +46,24 @@ namespace MyGameModel.Domain
 
         public void Act()
         {
+            if(Health <= 0)
+            {
+                TerrainControl.RemoveEnemyFromList = this;
+                return; 
+            }
             var playerPos = ScenePainter.currentMap.Player.Position;
             var minRadius = new Point(Position.X - 5, Position.Y - 5);
             var maxRadius = new Point(Position.X + 5, Position.Y + 5);
 
-            if(canMove && (playerPos.X >= minRadius.X && playerPos.Y >= minRadius.Y && playerPos.X <= maxRadius.X && playerPos.Y <= maxRadius.Y))
+            if(canMove && playerPos.X >= minRadius.X && playerPos.Y >= minRadius.Y && playerPos.X <= maxRadius.X && playerPos.Y <= maxRadius.Y)
                 CreateTrack();
             if (resTrack?.Count != 0)
             {
                 lastPosition = Position;
                 Position = resTrack.First();
                 resTrack?.RemoveAt(0);
-                if (Position == playerPos) Position = lastPosition;
+                if (Position == playerPos || ScenePainter.currentMap.Enemies.Where(x => this != x).Any(x => x.Position == Position)) 
+                    Position = lastPosition;
             }
             HitPlayer(playerPos);
         }
@@ -68,7 +74,7 @@ namespace MyGameModel.Domain
                 || new Point() { X = Position.X, Y = Position.Y + 1 } == playerPos || new Point() { X = Position.X, Y = Position.Y - 1 } == playerPos)
             {
                 if (ScenePainter.currentMap.Player.Health == 0) return;
-                if(hitTick == 0) ScenePainter.currentMap.Player.Health -= 20;
+                if(hitTick == 2) ScenePainter.currentMap.Player.Health -= 20;
                 hitTick++;
                 if (hitTick == 4) hitTick = 0;
             }

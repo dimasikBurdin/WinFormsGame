@@ -17,6 +17,7 @@ namespace MyGameModel.Domain
         public Inventory Inventory { get; set; }
         public bool IsMoving { get; set; }
         public Point Delta { get; set; }
+        public bool CanHit { get; set; }
 
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
@@ -36,17 +37,31 @@ namespace MyGameModel.Domain
         
         public void Act()
         {
-            
+            if (Health <= 0)
+                MainForm.Game.Over();
             if (IsCanGo(Position.Add(Delta)))
                 Position = Position.Add(Delta);
             EnemyCollision();
-            if (Health <= 0) 
-                MainForm.Game.Over();
+            HitEnemy();
+        }
 
+        private void HitEnemy()
+        {            
+            var enemy = ScenePainter.currentMap.Enemies.Where(x =>
+            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            if (CanHit && enemy != null)
+            {
+                ScenePainter.currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
+            }
+            CanHit = false;
         }
 
         private void EnemyCollision()
         {
+
             if (ScenePainter.currentMap.Enemies.Any(x => x.Position == Position))
                 Position = Position.SubStract(Delta);
         }

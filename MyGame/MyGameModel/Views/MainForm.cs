@@ -47,6 +47,7 @@ namespace MyGameModel.Domain
         public MainForm()
         {
             Game = new Game();
+            Game.CurrentGameStage = GameStage.Game;
 
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);

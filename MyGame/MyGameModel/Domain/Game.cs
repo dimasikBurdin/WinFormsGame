@@ -18,10 +18,8 @@ namespace MyGameModel.Domain
             CurrentGameStage = GameStage.GameOver;
             MainForm.TerrainControl.Timer.Stop();
             MainForm.MessageBox.Show();
-            MainForm.MessageBox.Focus();
-            
+            MainForm.MessageBox.Focus();            
             MainForm.TerrainControl.SendToBack();
-           
         }
     }
 }

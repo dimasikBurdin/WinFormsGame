@@ -20,6 +20,7 @@ namespace MyGameModel.Views
         private int EnemyTickCount;
         public Size TerrainClientSize { get; private set; }
         public Timer Timer { get; private set; }
+        public  static Enemy RemoveEnemyFromList { get; set; }
 
         public TerrainControl(ScenePainter scenePainter)
         {
@@ -42,11 +43,12 @@ namespace MyGameModel.Views
             var map = ScenePainter.currentMap;
             var player = map.Player;
 
+            if (player != null && tickCount == 3)
+                player.Act();
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                         enemy.Act();
-            if (player != null  && tickCount == 3)
-                player.Act();
+            RemoveEnemy();
             
             tickCount++;
             EnemyTickCount++;
@@ -54,6 +56,12 @@ namespace MyGameModel.Views
             if (EnemyTickCount == 8) EnemyTickCount = 0;
 
             Invalidate();
+        }
+
+        private void RemoveEnemy()
+        {
+            if(RemoveEnemyFromList != null)
+                ScenePainter.currentMap.Enemies.Remove(RemoveEnemyFromList);
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
@@ -113,6 +121,9 @@ namespace MyGameModel.Views
                     MainForm.TerrainControl.Hide();
                     MainForm.MainMenu.Show();                        
                     Timer.Stop();
+                    break;
+                case Keys.Space:
+                    player.CanHit = true;
                     break;
             }
         }
