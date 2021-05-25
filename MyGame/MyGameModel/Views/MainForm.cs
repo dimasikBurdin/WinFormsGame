@@ -55,10 +55,10 @@ namespace MyGameModel.Domain
             BackColor = Color.LightGray;
             label = new Label()
             {
-                Size = new Size(100, 40),
+                Size = new Size(110, 50),
                 Top = 0,
                 Left = TerrainControl.TerrainClientSize.Width + 10,
-                Font = new Font(FontFamily.GenericSerif, 30, FontStyle.Bold),
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
                 ForeColor = Color.Purple
             };
 
