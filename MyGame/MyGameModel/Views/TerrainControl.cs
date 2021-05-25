@@ -45,6 +45,7 @@ namespace MyGameModel.Views
 
             if (player != null && tickCount == 3)
                 player.Act();
+
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                         enemy.Act();

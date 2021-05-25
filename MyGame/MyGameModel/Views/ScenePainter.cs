@@ -138,7 +138,7 @@ namespace MyGameModel.Views
         private void UpdateInterface()
         {
             if (Player != null)
-                MainForm.label.Text = Player.Health.ToString() + "hp";
+                MainForm.label.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
         }
     }
 }

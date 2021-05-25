@@ -14,7 +14,7 @@ namespace MyGameModel.Domain
         public int Health { get; set; }
         public double Speed { get; private set; }
         public double Damage { get; private set; }
-        public Point Position { get; set; }//???
+        public Point Position { get; set; }
 
         public Enemy(int health, double speed, double damage, Point position)
         {
@@ -74,7 +74,11 @@ namespace MyGameModel.Domain
                 || new Point() { X = Position.X, Y = Position.Y + 1 } == playerPos || new Point() { X = Position.X, Y = Position.Y - 1 } == playerPos)
             {
                 if (ScenePainter.currentMap.Player.Health == 0) return;
-                if(hitTick == 2) ScenePainter.currentMap.Player.Health -= 20;
+                if (hitTick == 2)
+                {
+                    var rnd = new Random();
+                    ScenePainter.currentMap.Player.Health -= rnd.Next(10, 30);
+                }
                 hitTick++;
                 if (hitTick == 4) hitTick = 0;
             }
