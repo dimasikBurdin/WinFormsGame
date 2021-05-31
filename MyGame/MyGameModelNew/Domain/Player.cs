@@ -19,6 +19,7 @@ namespace MyGameModelNew.Domain
         public bool IsMoving { get; set; }
         public Point Delta { get; set; }
         public bool CanHit { get; set; }
+        public GameObject PikedHealer { get; set; }
 
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
@@ -42,8 +43,19 @@ namespace MyGameModelNew.Domain
             //      Game.CurrentGameStage = GameStage.GameOver;
             if (IsCanGo(Position.Add(Delta), currentMap))
                 Position = Position.Add(Delta);
+            HealerCollision(currentMap);
             EnemyCollision(currentMap);
             HitEnemy(currentMap);
+        }
+
+        private void HealerCollision(Map currentMap)
+        {
+            var healer = currentMap.Objects.Where(x => x.Position.Equals(Position) && x.ObjectType == GameObjectType.Healer).FirstOrDefault();
+            if(healer != null)
+            {
+                Inventory.AddToInventory(healer);
+                PikedHealer = healer;
+            }
         }
 
         private void HitEnemy(Map currentMap)
@@ -62,7 +74,6 @@ namespace MyGameModelNew.Domain
 
         private void EnemyCollision(Map currentMap)
         {
-
             if (currentMap.Enemies.Any(x => x.Position == Position))
                 Position = Position.SubStract(Delta);
         }

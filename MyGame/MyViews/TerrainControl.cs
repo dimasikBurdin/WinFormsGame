@@ -22,6 +22,7 @@ namespace MyViews
         public Timer Timer { get; private set; }
         public static Enemy RemoveEnemyFromList { get; set; }
         private List<Enemy> deadEnemy = new List<Enemy>();
+        private List<GameObject> pickedHealers = new List<GameObject>();
 
         public TerrainControl(ScenePainter scenePainter)
         {
@@ -44,8 +45,13 @@ namespace MyViews
             var player = map.Player;
 
             if (player != null && tickCount == 0)
+            {
                 player.Act(ScenePainter.currentMap);
+                if (player.PikedHealer != null)
+                    pickedHealers.Add(player.PikedHealer);
+            }
 
+            RemovePickedHealers();
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                 {
@@ -66,6 +72,13 @@ namespace MyViews
             Invalidate();
         }
 
+        private void RemovePickedHealers()
+        {
+            foreach(var healer in pickedHealers)
+            {
+                ScenePainter.currentMap.Objects.Remove(healer);
+            }
+        }
         private void RemoveEnemy()
         {
             //if(RemoveEnemyFromList != null)
@@ -137,6 +150,9 @@ namespace MyViews
                     break;
                 case Keys.Space:
                     player.CanHit = true;
+                    break;
+                case Keys.H:
+                    player.UseHealer();
                     break;
             }
         }

@@ -120,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\heal.psd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\EnemyMoveTestMap1.txt" />
@@ -177,6 +178,9 @@
       <Project>{e6c45a1a-3dce-4c16-8a41-9417e16a86fd}</Project>
       <Name>MyGameModelNew</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

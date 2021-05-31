@@ -10,12 +10,12 @@ namespace MyGameModelNew.Domain
         public MapCell[,] Terrain { get; private set; }
         public Point InitialPosition { get; private set; }
         public Point ExitPosition { get; private set; }//точки перехода с одной части карты на другую
-        public GameObject[] Objects { get; private set; }
+        public List<GameObject> Objects { get; private set; }
         public List<Enemy> Enemies { get; private set; }
         public Npc[] Npcs { get; private set; }
         public Puzzle[] Puzzles { get; private set; }//???
 
-        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, GameObject[] objects, List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles)
+        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, List<GameObject> objects, List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles)
         {
             Terrain = terrain;
             Player = player;
@@ -62,7 +62,7 @@ namespace MyGameModelNew.Domain
                             puzzles.Add(new Puzzle());//доделать
                             break;
                         case 'H'://healer
-                            terrain[x, y] = MapCell.Empty;
+                            terrain[x, y] = MapCell.Trail;
                             objects.Add(new GameObject(new Point(x, y), GameObjectType.Healer));
                             break;
                         case 'S'://stick
@@ -106,7 +106,7 @@ namespace MyGameModelNew.Domain
                     }
                 }            
             }
-            return new Map(terrain, player, initialPosition, exitPosition, objects.ToArray(), enemies, npcS.ToArray(), puzzles.ToArray());
+            return new Map(terrain, player, initialPosition, exitPosition, objects, enemies, npcS.ToArray(), puzzles.ToArray());
         }
     }
 }

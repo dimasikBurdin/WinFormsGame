@@ -17,7 +17,9 @@ namespace MyViews
         //size +
         //index / zIndex +
         //в форме есть событие, принимающее нажатие клавиш. Для управления написать методы в моделе (в игроке например), которые будут реагировать на эти нажатия +
-        public static Label label;
+        public static Label labelHp;
+        public static Label labelHealerText;
+        public static Label labelHealerImage;
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static MessageBoxControl MessageBox { get; set; }
@@ -55,7 +57,7 @@ namespace MyViews
             TerrainControl = new TerrainControl(scenePainter);
 
             BackColor = Color.LightGray;
-            label = new Label()
+            labelHp = new Label()
             {
                 Size = new Size(110, 50),
                 Top = 0,
@@ -64,8 +66,27 @@ namespace MyViews
                 ForeColor = Color.Purple
             };
 
+            labelHealerText = new Label()
+            {
+                Size = new Size(23, 40),
+                Top = 60,
+                Left = TerrainControl.TerrainClientSize.Width + 5,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Purple
+            };
+
+            labelHealerImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 65,
+                Left = TerrainControl.TerrainClientSize.Width + 40,
+            };
+            labelHealerImage.Image = Properties.Resources.heal;
+
             Controls.Add(TerrainControl);
-            Controls.Add(label);
+            Controls.Add(labelHp);
+            Controls.Add(labelHealerText);
+            Controls.Add(labelHealerImage);
         }
 
         public static void Over()

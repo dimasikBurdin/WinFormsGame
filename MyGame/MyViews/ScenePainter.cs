@@ -37,7 +37,8 @@ namespace MyViews
             if (mapNumber >= 0 && mapNumber < maps.Length)
                 currentMap = maps[mapNumber];
             currentMap.Player.Health = Player.Health;
-            Player = currentMap.Player;            
+            currentMap.Player.Inventory = Player.Inventory;
+            Player = currentMap.Player;
             CreateMap();
         }
 
@@ -98,7 +99,12 @@ namespace MyViews
             }
             foreach(var e in currentMap.Objects)
             {
-
+                switch(e.ObjectType)
+                {
+                    case GameObjectType.Healer:
+                        graphics.DrawImage(Properties.Resources.heal, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
+                }
             }
             foreach(var e in currentMap.Puzzles)
             {
@@ -138,7 +144,10 @@ namespace MyViews
         private void UpdateInterface()
         {
             if (Player != null)
-                MainForm.label.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
+            {
+                MainForm.labelHp.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
+                MainForm.labelHealerText.Text = Player.Inventory.CountHealers.ToString();
+            }
         }
     }
 }

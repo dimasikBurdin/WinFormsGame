@@ -74,6 +74,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap heal {
+            get {
+                object obj = ResourceManager.GetObject("heal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Image1 {
             get {
                 object obj = ResourceManager.GetObject("Image1", resourceCulture);
@@ -126,7 +136,7 @@ namespace MyViews.Properties {
         ///WWWGGTGGGRWWWW
         ///WWGGPTGTGRWWWW
         ///RGGGTGGTGRWWWW
-        ///RGGTTTTTGRWWWW
+        ///RGGTTHTTGRWWWW
         ///RGGTTGGGGGWWGG
         ///RGGTTGGGGGGGGG
         ///RGTTTTTTTTTTEX
