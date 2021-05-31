@@ -20,6 +20,8 @@ namespace MyGameModelNew.Domain
         public Point Delta { get; set; }
         public bool CanHit { get; set; }
         public GameObject PikedHealer { get; set; }
+        public int CurrentAnimation { get; set; }
+        public int CurrentFrame { get; set; }
 
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
@@ -30,6 +32,8 @@ namespace MyGameModelNew.Domain
             Position = position;
             Inventory = inventory;
             Delta = Point.Empty;
+            CurrentAnimation = 22;
+            CurrentFrame = 1;
         }
 
         public void UseHealer()
@@ -43,9 +47,38 @@ namespace MyGameModelNew.Domain
             //      Game.CurrentGameStage = GameStage.GameOver;
             if (IsCanGo(Position.Add(Delta), currentMap))
                 Position = Position.Add(Delta);
+            Animation();
             HealerCollision(currentMap);
             EnemyCollision(currentMap);
             HitEnemy(currentMap);
+        }
+
+        private void Animation()
+        {
+            if(Delta.X == 0 && Delta.Y == 1)//right
+            {
+                CurrentAnimation = 15;
+                CurrentFrame += 7;
+                if (CurrentFrame == 29) CurrentFrame = 1;
+            }
+            if (Delta.X == 0 && Delta.Y == -1)//right
+            {
+                CurrentAnimation = 1;
+                CurrentFrame += 7;
+                if (CurrentFrame == 29) CurrentFrame = 1;
+            }
+            if (Delta.X == 1 && Delta.Y == 0)//right
+            {
+                CurrentAnimation = 22;
+                CurrentFrame += 7;
+                if (CurrentFrame == 29) CurrentFrame = 1;
+            }
+            if (Delta.X == -1 && Delta.Y == 0)//right
+            {
+                CurrentAnimation = 8;
+                CurrentFrame += 7;
+                if (CurrentFrame == 29) CurrentFrame = 1;
+            }
         }
 
         private void HealerCollision(Map currentMap)

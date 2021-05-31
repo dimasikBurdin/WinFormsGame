@@ -31,7 +31,7 @@ namespace MyViews
             DoubleBuffered = true;
 
             Timer = new Timer();
-            Timer.Interval = 10;
+            Timer.Interval = 15;
             Timer.Tick += TimerTick;
             Timer.Start();
 
@@ -66,7 +66,7 @@ namespace MyViews
 
             tickCount++;
             EnemyTickCount++;
-            if (tickCount == 5) tickCount = 0;
+            if (tickCount == 7) tickCount = 0;
             if (EnemyTickCount == 8) EnemyTickCount = 0;
 
             Invalidate();
@@ -115,6 +115,7 @@ namespace MyViews
             if(player.Delta == Point.Empty)
             {
                 player.IsMoving = false;
+                //player.CurrentAnimation = 15;
             }
         }
 

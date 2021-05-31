@@ -115,8 +115,8 @@ namespace MyViews
             {
 
             }
-        }        
-
+        }
+        private int num;
         private void DrawPlayer(Graphics graphics)
         {
             if (currentMap.ExitPosition == Player?.Position && open)
@@ -134,10 +134,12 @@ namespace MyViews
                 open = false;
                 Player.Delta = Point.Empty;
             }
-
+            //1 and 2 -> += 7 (1,22)
             if (Player != null)
-            {
-                graphics.DrawImage(Properties.Resources.player1, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
+            {                    
+                var image = Properties.Resources.soldier;
+                //graphics.DrawImage(Properties.Resources.up0, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
+                graphics.DrawImage(image, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1), 9 * Player.CurrentFrame, 9 * Player.CurrentAnimation, 55, 56, GraphicsUnit.Pixel);///
                 if (currentMap.InitialPosition != Player.Position && currentMap.ExitPosition != Player.Position) open = true;
             }
         }
