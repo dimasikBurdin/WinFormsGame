@@ -70,7 +70,7 @@ namespace MyViews
             {
                 Size = new Size(23, 40),
                 Top = 60,
-                Left = TerrainControl.TerrainClientSize.Width + 5,
+                Left = TerrainControl.TerrainClientSize.Width + 10,
                 Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
                 ForeColor = Color.Purple
             };
