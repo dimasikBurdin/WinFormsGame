@@ -1,4 +1,4 @@
-﻿using MyGameModel.Views;
+﻿//using MyGameModel.Views;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -35,34 +35,36 @@ namespace MyGameModel.Domain
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
         }
         
-        public void Act()
+        public void Act(Control ScenePainter)
         {
-            if (Health <= 0)
-                MainForm.Game.Over();
-            if (IsCanGo(Position.Add(Delta)))
+            var currentMap = ScenePainter.GetType().GetProperty("currentMap");
+            var a = (Map)currentMap.GetValue(currentMap);            
+            //if (Health <= 0)
+            //    Game.CurrentGameStage = GameStage.GameOver;
+            if (IsCanGo(Position.Add(Delta), a))
                 Position = Position.Add(Delta);
-            EnemyCollision();
-            HitEnemy();
+            EnemyCollision(a);
+            HitEnemy(a);
         }
 
-        private void HitEnemy()
+        private void HitEnemy(Map currentMap)
         {            
-            var enemy = ScenePainter.currentMap.Enemies.Where(x =>
+            var enemy = currentMap.Enemies.Where(x =>
             new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
             || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
             || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
             || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
             if (CanHit && enemy != null)
             {
-                ScenePainter.currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
+                currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
             }
             CanHit = false;
         }
 
-        private void EnemyCollision()
+        private void EnemyCollision(Map currentMap)
         {
 
-            if (ScenePainter.currentMap.Enemies.Any(x => x.Position == Position))
+            if (currentMap.Enemies.Any(x => x.Position == Position))
                 Position = Position.SubStract(Delta);
         }
 
@@ -90,9 +92,9 @@ namespace MyGameModel.Domain
         //    }
         //}
 
-        private bool IsCanGo(Point position)
+        private bool IsCanGo(Point position, Map currentMap)
         {
-            var terrain = ScenePainter.currentMap.Terrain;
+            var terrain = currentMap.Terrain;
             if (position.X < 0 || position.X >= terrain.GetLength(0)
                 || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
             var currentMapCellType = terrain[position.X, position.Y];

@@ -1,4 +1,4 @@
-﻿using MyGameModel.Views;
+﻿//using MyGameModel.Views;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -50,91 +50,91 @@ namespace MyGameModel.Domain
         {
             if(Health <= 0)
             {
-                TerrainControl.RemoveEnemyFromList = this;
+                //TerrainControl.RemoveEnemyFromList = this;
                 return; 
             }
-            var playerPos = ScenePainter.currentMap.Player.Position;
-            var minRadius = new Point(Position.X - 5, Position.Y - 5);
-            var maxRadius = new Point(Position.X + 5, Position.Y + 5);
+            //var playerPos = ScenePainter.currentMap.Player.Position;
+            //var minRadius = new Point(Position.X - 5, Position.Y - 5);
+            //var maxRadius = new Point(Position.X + 5, Position.Y + 5);
 
-            if(canMove && playerPos.X >= minRadius.X && playerPos.Y >= minRadius.Y && playerPos.X <= maxRadius.X && playerPos.Y <= maxRadius.Y)
-                CreateTrack();
-            if (resTrack?.Count != 0)
-            {
-                lastPosition = Position;
-                Position = resTrack.First();
-                resTrack?.RemoveAt(0);
-                if (Position == playerPos || ScenePainter.currentMap.Enemies.Where(x => this != x).Any(x => x.Position == Position)) 
-                    Position = lastPosition;
-            }
-            HitPlayer(playerPos);
+            //if(canMove && playerPos.X >= minRadius.X && playerPos.Y >= minRadius.Y && playerPos.X <= maxRadius.X && playerPos.Y <= maxRadius.Y)
+            //    CreateTrack();
+            //if (resTrack?.Count != 0)
+            //{
+            //    lastPosition = Position;
+            //    Position = resTrack.First();
+            //    resTrack?.RemoveAt(0);
+            //    if (Position == playerPos || ScenePainter.currentMap.Enemies.Where(x => this != x).Any(x => x.Position == Position)) 
+            //        Position = lastPosition;
+            //}
+            //HitPlayer(playerPos);
         }
 
-        private void HitPlayer(Point playerPos)
-        {
-            if (new Point() { X = Position.X + 1, Y = Position.Y } == playerPos || new Point() { X = Position.X - 1, Y = Position.Y } == playerPos
-                || new Point() { X = Position.X, Y = Position.Y + 1 } == playerPos || new Point() { X = Position.X, Y = Position.Y - 1 } == playerPos)
-            {
-                if (ScenePainter.currentMap.Player.Health == 0) return;
-                if (hitTick == 2)
-                    ScenePainter.currentMap.Player.Health -= rnd.Next(10, 30);
-                hitTick++;
-                if (hitTick == 4) hitTick = 0;
-            }
-        }
+        //private void HitPlayer(Point playerPos)
+        //{
+        //    if (new Point() { X = Position.X + 1, Y = Position.Y } == playerPos || new Point() { X = Position.X - 1, Y = Position.Y } == playerPos
+        //        || new Point() { X = Position.X, Y = Position.Y + 1 } == playerPos || new Point() { X = Position.X, Y = Position.Y - 1 } == playerPos)
+        //    {
+        //        if (ScenePainter.currentMap.Player.Health == 0) return;
+        //        if (hitTick == 2)
+        //            ScenePainter.currentMap.Player.Health -= rnd.Next(10, 30);
+        //        hitTick++;
+        //        if (hitTick == 4) hitTick = 0;
+        //    }
+        //}
 
-        private void CreateTrack()
-        {
-            canMove = false;
+        //private void CreateTrack()
+        //{
+        //    canMove = false;
 
-            resTrack = FindTrack(ScenePainter.currentMap.Player.Position);
-            if (resTrack.Count > 5) 
-                resTrack = new List<Point>();
+        //    resTrack = FindTrack(ScenePainter.currentMap.Player.Position);
+        //    if (resTrack.Count > 5) 
+        //        resTrack = new List<Point>();
 
-            canMove = true;
-        }
+        //    canMove = true;
+        //}
 
-        private List<Point> FindTrack(Point target)
-        {
-            var track = new Dictionary<Point, Point>();
-            track[Position] = new Point(int.MinValue, int.MinValue);
+        //private List<Point> FindTrack(Point target)
+        //{
+        //    var track = new Dictionary<Point, Point>();
+        //    track[Position] = new Point(int.MinValue, int.MinValue);
 
-            var queue = new Queue<Point>();
-            queue.Enqueue(Position);
-            while(queue.Count != 0)
-            {
-                //if (track.Count > 5) return null;
-                var currentPosition = queue.Dequeue();
-                for(var dx = -1; dx <=1; dx++)
-                    for(var dy = -1; dy <= 1; dy++)
-                    {
-                        if (dy != 0 && dx != 0) continue;
-                        var nextPosition = new Point() { X = currentPosition.X + dx, Y = currentPosition.Y + dy };
-                        if (track.ContainsKey(nextPosition) || !IsCanGo(nextPosition)) continue;
-                        track[nextPosition] = currentPosition;
-                        queue.Enqueue(nextPosition);
-                    }
-                if (track.ContainsKey(target)) break;                
-            }
-            var pathItem = target;
-            var result = new List<Point>();
-            while (pathItem != new Point(int.MinValue, int.MinValue))
-            {
-                result.Add(pathItem);
-                pathItem = track[pathItem];
-            }
-            result.Reverse();
-            result.RemoveAt(0);//убираем точку, на которой стоит враг
-            return result;
-        }
+        //    var queue = new Queue<Point>();
+        //    queue.Enqueue(Position);
+        //    while(queue.Count != 0)
+        //    {
+        //        //if (track.Count > 5) return null;
+        //        var currentPosition = queue.Dequeue();
+        //        for(var dx = -1; dx <=1; dx++)
+        //            for(var dy = -1; dy <= 1; dy++)
+        //            {
+        //                if (dy != 0 && dx != 0) continue;
+        //                var nextPosition = new Point() { X = currentPosition.X + dx, Y = currentPosition.Y + dy };
+        //                if (track.ContainsKey(nextPosition) || !IsCanGo(nextPosition)) continue;
+        //                track[nextPosition] = currentPosition;
+        //                queue.Enqueue(nextPosition);
+        //            }
+        //        if (track.ContainsKey(target)) break;                
+        //    }
+        //    var pathItem = target;
+        //    var result = new List<Point>();
+        //    while (pathItem != new Point(int.MinValue, int.MinValue))
+        //    {
+        //        result.Add(pathItem);
+        //        pathItem = track[pathItem];
+        //    }
+        //    result.Reverse();
+        //    result.RemoveAt(0);//убираем точку, на которой стоит враг
+        //    return result;
+        //}
 
-        private bool IsCanGo(Point position)
-        {
-            var terrain = ScenePainter.currentMap.Terrain;
-            if (position.X < 0 || position.X >= terrain.GetLength(0)
-                || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
-            var currentMapCellType = terrain[position.X, position.Y];
-            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
-        }
+        //private bool IsCanGo(Point position)
+        //{
+        //    var terrain = ScenePainter.currentMap.Terrain;
+        //    if (position.X < 0 || position.X >= terrain.GetLength(0)
+        //        || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
+        //    var currentMapCellType = terrain[position.X, position.Y];
+        //    return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
+        //}
     }
 }
