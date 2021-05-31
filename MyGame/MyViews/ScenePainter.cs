@@ -96,7 +96,10 @@ namespace MyViews
             graphics.DrawImage(bitmap, 0, 0, LevelSize.Width, LevelSize.Height);
             foreach(var enemy in currentMap.Enemies)
             {
-                graphics.DrawImage(Properties.Resources.ghost, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
+                var image = Properties.Resources.ghosts;
+                //graphics.DrawImage(Properties.Resources.ghost, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
+                //1 -> 0 += 40 || 2 -> 0 += 46
+                graphics.DrawImage(image, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1), enemy.CurrentFrame, enemy.CurrentAnimation, 40, 45, GraphicsUnit.Pixel);
             }
             foreach(var e in currentMap.Objects)
             {
@@ -116,7 +119,7 @@ namespace MyViews
 
             }
         }
-        private int num;
+
         private void DrawPlayer(Graphics graphics)
         {
             if (currentMap.ExitPosition == Player?.Position && open)

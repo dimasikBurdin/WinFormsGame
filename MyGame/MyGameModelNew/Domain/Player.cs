@@ -55,30 +55,27 @@ namespace MyGameModelNew.Domain
 
         private void Animation()
         {
-            if(Delta.X == 0 && Delta.Y == 1)//right
+            if(Delta.X == 0 && Delta.Y == 1)
             {
                 CurrentAnimation = 15;
                 CurrentFrame += 7;
-                if (CurrentFrame == 29) CurrentFrame = 1;
             }
-            if (Delta.X == 0 && Delta.Y == -1)//right
+            if (Delta.X == 0 && Delta.Y == -1)
             {
                 CurrentAnimation = 1;
                 CurrentFrame += 7;
-                if (CurrentFrame == 29) CurrentFrame = 1;
             }
-            if (Delta.X == 1 && Delta.Y == 0)//right
+            if (Delta.X == 1 && Delta.Y == 0)
             {
                 CurrentAnimation = 22;
                 CurrentFrame += 7;
-                if (CurrentFrame == 29) CurrentFrame = 1;
             }
-            if (Delta.X == -1 && Delta.Y == 0)//right
+            if (Delta.X == -1 && Delta.Y == 0)
             {
                 CurrentAnimation = 8;
-                CurrentFrame += 7;
-                if (CurrentFrame == 29) CurrentFrame = 1;
+                CurrentFrame += 7;                
             }
+            if (CurrentFrame == 29) CurrentFrame = 1;
         }
 
         private void HealerCollision(Map currentMap)

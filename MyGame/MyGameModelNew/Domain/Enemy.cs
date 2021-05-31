@@ -18,6 +18,9 @@ namespace MyGameModelNew.Domain
         public double Damage { get; private set; }
         public Point Position { get; set; }
         public bool IsDeadEnemy { get; private set; }
+        public int CurrentAnimation { get; set; }
+        public int CurrentFrame { get; set; }
+        private Point delta;
 
         public Enemy(int health, double speed, double damage, Point position)
         {
@@ -26,6 +29,7 @@ namespace MyGameModelNew.Domain
             Damage = damage;
             Position = position;
             rnd = new Random();
+            CurrentAnimation = 46;
         }
 
         //#region
@@ -67,11 +71,38 @@ namespace MyGameModelNew.Domain
             {
                 lastPosition = Position;
                 Position = resTrack.First();
+                delta = Position.SubStract(lastPosition);
                 resTrack?.RemoveAt(0);
                 if (Position == playerPos || currentMap.Enemies.Where(x => this != x).Any(x => x.Position == Position))
                     Position = lastPosition;
             }
+            Animation();
             HitPlayer(playerPos);
+        }
+
+        private void Animation()
+        {
+            if (delta.X == 0 && delta.Y == 1)
+            {
+                CurrentAnimation = 92;
+                CurrentFrame += 40;
+            }
+            if (delta.X == 0 && delta.Y == -1)
+            {
+                CurrentAnimation = 0;
+                CurrentFrame += 40;
+            }
+            if (delta.X == 1 && delta.Y == 0)
+            {
+                CurrentAnimation = 138;
+                CurrentFrame += 40;
+            }
+            if (delta.X == -1 && delta.Y == 0)
+            {
+                CurrentAnimation = 46;
+                CurrentFrame += 40;
+            }
+            if (CurrentFrame == 120) CurrentFrame = 0;
         }
 
         private void HitPlayer(Point playerPos)
