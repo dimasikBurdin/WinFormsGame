@@ -20,7 +20,8 @@ namespace MyViews
             var terrainControl = MainForm.TerrainControl;
             //ClientSize = new Size(400, 400);
             ClientSize = terrainControl.ClientSize;
-            BackgroundImage = Properties.Resources.Water;
+            //BackgroundImage = Properties.Resources.Water;
+            BackgroundImage = Properties.Resources.Tree1;
 
             var label = new Label();
             label.BackColor = Color.Transparent;
@@ -33,7 +34,8 @@ namespace MyViews
             Controls.Add(label);
 
             var startButton = new Button();
-            startButton.BackgroundImage = Properties.Resources.MyGrass;
+            //startButton.BackgroundImage = Properties.Resources.MyGrass;
+            startButton.BackgroundImage = Properties.Resources.newGrass1;
             startButton.BackgroundImageLayout = ImageLayout.Stretch;
             startButton.Width = 150;
             startButton.Height = 35;
@@ -45,7 +47,8 @@ namespace MyViews
             Controls.Add(startButton);
 
             var exitButton = new Button();
-            exitButton.BackgroundImage = Properties.Resources.MyGrass;
+            //exitButton.BackgroundImage = Properties.Resources.MyGrass;
+            exitButton.BackgroundImage = Properties.Resources.newGrass1;
             exitButton.BackgroundImageLayout = ImageLayout.Stretch;
             exitButton.Width = 150;
             exitButton.Height = 35;

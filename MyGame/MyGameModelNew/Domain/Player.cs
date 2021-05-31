@@ -108,7 +108,7 @@ namespace MyGameModelNew.Domain
             if (position.X < 0 || position.X >= terrain.GetLength(0)
                 || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
             var currentMapCellType = terrain[position.X, position.Y];
-            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
+            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water && currentMapCellType != MapCell.Forest;
         }
     }
 }

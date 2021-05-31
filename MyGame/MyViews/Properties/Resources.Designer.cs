@@ -74,6 +74,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ghost {
+            get {
+                object obj = ResourceManager.GetObject("ghost", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heal {
             get {
                 object obj = ResourceManager.GetObject("heal", resourceCulture);
@@ -124,6 +134,116 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap newGrass {
+            get {
+                object obj = ResourceManager.GetObject("newGrass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newGrass1 {
+            get {
+                object obj = ResourceManager.GetObject("newGrass1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newHealer {
+            get {
+                object obj = ResourceManager.GetObject("newHealer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newLand {
+            get {
+                object obj = ResourceManager.GetObject("newLand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newLand1 {
+            get {
+                object obj = ResourceManager.GetObject("newLand1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newTrail {
+            get {
+                object obj = ResourceManager.GetObject("newTrail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newTrail1 {
+            get {
+                object obj = ResourceManager.GetObject("newTrail1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newWater {
+            get {
+                object obj = ResourceManager.GetObject("newWater", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newWater1 {
+            get {
+                object obj = ResourceManager.GetObject("newWater1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player {
+            get {
+                object obj = ResourceManager.GetObject("player", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player1 {
+            get {
+                object obj = ResourceManager.GetObject("player1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Rock {
             get {
                 object obj = ResourceManager.GetObject("Rock", resourceCulture);
@@ -132,15 +252,15 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на WWWRRTRRRRWWWW
-        ///WWWGGTGGGRWWWW
-        ///WWGGPTGTGRWWWW
-        ///RGGGTGGTGRWWWW
-        ///RGGTTHTTGRWWWW
-        ///RGGTTGGGGGWWGG
-        ///RGGTTGGGGGGGGG
-        ///RGTTTTTTTTTTEX
-        ///RGTGGGGGGGGWGG
+        ///   Ищет локализованную строку, похожую на WWWFFTFFFFWWWW
+        ///WWWGGTGGGFWWWW
+        ///WWGGPTGTGFWWWW
+        ///FGGGTGGTGFWWWW
+        ///FGGTTHTTGFWWWW
+        ///FGGTTGGGGGWWGG
+        ///FGGTTGGGGGGGGG
+        ///FGTTTTTTTTTTEX
+        ///FGTGGGGGGGGWGG
         ///GTTGGGGGGGGGGG
         ///GGTGGGWWWWGGLL
         ///GGTTGGWWWWGGGL
@@ -175,23 +295,23 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на WWWRRTRRRRWWWWGGGGGGGGGGGGGGG
-        ///WWWGGTGGGRWWWWGGGGGGGGGGGGGGG
-        ///WWGGTTGTGRWWWWGGGGGGGGGGGGGGG
-        ///RGGGTGGTGRWWWWGGGGGGGGGGGGGGG
-        ///RGGTTTTTGRWWWWGGGGGGGGGGGGGGG
-        ///RGGTTGGGGGWWGGGGGGGGGGGGGGGGG
-        ///RGGTTGGGGGGGGGGGGGGGGGGGGGGGG
-        ///RGTTTTTTTTTTTETTTTTTTTTTTTTTT
-        ///RGTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        ///   Ищет локализованную строку, похожую на WWWFFTFFFFWWWWGGGGGGGGGGGGGGG
+        ///WWWGGTGGGFWWWWGGGGGGGGGGGGGGG
+        ///WWGGTTGTGFWWWWGGGGGGGGGGGGGGG
+        ///FGGGTGGTGFWWWWGGGGGGGGGGGGGGG
+        ///FGGTTTTTGFWWWWGGGGGGGGGGGGGGG
+        ///FGGTTGGGGGWWGGGGGGGGGGGGGGGGG
+        ///FGGTTGGGGGGGGGGGGGGGGGGGGGGGG
+        ///FGTTTTTTTTTTTETTTTTTTTTTTTTTT
+        ///FGTTTTTTTTTTTTTTTTTTTTTTTTTTT
         ///GTTGGGGGGGGGGGGGGGGTTGGGGGGGG
         ///GGTGGGWWWWGGLLGGGGGTTGGGGGGGG
         ///GGTTGGWWWWGGGLGGGGGTTGEGGGGGG
         ///GTTTTWWWWWGGGGGGGGGTTGGGGGGGG
         ///GTTTTWWWWWGGGGGGGGGTTGGGGGGGG
-        ///WWWRRTRRRRWWWWGGGGGTTGGGGGGGG
-        ///WWWGGTGGGRWWWWGGGGGTTGGGGGGGG
-        ///WWGGTTGTGRWWWWGG [остаток строки не уместился]&quot;;.
+        ///WWWFFTFFFFWWWWGGGGGTTGGGGGGGG
+        ///WWWGGTGGGFWWWWGGGGGTTGGGGGGGG
+        ///WWGGTHGTGFWWWWGG [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string TestMap3 {
             get {
@@ -225,6 +345,26 @@ namespace MyViews.Properties {
         internal static System.Drawing.Bitmap TestPng3 {
             get {
                 object obj = ResourceManager.GetObject("TestPng3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tree {
+            get {
+                object obj = ResourceManager.GetObject("Tree", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tree1 {
+            get {
+                object obj = ResourceManager.GetObject("Tree1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -80,8 +80,7 @@ namespace MyViews
                 Size = new Size(30, 30),
                 Top = 65,
                 Left = TerrainControl.TerrainClientSize.Width + 40,
-            };
-            labelHealerImage.Image = Properties.Resources.heal;
+            };            
 
             Controls.Add(TerrainControl);
             Controls.Add(labelHp);

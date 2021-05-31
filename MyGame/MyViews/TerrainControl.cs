@@ -31,7 +31,7 @@ namespace MyViews
             DoubleBuffered = true;
 
             Timer = new Timer();
-            Timer.Interval = 15;
+            Timer.Interval = 10;
             Timer.Tick += TimerTick;
             Timer.Start();
 

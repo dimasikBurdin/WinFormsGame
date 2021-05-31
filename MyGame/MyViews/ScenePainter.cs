@@ -44,8 +44,8 @@ namespace MyViews
 
         private void CreateMap()
         {
-            var cellWidth = Properties.Resources.Rock.Width;
-            var cellHeight = Properties.Resources.Rock.Height;
+            var cellWidth = Properties.Resources.newGrass1.Width;
+            var cellHeight = Properties.Resources.newGrass1.Height;
             bitmap = new Bitmap(LevelSize.Width * cellWidth, LevelSize.Height * cellHeight);
             using(var graphics = Graphics.FromImage(bitmap))
             {
@@ -56,22 +56,23 @@ namespace MyViews
                         Bitmap image = default;
                         switch(currentMap.Terrain[x, y])
                         {
-                            //case MapCell.Forest:
-                            //    image = Properties.Resources...
+                            case MapCell.Forest:
+                                image = Properties.Resources.Tree1;
+                                break;
                             case MapCell.Grass:
-                                image = Properties.Resources.MyGrass;
+                                image = Properties.Resources.newGrass1;
                                 break;
                             case MapCell.Land:
-                                image = Properties.Resources.Land;
+                                image = Properties.Resources.newLand1;
                                 break;
                             case MapCell.Rock:
                                 image = Properties.Resources.Rock;
                                 break;
                             case MapCell.Trail:
-                                image = Properties.Resources.MyTrail;
+                                image = Properties.Resources.newTrail1;
                                 break;
                             case MapCell.Water:
-                                image = Properties.Resources.Water;
+                                image = Properties.Resources.newWater1;
                                 break;
                         }
                         if(image != null)
@@ -95,14 +96,14 @@ namespace MyViews
             graphics.DrawImage(bitmap, 0, 0, LevelSize.Width, LevelSize.Height);
             foreach(var enemy in currentMap.Enemies)
             {
-                graphics.DrawImage(Properties.Resources.TestPng3, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
+                graphics.DrawImage(Properties.Resources.ghost, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
             }
             foreach(var e in currentMap.Objects)
             {
                 switch(e.ObjectType)
                 {
                     case GameObjectType.Healer:
-                        graphics.DrawImage(Properties.Resources.heal, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        graphics.DrawImage(Properties.Resources.newHealer, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
                         break;
                 }
             }
@@ -136,7 +137,7 @@ namespace MyViews
 
             if (Player != null)
             {
-                graphics.DrawImage(Properties.Resources.TestPng2, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
+                graphics.DrawImage(Properties.Resources.player1, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
                 if (currentMap.InitialPosition != Player.Position && currentMap.ExitPosition != Player.Position) open = true;
             }
         }
@@ -147,6 +148,7 @@ namespace MyViews
             {
                 MainForm.labelHp.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
                 MainForm.labelHealerText.Text = Player.Inventory.CountHealers.ToString();
+                MainForm.labelHealerImage.Image = Properties.Resources.newHealer;
             }
         }
     }

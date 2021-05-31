@@ -182,5 +182,47 @@
   <ItemGroup>
     <None Include="Resources\heal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newGrass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newWater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newTrail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newLand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newGrass1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newWater1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newTrail1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newLand1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newHealer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ghost.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
