@@ -59,6 +59,18 @@ namespace MyGameModelNew.Domain
                 {
                     switch (lines[y][x])
                     {
+                        case '1'://npc from 1 map
+                            terrain[x, y] = MapCell.Grass;
+                            npcS.Add(new Npc(new Point(x, y), new List<string> 
+                            {
+                                "Приветствую тебя", 
+                                "Можешь не рассказывать, как ты тут оказался. Ты далеко не первый здесь.", 
+                                "Я расскажу тебе то, что поможет в твоем пути", 
+                                "Чтобы защищаться от монстров, нажимай на \"Space\"", 
+                                "Чтобы проходить сквозь ворота, ты должен иметь соответсвующий ключ. Если он у тебя есть, нажми на \"Е\", стоя у двери", 
+                            },
+                            new GameObject(new Point(x, y), GameObjectType.Healer)));
+                            break;
                         case '<'://green key
                             terrain[x, y] = MapCell.Grass;
                             keys.Add(new Key(new Point(x, y), KeyAndGateType.Green));

@@ -78,7 +78,7 @@ namespace MyViews
 
             tickCount++;
             EnemyTickCount++;
-            if (tickCount == 7) tickCount = 0;
+            if (tickCount == 6) tickCount = 0;
             if (EnemyTickCount == 8) EnemyTickCount = 0;
 
             Invalidate();
@@ -175,6 +175,11 @@ namespace MyViews
                     break;
                 case Keys.E:
                     player.OpenGate(ScenePainter.currentMap);
+                    break;
+                case Keys.T:
+                    player.TalkToNpc(ScenePainter.currentMap);
+                    if (player.TalkedMessage.Count != 0) 
+                        MainForm.ShowNpcMessages(player.TalkedMessage);
                     break;
             }
         }

@@ -29,6 +29,7 @@ namespace MyViews
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static MessageBoxControl MessageBox { get; set; }
+        public static NpcMessage NpcMessage { get; set; }
         public static Game Game { get; set; }
 
         protected override void OnLoad(EventArgs e)
@@ -42,6 +43,13 @@ namespace MyViews
             Controls.Add(MessageBox);
             MessageBox.Hide();
 
+            NpcMessage = new NpcMessage();
+            NpcMessage.Location = new Point(TerrainControl.ClientSize.Width / 2 - NpcMessage.ClientSize.Width / 2,
+                TerrainControl.Bottom - NpcMessage.ClientSize.Height);
+            NpcMessage.Hide();
+            Controls.Add(NpcMessage);
+
+
             MainMenu = new MenuControl();
             MainMenu.ClientSize = TerrainControl.ClientSize;
             MainMenu.Show();
@@ -54,15 +62,16 @@ namespace MyViews
         }        
 
         public MainForm()
-        {
+        {            
             Game = new Game();
-            Game.CurrentGameStage = GameStage.Game;
+            Game.CurrentGameStage = GameStage.Game;           
 
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);
             TerrainControl = new TerrainControl(scenePainter);
 
             BackColor = Color.LightGray;
+
             LabelHp = new Label()
             {
                 Size = new Size(110, 50),
@@ -154,6 +163,23 @@ namespace MyViews
             Controls.Add(LabelBlueKeyText);
             Controls.Add(LabelBlueKeyImage);
 
+        }
+
+        public static void ShowNpcMessages(List<string> messages)
+        {
+            TerrainControl.Timer.Stop();
+            NpcMessage.BringToFront();
+            NpcMessage.Show();
+            if (messages.Count != 0)
+            {
+                NpcMessage.Messages = messages;
+                NpcMessage.Label.Text = messages[0];
+            }
+            else
+            {
+                NpcMessage.Hide();
+                TerrainControl.Timer.Start();
+            }
         }
 
         public static void Over()

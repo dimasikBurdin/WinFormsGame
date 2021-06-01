@@ -63,6 +63,36 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackMessage {
+            get {
+                object obj = ResourceManager.GetObject("BackMessage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BackMessage1 {
+            get {
+                object obj = ResourceManager.GetObject("BackMessage1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BackMessage2 {
+            get {
+                object obj = ResourceManager.GetObject("BackMessage2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BlueGate {
             get {
                 object obj = ResourceManager.GetObject("BlueGate", resourceCulture);
@@ -375,11 +405,11 @@ namespace MyViews.Properties {
         ///   Ищет локализованную строку, похожую на WWWFFTFFFFWWWW
         ///WWWGGTGGGFWWWW
         ///WWGGPTGTGFWWWW
-        ///FGGGTGNTGFWWWW
+        ///FGGGTG1TGFWWWW
         ///FG&lt;TTHOTGFWWWW
         ///FG!TTGGGGGWWGG
         ///FG&gt;TTGGGGGGGGG
-        ///FGT\TTTTTTTTEX
+        ///FGT\|/TTTTTTEX
         ///FGTGGGGGGGGWGG
         ///GTTGGGGGGGGGGG
         ///GGTGGGWWWWGGLL

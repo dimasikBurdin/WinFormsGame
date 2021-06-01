@@ -1,5 +1,6 @@
 ﻿//using MyGameModel.Views;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -23,6 +24,7 @@ namespace MyGameModelNew.Domain
         public Key PikedKey { get; set; }
         public int CurrentAnimation { get; set; }
         public int CurrentFrame { get; set; }
+        public List<string> TalkedMessage { get; set; }
 
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
@@ -35,13 +37,41 @@ namespace MyGameModelNew.Domain
             Delta = Point.Empty;
             CurrentAnimation = 22;
             CurrentFrame = 1;
+            TalkedMessage = new List<string>();
         }
 
         public void UseHealer()
         {
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
         }
-        
+
+        public void OpenGate(Map currentMap)//класс ключей -> write keys on display
+        {
+            var gate = currentMap.Gates.Where(x =>
+            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            if (gate != null && Inventory.Keys.Any(x => x.Type == gate.Type))
+            {
+                gate.Open();
+                Inventory.RemoveKey(gate.Type);
+            }
+        }
+
+        public void TalkToNpc(Map currentMap)
+        {
+            var npc = currentMap.Npcs.Where(x =>
+            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            if(npc != null)
+            {
+                TalkedMessage = npc.TolkToPlayer().ToList();
+            }
+        }
+
         public void Act(Map currentMap)//
         {
             //if (Health <= 0)
@@ -85,20 +115,6 @@ namespace MyGameModelNew.Domain
             //}           
         }
 
-        public void OpenGate(Map currentMap)//класс ключей -> write keys on display
-        {
-            var gate = currentMap.Gates.Where(x =>
-            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
-            if (gate != null && Inventory.Keys.Any(x => x.Type == gate.Type))
-            {
-                gate.Open();
-                Inventory.RemoveKey(gate.Type);
-            }
-        }
-
         private void Animation()
         {
             if(Delta.X == 0 && Delta.Y == 1)
@@ -126,7 +142,8 @@ namespace MyGameModelNew.Domain
 
         private void NpcCollision(Map currentMap)
         {
-
+            if (currentMap.Npcs.Any(x => x.Position == Position))
+                Position = Position.SubStract(Delta);
         }
 
         private void FireCollision(Map currentMap)

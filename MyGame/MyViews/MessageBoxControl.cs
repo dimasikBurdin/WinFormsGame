@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MyViews
 {
-    public partial class MessageBoxControl : UserControl//а зачем ты нужен...
+    public partial class MessageBoxControl : UserControl
     {
         public string Quest { get; set; }
         public DialogResult Result { get; set; }

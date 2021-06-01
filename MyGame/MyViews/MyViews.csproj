@@ -79,6 +79,12 @@
     <Compile Include="MessageBoxControl.Designer.cs">
       <DependentUpon>MessageBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="NpcMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NpcMessage.Designer.cs">
+      <DependentUpon>NpcMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenePainter.cs" />
@@ -282,10 +288,19 @@
     <None Include="Resources\GreenGate.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\RedGate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackMessage.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\BlueGate.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\RedGate.png" />
+    <None Include="Resources\BackMessage1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackMessage2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

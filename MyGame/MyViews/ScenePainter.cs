@@ -219,7 +219,7 @@ namespace MyViews
 
                 MainForm.LabelHealerText.Text = Player.Inventory.CountHealers.ToString();
                 MainForm.LabelHealerImage.Image = Properties.Resources.newHealer;
-
+                
                 MainForm.LabelRedKeyText.Text = Player.Inventory.CountRedKeys.ToString();
                 MainForm.LabelRedKeyImage.Image = Properties.Resources.key_red;
 
