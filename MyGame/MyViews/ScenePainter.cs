@@ -108,6 +108,12 @@ namespace MyViews
                     case GameObjectType.Healer:
                         graphics.DrawImage(Properties.Resources.newHealer, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
                         break;
+                    case GameObjectType.WoodSword:
+                        graphics.DrawImage(Properties.Resources.swordWood, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
+                    case GameObjectType.SteelSword:
+                        graphics.DrawImage(Properties.Resources.sword, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
                 }
             }
             foreach(var e in currentMap.Puzzles)
@@ -228,6 +234,31 @@ namespace MyViews
 
                 MainForm.LabelBlueKeyText.Text = Player.Inventory.CountBlueKeys.ToString();
                 MainForm.LabelBlueKeyImage.Image = Properties.Resources.key_blue;
+
+
+                switch(Player.CurrentWeapon)
+                {
+                    case GameObjectType.Hand:
+                        MainForm.LabelHandImage.Image = Properties.Resources.fist;
+                        MainForm.LabelWoodSwoardImage.Image = null;
+                        MainForm.LabelSteelSwoardImage.Image = null;
+                        break;
+                    case GameObjectType.WoodSword:
+                        MainForm.LabelWoodSwoardImage.Image = Properties.Resources.swordWood;
+                        MainForm.LabelHandImage.Image = null;
+                        MainForm.LabelSteelSwoardImage.Image = null;
+                        break;
+                    case GameObjectType.SteelSword:
+                        MainForm.LabelSteelSwoardImage.Image = Properties.Resources.sword;
+                        MainForm.LabelHandImage.Image = null;
+                        MainForm.LabelWoodSwoardImage.Image = null;
+                        break;
+                }
+                MainForm.LabelHandText.Text = "1";                
+
+                MainForm.LabelWoodSwoardText.Text = "2";                
+
+                MainForm.LabelSteelSwoardText.Text = "3";
             }
         }
     }

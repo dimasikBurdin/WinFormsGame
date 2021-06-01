@@ -5,8 +5,10 @@
         Healer,
         Key,
         //weapon =>
-        Sword, 
+        WoodSword = 1, 
+        SteelSword = 2, 
         Knife,
-        Stick
+        Stick,
+        Hand = 0
     }
 }

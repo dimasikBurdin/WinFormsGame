@@ -21,10 +21,12 @@ namespace MyGameModelNew.Domain
         public Point Delta { get; set; }
         public bool CanHit { get; set; }
         public GameObject PikedHealer { get; set; }
+        public GameObject PikedSwoard { get; set; }
         public Key PikedKey { get; set; }
         public int CurrentAnimation { get; set; }
         public int CurrentFrame { get; set; }
         public List<string> TalkedMessage { get; set; }
+        public GameObjectType CurrentWeapon { get; set; }
 
 
         public Player(int health, double speed, double damage, Point position, Inventory inventory)
@@ -38,6 +40,7 @@ namespace MyGameModelNew.Domain
             CurrentAnimation = 22;
             CurrentFrame = 1;
             TalkedMessage = new List<string>();
+            CurrentWeapon = GameObjectType.Hand;
         }
 
         public void UseHealer()
@@ -72,6 +75,24 @@ namespace MyGameModelNew.Domain
             }
         }
 
+        public void SwapWeapon(int numberWeapon)
+        {
+            switch(numberWeapon)
+            {
+                case 1:
+                    CurrentWeapon = GameObjectType.Hand;
+                    break;
+                case 2:
+                    if(Inventory.Weapon.Any(x => x == GameObjectType.WoodSword))
+                        CurrentWeapon = GameObjectType.WoodSword;
+                    break;
+                case 3:
+                    if (Inventory.Weapon.Any(x => x == GameObjectType.SteelSword))
+                        CurrentWeapon = GameObjectType.SteelSword;
+                    break;
+            }
+        }
+
         public void Act(Map currentMap)//
         {
             //if (Health <= 0)
@@ -80,12 +101,25 @@ namespace MyGameModelNew.Domain
                 Position = Position.Add(Delta);
             Animation();
             KeyCollision(currentMap);
+            SwoardCollision(currentMap);
             GateCollision(currentMap);
             NpcCollision(currentMap);
             FireCollision(currentMap);
             HealerCollision(currentMap);
             EnemyCollision(currentMap);
             HitEnemy(currentMap);
+        }
+
+        private void SwoardCollision(Map currentMap)
+        {
+            var swoard = currentMap.Objects
+                .Where(x => x.Position.Equals(Position) && (x.ObjectType == GameObjectType.WoodSword || x.ObjectType == GameObjectType.SteelSword))
+                .FirstOrDefault();
+            if (swoard != null)
+            {
+                Inventory.AddToInventory(swoard);
+                PikedSwoard = swoard;
+            }
         }
 
         private void KeyCollision(Map currentMap)
@@ -102,17 +136,6 @@ namespace MyGameModelNew.Domain
         {
             if (currentMap.Gates.Any(x => x.Position == Position && x.State == GateState.Lock))
                 Position = Position.SubStract(Delta);
-
-            //var gate = currentMap.Gates.Where(x =>
-            //new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
-            //|| new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
-            //|| new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
-            //|| new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
-
-            //if(gate != null && gate.State == GateState.Lock)
-            //{
-            //    Position = Position.SubStract(Delta);
-            //}           
         }
 
         private void Animation()
@@ -171,7 +194,19 @@ namespace MyGameModelNew.Domain
             || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
             if (CanHit && enemy != null)
             {
-                currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
+                switch(CurrentWeapon)
+                {
+                    case GameObjectType.Hand:
+                        currentMap.Enemies.Where(x => x == enemy).First().Health -= 25;
+                        break;
+                    case GameObjectType.WoodSword:
+                        currentMap.Enemies.Where(x => x == enemy).First().Health -= 40;
+                        break;
+                    case GameObjectType.SteelSword:
+                        currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
+                        break;
+                }
+                
             }
             CanHit = false;
         }

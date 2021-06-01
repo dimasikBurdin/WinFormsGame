@@ -124,6 +124,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fist {
+            get {
+                object obj = ResourceManager.GetObject("fist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ghost {
             get {
                 object obj = ResourceManager.GetObject("ghost", resourceCulture);
@@ -414,8 +424,8 @@ namespace MyViews.Properties {
         ///GTTGGGGGGGGGGG
         ///GGTGGGWWWWGGLL
         ///GGTTGGWWWWGGGL
-        ///GTTTTWWWWWGGGG
-        ///GTTTTWWWWWGGGG.
+        ///G@TTTWWWWWGGGG
+        ///G#TTTWWWWWGGGG.
         /// </summary>
         internal static string TestMap {
             get {

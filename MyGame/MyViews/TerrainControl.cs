@@ -23,6 +23,7 @@ namespace MyViews
         public static Enemy RemoveEnemyFromList { get; set; }
         private List<Enemy> deadEnemy = new List<Enemy>();
         private List<GameObject> pickedHealers = new List<GameObject>();
+        private List<GameObject> pickedSwoard = new List<GameObject>();
         private List<Key> pickedKeys = new List<Key>();
 
         public TerrainControl(ScenePainter scenePainter)
@@ -52,10 +53,13 @@ namespace MyViews
                     pickedHealers.Add(player.PikedHealer);
                 if (player.PikedKey != null)
                     pickedKeys.Add(player.PikedKey);
+                if (player.PikedSwoard != null)
+                    pickedSwoard.Add(player.PikedSwoard);
             }
 
             RemovePickedHealers();
             RemovePickedKeys();
+            RemovePickedSwoard();
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                 {
@@ -82,6 +86,12 @@ namespace MyViews
             if (EnemyTickCount == 8) EnemyTickCount = 0;
 
             Invalidate();
+        }
+
+        private void RemovePickedSwoard()
+        {
+            foreach (var swoard in pickedSwoard)
+                ScenePainter.currentMap.Objects.Remove(swoard);
         }
 
         private void RemovePickedKeys()
@@ -180,6 +190,15 @@ namespace MyViews
                     player.TalkToNpc(ScenePainter.currentMap);
                     if (player.TalkedMessage.Count != 0) 
                         MainForm.ShowNpcMessages(player.TalkedMessage);
+                    break;
+                case Keys.D1:
+                    player.SwapWeapon(1);
+                    break;
+                case Keys.D2:
+                    player.SwapWeapon(2);
+                    break;
+                case Keys.D3:
+                    player.SwapWeapon(3);
                     break;
             }
         }

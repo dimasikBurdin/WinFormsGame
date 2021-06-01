@@ -7,7 +7,7 @@ namespace MyGameModelNew.Domain
     {
         private List<GameObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
         public List<Key> Keys { get; set; }//мб тоже отображаются на экране
-        private List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка//почему приватное свойство?!
+        public List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка//почему приватное свойство?!
 
         public Inventory()
         {
@@ -75,7 +75,7 @@ namespace MyGameModelNew.Domain
                 case GameObjectType.Healer: 
                     Healers.Add(newObject.ObjectType);
                     break;                
-                case var a when newObject.ObjectType == GameObjectType.Knife || newObject.ObjectType == GameObjectType.Stick || newObject.ObjectType == GameObjectType.Sword:
+                case var a when newObject.ObjectType == GameObjectType.Knife || newObject.ObjectType == GameObjectType.SteelSword || newObject.ObjectType == GameObjectType.WoodSword:
                     Weapon.Add(newObject.ObjectType);
                     break;
             }

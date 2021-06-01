@@ -26,6 +26,12 @@ namespace MyViews
         public static Label LabelGreenKeyImage { get; set; }
         public static Label LabelBlueKeyText { get; set; }
         public static Label LabelBlueKeyImage { get; set; }
+        public static Label LabelHandText { get; set; }
+        public static Label LabelHandImage { get; set; }
+        public static Label LabelWoodSwoardText { get; set; }
+        public static Label LabelWoodSwoardImage { get; set; }
+        public static Label LabelSteelSwoardText { get; set; }
+        public static Label LabelSteelSwoardImage { get; set; }
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static MessageBoxControl MessageBox { get; set; }
@@ -59,12 +65,12 @@ namespace MyViews
             TerrainControl.Hide();
             TerrainControl.Timer.Stop();
             
-        }        
+        }
 
         public MainForm()
-        {            
+        {
             Game = new Game();
-            Game.CurrentGameStage = GameStage.Game;           
+            Game.CurrentGameStage = GameStage.Game;
 
             var levels = LoadLevels().ToArray();
             var scenePainter = new ScenePainter(levels);
@@ -145,7 +151,53 @@ namespace MyViews
                 Left = TerrainControl.TerrainClientSize.Width + 50,
             };
 
+            LabelHandText = new Label()
+            {
+                Size = new Size(23, 40),
+                Left = TerrainControl.TerrainClientSize.Width + 10,
+                Top = 600,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Green
+            };
 
+            LabelHandImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 550,
+                Left = TerrainControl.TerrainClientSize.Width + 10
+            };
+
+            LabelWoodSwoardText = new Label()
+            {
+                Size = new Size(23, 40),
+                Left = TerrainControl.TerrainClientSize.Width + 40,
+                Top = 600,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Green
+            };
+
+            LabelWoodSwoardImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 550,
+                Left = TerrainControl.TerrainClientSize.Width + 40
+            };
+
+            LabelSteelSwoardText = new Label()
+            {
+                Size = new Size(23, 40),
+                Left = TerrainControl.TerrainClientSize.Width + 70,
+                Top = 600,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Green
+            };
+
+            LabelSteelSwoardImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 550,
+                Left = TerrainControl.TerrainClientSize.Width + 70
+            };
 
             Controls.Add(TerrainControl);
 
@@ -162,6 +214,15 @@ namespace MyViews
 
             Controls.Add(LabelBlueKeyText);
             Controls.Add(LabelBlueKeyImage);
+
+            Controls.Add(LabelHandText);
+            Controls.Add(LabelHandImage);
+
+            Controls.Add(LabelWoodSwoardText);
+            Controls.Add(LabelWoodSwoardImage);
+
+            Controls.Add(LabelSteelSwoardText);
+            Controls.Add(LabelSteelSwoardImage);
 
         }
 

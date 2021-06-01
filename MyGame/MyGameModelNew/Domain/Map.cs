@@ -59,6 +59,14 @@ namespace MyGameModelNew.Domain
                 {
                     switch (lines[y][x])
                     {
+                        case '@'://wood swoard
+                            terrain[x, y] = MapCell.Grass;
+                            objects.Add(new GameObject(new Point(x, y), GameObjectType.WoodSword));
+                            break;
+                        case '#'://steel swoard
+                            terrain[x, y] = MapCell.Grass;
+                            objects.Add(new GameObject(new Point(x, y), GameObjectType.SteelSword));
+                            break;
                         case '1'://npc from 1 map
                             terrain[x, y] = MapCell.Grass;
                             npcS.Add(new Npc(new Point(x, y), new List<string> 
