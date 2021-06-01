@@ -116,7 +116,71 @@ namespace MyViews
             }
             foreach(var e in currentMap.Npcs)
             {
-
+                graphics.DrawImage(Properties.Resources.npc, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+            }
+            foreach(var e in currentMap.Fires)
+            {
+                var image = Properties.Resources.fire;
+                graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, e.CurrentAnimation, 35, 35, GraphicsUnit.Pixel);
+            }
+            foreach(var e in currentMap.Keys)
+            {
+                switch(e.Type)
+                {
+                    case KeyAndGateType.Red:
+                        graphics.DrawImage(Properties.Resources.key_red, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
+                    case KeyAndGateType.Green:
+                        graphics.DrawImage(Properties.Resources.key_green, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
+                    case KeyAndGateType.Blue:
+                        graphics.DrawImage(Properties.Resources.key_blue, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
+                        break;
+                }
+            }
+            foreach (var e in currentMap.Gates)
+            {
+                switch (e.State)
+                {
+                    case GateState.Lock:
+                        {
+                            switch (e.Type)
+                            {
+                                case KeyAndGateType.Red:
+                                    var image = Properties.Resources.RedGate;
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, 0, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                                case KeyAndGateType.Green:
+                                    image = Properties.Resources.GreenGate;
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, 0, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                                case KeyAndGateType.Blue:
+                                    image = Properties.Resources.BlueGate;
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, 0, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                            }
+                            break;
+                        }
+                    case GateState.Open:
+                        {
+                            switch (e.Type)
+                            {
+                                case KeyAndGateType.Red:
+                                    var image = Properties.Resources.RedGate;//0-> += 64
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, e.CurrentAnimation, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                                case KeyAndGateType.Green:
+                                    image = Properties.Resources.GreenGate;//0-> += 64
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, e.CurrentAnimation, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                                case KeyAndGateType.Blue:
+                                    image = Properties.Resources.BlueGate;//0-> += 64
+                                    graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, e.CurrentAnimation, 100, 60, GraphicsUnit.Pixel);
+                                    break;
+                            }
+                            break;
+                        }
+                }
             }
         }
 

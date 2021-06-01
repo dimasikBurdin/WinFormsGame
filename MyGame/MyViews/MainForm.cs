@@ -1,5 +1,5 @@
 ﻿using MyGameModelNew.Domain;
-using MyGameModel.Views;
+//using MyGameModel.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

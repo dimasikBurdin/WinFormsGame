@@ -23,6 +23,7 @@ namespace MyViews
         public static Enemy RemoveEnemyFromList { get; set; }
         private List<Enemy> deadEnemy = new List<Enemy>();
         private List<GameObject> pickedHealers = new List<GameObject>();
+        private List<Key> pickedKeys = new List<Key>();
 
         public TerrainControl(ScenePainter scenePainter)
         {
@@ -49,9 +50,12 @@ namespace MyViews
                 player.Act(ScenePainter.currentMap);
                 if (player.PikedHealer != null)
                     pickedHealers.Add(player.PikedHealer);
+                if (player.PikedKey != null)
+                    pickedKeys.Add(player.PikedKey);
             }
 
             RemovePickedHealers();
+            RemovePickedKeys();
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                 {
@@ -64,12 +68,26 @@ namespace MyViews
             if (player.Health <= 0)
                 MainForm.Over();
 
+            if (tickCount == 0)
+            {
+                foreach (var e in map.Fires)
+                    e.Act();
+                foreach (var e in map.Gates)
+                    e.Act();
+            }
+
             tickCount++;
             EnemyTickCount++;
             if (tickCount == 7) tickCount = 0;
             if (EnemyTickCount == 8) EnemyTickCount = 0;
 
             Invalidate();
+        }
+
+        private void RemovePickedKeys()
+        {
+            foreach (var key in pickedKeys)
+                ScenePainter.currentMap.Keys.Remove(key);
         }
 
         private void RemovePickedHealers()
@@ -154,6 +172,9 @@ namespace MyViews
                     break;
                 case Keys.H:
                     player.UseHealer();
+                    break;
+                case Keys.E:
+                    player.OpenGate(ScenePainter.currentMap);
                     break;
             }
         }

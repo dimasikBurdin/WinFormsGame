@@ -14,8 +14,12 @@ namespace MyGameModelNew.Domain
         public List<Enemy> Enemies { get; private set; }
         public Npc[] Npcs { get; private set; }
         public Puzzle[] Puzzles { get; private set; }//???
+        public List<Fire> Fires { get; private set; }
+        public List<Gate> Gates { get; private set; }
+        public List<Key> Keys { get; private set; }
 
-        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, List<GameObject> objects, List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles)
+        public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, List<GameObject> objects,
+            List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles, List<Fire> fires, List<Gate> gates, List<Key> keys)
         {
             Terrain = terrain;
             Player = player;
@@ -25,6 +29,9 @@ namespace MyGameModelNew.Domain
             Enemies = enemies;
             Npcs = npc;
             Puzzles = puzzles;
+            Fires = fires;
+            Gates = gates;
+            Keys = keys;
         }
 
         public static Map FromText(string text)
@@ -43,15 +50,46 @@ namespace MyGameModelNew.Domain
             var objects = new List<GameObject>();
             var npcS = new List<Npc>();
             var puzzles = new List<Puzzle>();
+            var fires = new List<Fire>();
+            var gates = new List<Gate>();
+            var keys = new List<Key>();
             for(var y = 0; y < lines.Length; y++)
             {
                 for(var x = 0; x < lines[0].Length; x++)//если у всего нестатичного текстуры будут не квадратные, а нормальные, то мб и не стоит на место этих сущностей ставить пустую клетку
                 {
                     switch (lines[y][x])
                     {
+                        case '<'://green key
+                            terrain[x, y] = MapCell.Grass;
+                            keys.Add(new Key(new Point(x, y), KeyAndGateType.Green));
+                            break;
+                        case '!'://red key
+                            terrain[x, y] = MapCell.Grass;
+                            keys.Add(new Key(new Point(x, y), KeyAndGateType.Red));
+                            break;
+                        case '>'://blue key
+                            terrain[x, y] = MapCell.Grass;
+                            keys.Add(new Key(new Point(x, y), KeyAndGateType.Blue));
+                            break;
+                        case '\\'://green gate
+                            terrain[x, y] = MapCell.Trail;
+                            gates.Add(new Gate(new Point(x, y), KeyAndGateType.Green));
+                            break;
+                        case '|'://red gate
+                            terrain[x, y] = MapCell.Trail;
+                            gates.Add(new Gate(new Point(x, y), KeyAndGateType.Red));
+                            break;
+                        case '/'://blue gate
+                            terrain[x, y] = MapCell.Trail;
+                            gates.Add(new Gate(new Point(x, y), KeyAndGateType.Blue));
+                            break;
+                        case 'O'://fire
+                            terrain[x, y] = MapCell.Grass;
+                            fires.Add(new Fire(new Point(x, y)));
+                            break;
                         case 'N':
-                            terrain[x, y] = MapCell.Empty;
-                            npcS.Add(new Npc(new Point(x, y), null));//
+                            terrain[x, y] = MapCell.Grass;
+                            npcS.Add(new Npc(new Point(x, y), null, new GameObject(new Point(x, y), GameObjectType.Healer)));//
                             break;
                         case 'E':
                             terrain[x, y] = MapCell.Trail;
@@ -106,7 +144,7 @@ namespace MyGameModelNew.Domain
                     }
                 }            
             }
-            return new Map(terrain, player, initialPosition, exitPosition, objects, enemies, npcS.ToArray(), puzzles.ToArray());
+            return new Map(terrain, player, initialPosition, exitPosition, objects, enemies, npcS.ToArray(), puzzles.ToArray(), fires, gates, keys);
         }
     }
 }

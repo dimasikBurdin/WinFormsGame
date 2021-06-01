@@ -20,6 +20,7 @@ namespace MyGameModelNew.Domain
         public Point Delta { get; set; }
         public bool CanHit { get; set; }
         public GameObject PikedHealer { get; set; }
+        public Key PikedKey { get; set; }
         public int CurrentAnimation { get; set; }
         public int CurrentFrame { get; set; }
 
@@ -48,9 +49,54 @@ namespace MyGameModelNew.Domain
             if (IsCanGo(Position.Add(Delta), currentMap))
                 Position = Position.Add(Delta);
             Animation();
+            KeyCollision(currentMap);
+            GateCollision(currentMap);
+            NpcCollision(currentMap);
+            FireCollision(currentMap);
             HealerCollision(currentMap);
             EnemyCollision(currentMap);
             HitEnemy(currentMap);
+        }
+
+        private void KeyCollision(Map currentMap)
+        {
+            var key = currentMap.Keys.Where(x => x.Position.Equals(Position)).FirstOrDefault();
+            if (key != null)
+            {
+                Inventory.AddKeyToInventory(key);
+                PikedKey = key;
+            }
+        }
+
+        private void GateCollision(Map currentMap)
+        {
+            if (currentMap.Gates.Any(x => x.Position == Position && x.State == GateState.Lock))
+                Position = Position.SubStract(Delta);
+
+            //var gate = currentMap.Gates.Where(x =>
+            //new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
+            //|| new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
+            //|| new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
+            //|| new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+
+            //if(gate != null && gate.State == GateState.Lock)
+            //{
+            //    Position = Position.SubStract(Delta);
+            //}           
+        }
+
+        public void OpenGate(Map currentMap)//класс ключей -> write keys on display
+        {
+            var gate = currentMap.Gates.Where(x =>
+            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
+            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            if (gate != null && Inventory.Keys.Any(x => x.Type == gate.Type))
+            {
+                gate.Open();
+                Inventory.RemoveKey(gate.Type);
+            }
         }
 
         private void Animation()
@@ -76,6 +122,17 @@ namespace MyGameModelNew.Domain
                 CurrentFrame += 7;                
             }
             if (CurrentFrame == 29) CurrentFrame = 1;
+        }
+
+        private void NpcCollision(Map currentMap)
+        {
+
+        }
+
+        private void FireCollision(Map currentMap)
+        {
+            if (currentMap.Fires.Any(x => x.Position == Position))
+                Position = Position.SubStract(Delta);
         }
 
         private void HealerCollision(Map currentMap)

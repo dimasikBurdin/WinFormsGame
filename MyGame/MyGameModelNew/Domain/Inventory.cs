@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace MyGameModelNew.Domain
 {
     public class Inventory   //private? мб нет, т к т.о. можно будет хранить лут во врагах, при убийстве которых он будет падать
     {
         private List<GameObjectType> Healers { get; set; }//кол-во хилок отображается во время игры
-        private List<GameObjectType> Keys { get; set; }//мб тоже отображаются на экране
-        private List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка
+        public List<Key> Keys { get; set; }//мб тоже отображаются на экране
+        private List<GameObjectType> Weapon { get; set; }//находится в инвентаре => небольшая табличка//почему приватное свойство?!
 
         public Inventory()
         {
             Healers = new List<GameObjectType>();
-            Keys = new List<GameObjectType>();
+            Keys = new List<Key>();
             Weapon = new List<GameObjectType>();
         }
 
@@ -22,7 +23,7 @@ namespace MyGameModelNew.Domain
                 return Healers.Count;
             }
         }
-        public int CountKeys
+        public int CountKeys//подумать, т к в листе ключи 3 типов, а надо кол-во каждого типа
         {
             get
             {
@@ -45,14 +46,21 @@ namespace MyGameModelNew.Domain
             {
                 case GameObjectType.Healer: 
                     Healers.Add(newObject.ObjectType);
-                    break;
-                case GameObjectType.Key:
-                    Keys.Add(newObject.ObjectType);
-                    break;
+                    break;                
                 case var a when newObject.ObjectType == GameObjectType.Knife || newObject.ObjectType == GameObjectType.Stick || newObject.ObjectType == GameObjectType.Sword:
                     Weapon.Add(newObject.ObjectType);
                     break;
             }
+        }
+
+        public void RemoveKey(KeyAndGateType keyType)
+        {
+            Keys.Remove(Keys.Where(x => x.Type == keyType).FirstOrDefault());
+        }
+
+        public void AddKeyToInventory(Key key)
+        {
+            Keys.Add(key);
         }
     }
 }

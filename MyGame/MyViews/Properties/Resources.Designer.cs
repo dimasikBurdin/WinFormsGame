@@ -61,6 +61,16 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BlueGate {
+            get {
+                object obj = ResourceManager.GetObject("BlueGate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на PTG
         ///GTG
         ///GTE.
@@ -68,6 +78,16 @@ namespace MyViews.Properties {
         internal static string EnemyMoveTestMap1 {
             get {
                 return ResourceManager.GetString("EnemyMoveTestMap1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire {
+            get {
+                object obj = ResourceManager.GetObject("fire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -94,6 +114,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GreenGate {
+            get {
+                object obj = ResourceManager.GetObject("GreenGate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heal {
             get {
                 object obj = ResourceManager.GetObject("heal", resourceCulture);
@@ -107,6 +137,36 @@ namespace MyViews.Properties {
         internal static System.Drawing.Bitmap Image1 {
             get {
                 object obj = ResourceManager.GetObject("Image1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_blue {
+            get {
+                object obj = ResourceManager.GetObject("key_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_green {
+            get {
+                object obj = ResourceManager.GetObject("key_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_red {
+            get {
+                object obj = ResourceManager.GetObject("key_red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -234,6 +294,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap npc {
+            get {
+                object obj = ResourceManager.GetObject("npc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player {
             get {
                 object obj = ResourceManager.GetObject("player", resourceCulture);
@@ -247,6 +317,16 @@ namespace MyViews.Properties {
         internal static System.Drawing.Bitmap player1 {
             get {
                 object obj = ResourceManager.GetObject("player1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedGate {
+            get {
+                object obj = ResourceManager.GetObject("RedGate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -272,14 +352,34 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sword {
+            get {
+                object obj = ResourceManager.GetObject("sword", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap swordWood {
+            get {
+                object obj = ResourceManager.GetObject("swordWood", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на WWWFFTFFFFWWWW
         ///WWWGGTGGGFWWWW
         ///WWGGPTGTGFWWWW
-        ///FGGGTGGTGFWWWW
-        ///FGGTTHTTGFWWWW
-        ///FGGTTGGGGGWWGG
-        ///FGGTTGGGGGGGGG
-        ///FGTTTTTTTTTTEX
+        ///FGGGTGNTGFWWWW
+        ///FG&lt;TTHOTGFWWWW
+        ///FG!TTGGGGGWWGG
+        ///FG&gt;TTGGGGGGGGG
+        ///FGT\TTTTTTTTEX
         ///FGTGGGGGGGGWGG
         ///GTTGGGGGGGGGGG
         ///GGTGGGWWWWGGLL

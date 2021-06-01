@@ -257,5 +257,35 @@
   <ItemGroup>
     <None Include="Resources\ghosts.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swordWood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\npc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GreenGate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueGate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedGate.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
