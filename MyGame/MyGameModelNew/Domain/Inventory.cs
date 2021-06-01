@@ -31,6 +31,34 @@ namespace MyGameModelNew.Domain
             }
         }
 
+        public int CountRedKeys
+        {
+            get
+            {
+                var count = 0;
+                Keys.Where(x => x.Type == KeyAndGateType.Red).Select(x => count++).ToArray();
+                return count;
+            }
+        }
+        public int CountGreenKeys
+        {
+            get
+            {
+                var count = 0;
+                Keys.Where(x => x.Type == KeyAndGateType.Green).Select(x => count++).ToArray();
+                return count;
+            }
+        }
+        public int CountBlueKeys
+        {
+            get
+            {
+                var count = 0;
+                Keys.Where(x => x.Type == KeyAndGateType.Blue).Select(x => count++).ToArray();
+                return count;
+            }
+        }
+
         public int PlayerUseHealer(int currentHealthPlayer, int maxHealthPlayer)
         { 
             if (Healers.Count == 0 || currentHealthPlayer == maxHealthPlayer) return currentHealthPlayer;            

@@ -215,9 +215,19 @@ namespace MyViews
         {
             if (Player != null)
             {
-                MainForm.labelHp.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
-                MainForm.labelHealerText.Text = Player.Inventory.CountHealers.ToString();
-                MainForm.labelHealerImage.Image = Properties.Resources.newHealer;
+                MainForm.LabelHp.Text = Player.Health > 0 ? Player.Health.ToString() + "hp" : "0";
+
+                MainForm.LabelHealerText.Text = Player.Inventory.CountHealers.ToString();
+                MainForm.LabelHealerImage.Image = Properties.Resources.newHealer;
+
+                MainForm.LabelRedKeyText.Text = Player.Inventory.CountRedKeys.ToString();
+                MainForm.LabelRedKeyImage.Image = Properties.Resources.key_red;
+
+                MainForm.LabelGreenKeyText.Text = Player.Inventory.CountGreenKeys.ToString();
+                MainForm.LabelGreenKeyImage.Image = Properties.Resources.key_green;
+
+                MainForm.LabelBlueKeyText.Text = Player.Inventory.CountBlueKeys.ToString();
+                MainForm.LabelBlueKeyImage.Image = Properties.Resources.key_blue;
             }
         }
     }

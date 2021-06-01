@@ -17,9 +17,15 @@ namespace MyViews
         //size +
         //index / zIndex +
         //в форме есть событие, принимающее нажатие клавиш. Для управления написать методы в моделе (в игроке например), которые будут реагировать на эти нажатия +
-        public static Label labelHp;
-        public static Label labelHealerText;
-        public static Label labelHealerImage;
+        public static Label LabelHp { get; set; }
+        public static Label LabelHealerText { get; set; }
+        public static Label LabelHealerImage { get; set; }
+        public static Label LabelRedKeyText { get; set; }
+        public static Label LabelRedKeyImage { get; set; }
+        public static Label LabelGreenKeyText { get; set; }
+        public static Label LabelGreenKeyImage { get; set; }
+        public static Label LabelBlueKeyText { get; set; }
+        public static Label LabelBlueKeyImage { get; set; }
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static MessageBoxControl MessageBox { get; set; }
@@ -57,7 +63,7 @@ namespace MyViews
             TerrainControl = new TerrainControl(scenePainter);
 
             BackColor = Color.LightGray;
-            labelHp = new Label()
+            LabelHp = new Label()
             {
                 Size = new Size(110, 50),
                 Top = 0,
@@ -66,7 +72,7 @@ namespace MyViews
                 ForeColor = Color.Purple
             };
 
-            labelHealerText = new Label()
+            LabelHealerText = new Label()
             {
                 Size = new Size(23, 40),
                 Top = 60,
@@ -75,17 +81,79 @@ namespace MyViews
                 ForeColor = Color.Purple
             };
 
-            labelHealerImage = new Label()
+            LabelHealerImage = new Label()
             {
                 Size = new Size(30, 30),
                 Top = 65,
                 Left = TerrainControl.TerrainClientSize.Width + 40,
-            };            
+            };
+
+            LabelRedKeyText = new Label()
+            {
+                Size = new Size(23, 40),
+                Top = 120,
+                Left = TerrainControl.TerrainClientSize.Width + 20,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Purple
+            };
+
+            LabelRedKeyImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 125,
+                Left = TerrainControl.TerrainClientSize.Width + 50,
+            };
+
+            LabelGreenKeyText = new Label()
+            {
+                Size = new Size(23, 40),
+                Top = 180,
+                Left = TerrainControl.TerrainClientSize.Width + 20,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Purple
+            };
+
+            LabelGreenKeyImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 185,
+                Left = TerrainControl.TerrainClientSize.Width + 50,
+            };
+
+            LabelBlueKeyText = new Label()
+            {
+                Size = new Size(23, 40),
+                Top = 240,
+                Left = TerrainControl.TerrainClientSize.Width + 20,
+                Font = new Font(FontFamily.GenericSerif, 23, FontStyle.Bold),
+                ForeColor = Color.Purple
+            };
+
+            LabelBlueKeyImage = new Label()
+            {
+                Size = new Size(30, 30),
+                Top = 245,
+                Left = TerrainControl.TerrainClientSize.Width + 50,
+            };
+
+
 
             Controls.Add(TerrainControl);
-            Controls.Add(labelHp);
-            Controls.Add(labelHealerText);
-            Controls.Add(labelHealerImage);
+
+            Controls.Add(LabelHp);
+
+            Controls.Add(LabelHealerText);
+            Controls.Add(LabelHealerImage);
+
+            Controls.Add(LabelRedKeyText);
+            Controls.Add(LabelRedKeyImage);
+
+            Controls.Add(LabelGreenKeyText);
+            Controls.Add(LabelGreenKeyImage);
+
+            Controls.Add(LabelBlueKeyText);
+            Controls.Add(LabelBlueKeyImage);
+
         }
 
         public static void Over()
