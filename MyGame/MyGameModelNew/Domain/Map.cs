@@ -134,7 +134,7 @@ namespace MyGameModelNew.Domain
                         case 'P':
                             terrain[x, y] = MapCell.Trail;//                            
                             initialPosition = new Point(x, y);
-                            player = new Player(100, 30, 30, initialPosition, new Inventory());//
+                            player = new Player(100, initialPosition, new Inventory());//
                             break;
                         case 'W':
                             terrain[x, y] = MapCell.Water;
@@ -158,9 +158,9 @@ namespace MyGameModelNew.Domain
                             terrain[x, y] = MapCell.Trail;
                             exitPosition = new Point(x, y);
                             break;
-                        default:
-                            terrain[x, y] = MapCell.Empty;
-                            break;
+                        //default:
+                        //    terrain[x, y] = MapCell.Empty;
+                        //    break;
                     }
                 }            
             }

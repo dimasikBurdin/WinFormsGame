@@ -13,8 +13,6 @@ namespace MyGameModelNew.Domain
     {
         public const int MaxHealth = 100;
         public int Health { get; set; }
-        public static double Speed { get; private set; }
-        public static double Damage { get; private set; }
         public Point Position { get; set; }
         public Inventory Inventory { get; set; }
         public bool IsMoving { get; set; }
@@ -29,11 +27,9 @@ namespace MyGameModelNew.Domain
         public GameObjectType CurrentWeapon { get; set; }
 
 
-        public Player(int health, double speed, double damage, Point position, Inventory inventory)
+        public Player(int health,Point position, Inventory inventory)
         {
             Health = health;
-            Speed = speed;
-            Damage = damage;
             Position = position;
             Inventory = inventory;
             Delta = Point.Empty;

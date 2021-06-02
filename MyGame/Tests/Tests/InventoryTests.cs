@@ -18,7 +18,7 @@ namespace Tests
             var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var seconItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
-            var player = new Player(100, 30, 30, Point.Empty, inventory);
+            var player = new Player(100, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
             player.Inventory.AddToInventory(seconItem);
             Assert.AreEqual(2, player.Inventory.CountHealers);
@@ -29,7 +29,7 @@ namespace Tests
         {
             var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
-            var player = new Player(50, 30, 30, Point.Empty, inventory);
+            var player = new Player(50, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
             player.UseHealer();
             Assert.AreEqual(0, player.Inventory.CountHealers);
@@ -41,7 +41,7 @@ namespace Tests
         {
             var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
-            var player = new Player(90, 30, 30, Point.Empty, inventory);
+            var player = new Player(90, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
             player.UseHealer();
             Assert.AreEqual(100, player.Health);
@@ -52,11 +52,37 @@ namespace Tests
         {
             var firstItem = new GameObject(Point.Empty, GameObjectType.Healer);
             var inventory = new Inventory();
-            var player = new Player(100, 30, 30, Point.Empty, inventory);
+            var player = new Player(100, Point.Empty, inventory);
             player.Inventory.AddToInventory(firstItem);
             player.UseHealer();
             Assert.AreEqual(100, player.Health);
             Assert.AreEqual(1, player.Inventory.CountHealers);
+        }
+
+        [Test]
+        public void PlayerOpenGreenGateAndCountKeyIsZero()
+        {
+            var map = Map.FromLines(new[]
+            {
+                "P",
+                "\\"
+            });
+            map.Player.Inventory.AddKeyToInventory(new Key(Point.Empty, KeyAndGateType.Green));
+            map.Player.OpenGate(map);
+            Assert.AreEqual(0, map.Player.Inventory.CountKeys);
+        }
+
+        [Test]
+        public void PlayerCannotOpenGreenGateAndCountKeyIsOne()
+        {
+            var map = Map.FromLines(new[]
+            {
+                "P",
+                "\\"
+            });
+            map.Player.Inventory.AddKeyToInventory(new Key(Point.Empty, KeyAndGateType.Red));
+            map.Player.OpenGate(map);
+            Assert.AreEqual(1, map.Player.Inventory.CountKeys);
         }
     }
 }

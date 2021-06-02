@@ -70,7 +70,10 @@ namespace MyViews
             RemoveEnemy();
 
             if (player.Health <= 0)
+            {
+                MainForm.Game.CurrentGameStage = GameStage.GameOver;
                 MainForm.Over();
+            }
 
             if (tickCount == 0)
             {
@@ -103,19 +106,12 @@ namespace MyViews
         private void RemovePickedHealers()
         {
             foreach(var healer in pickedHealers)
-            {
                 ScenePainter.currentMap.Objects.Remove(healer);
-            }
         }
         private void RemoveEnemy()
         {
-            //if(RemoveEnemyFromList != null)
-            //    ScenePainter.currentMap.Enemies.Remove(RemoveEnemyFromList);
-            //if(enemy.IsDeadEnemy != default)
-            //    ScenePainter.currentMap.Enemies.Remove(enemy);
             foreach (var enemy in deadEnemy)
                 ScenePainter.currentMap.Enemies.Remove(enemy);
-
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)

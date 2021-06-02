@@ -222,6 +222,16 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на GP
+        ///G&lt;.
+        /// </summary>
+        internal static string MapForTest2x2 {
+            get {
+                return ResourceManager.GetString("MapForTest2x2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap MyGrass {
