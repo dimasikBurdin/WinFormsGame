@@ -89,6 +89,6 @@ namespace Tests
             });
             map.Enemies[0].Act(map);
             Assert.IsTrue(map.Enemies[0].Position != Point.Empty);
-        }
+        }        
     }
 }

@@ -232,5 +232,18 @@ namespace Tests
             map.Player.OpenGate(map);
             Assert.IsFalse(map.Gates.Any(x => x.Type == KeyAndGateType.Green && x.State == GateState.Open));
         }
+
+        [Test]
+        public void HitEnemy()
+        {
+            var map = Map.FromLines(new[]
+            {
+                "P",
+                "E"
+            });
+            map.Player.CanHit = true;
+            map.Player.Act(map);
+            Assert.IsTrue(map.Enemies[0].Health != 100);
+        }
     }
 }
