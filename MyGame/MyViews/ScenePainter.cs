@@ -239,7 +239,7 @@ namespace MyViews
                 switch(Player.CurrentWeapon)
                 {
                     case GameObjectType.Hand:
-                        MainForm.LabelHandImage.Image = Properties.Resources.fist;
+                        MainForm.LabelHandImage.Image = Properties.Resources.fist1;
                         MainForm.LabelWoodSwoardImage.Image = null;
                         MainForm.LabelSteelSwoardImage.Image = null;
                         break;

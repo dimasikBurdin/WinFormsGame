@@ -106,7 +106,7 @@ namespace MyGameModelNew.Domain
                                 "Поздравляю!",
                                 "Ты смог добраться до сюда.",
                                 "Теперь ты будешь счастлив.",
-                                "До встречи!.", 
+                                "До встречи!.",
                             },
                             new GameObject(new Point(x, y), GameObjectType.Healer)));
                             break;

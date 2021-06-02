@@ -134,6 +134,16 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fist1 {
+            get {
+                object obj = ResourceManager.GetObject("fist1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ghost {
             get {
                 object obj = ResourceManager.GetObject("ghost", resourceCulture);
@@ -315,8 +325,8 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на FFFXFFFFWWWWWWW
-        ///FFF\FFFWWWWWWWW
+        ///   Ищет локализованную строку, похожую на FFFXT3FFWWWWWWW
+        ///FFF\FOFWWWWWWWW
         ///FFF|FFWWWWWWWWW
         ///FFF/GFFFFWWWWWW
         ///FFGTTTTTTETTTT&lt;
