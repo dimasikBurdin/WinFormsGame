@@ -113,7 +113,7 @@ namespace MyGameModelNew.Domain
                             break;
                         case 'E':
                             terrain[x, y] = MapCell.Trail;
-                            enemies.Add(new Enemy(100, 30, 15, new Point(x, y)));
+                            enemies.Add(new Enemy(100, 15, new Point(x, y)));
                             break;
                         case 'Z':  //puzzle
                             terrain[x, y] = MapCell.Empty;

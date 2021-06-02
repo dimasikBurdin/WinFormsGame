@@ -14,7 +14,6 @@ namespace MyGameModelNew.Domain
         private Random rnd;
         public const int MaxHealth = 100;
         public int Health { get; set; }
-        public double Speed { get; private set; }
         public double Damage { get; private set; }
         public Point Position { get; set; }
         public bool IsDeadEnemy { get; private set; }
@@ -22,10 +21,9 @@ namespace MyGameModelNew.Domain
         public int CurrentFrame { get; set; }
         private Point delta;
 
-        public Enemy(int health, double speed, double damage, Point position)
+        public Enemy(int health, double damage, Point position)
         {
             Health = health;
-            Speed = speed;
             Damage = damage;
             Position = position;
             rnd = new Random();
@@ -153,13 +151,16 @@ namespace MyGameModelNew.Domain
             }
             var pathItem = target;
             var result = new List<Point>();
-            while (pathItem != new Point(int.MinValue, int.MinValue))
+            while (track.ContainsKey(target) && pathItem != new Point(int.MinValue, int.MinValue))
             {
                 result.Add(pathItem);
                 pathItem = track[pathItem];
             }
-            result.Reverse();
-            result.RemoveAt(0);//убираем точку, на которой стоит враг
+            if (result.Count != 0)
+            {
+                result.Reverse();
+                result?.RemoveAt(0);//убираем точку, на которой стоит враг
+            }
             return result;
         }
 
@@ -169,7 +170,7 @@ namespace MyGameModelNew.Domain
             if (position.X < 0 || position.X >= terrain.GetLength(0)
                 || position.Y < 0 || position.Y >= terrain.GetLength(1)) return false;
             var currentMapCellType = terrain[position.X, position.Y];
-            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water;
+            return currentMapCellType != MapCell.Rock && currentMapCellType != MapCell.Water && currentMapCellType != MapCell.Forest;
         }
     }
 }
