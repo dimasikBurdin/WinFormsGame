@@ -24,6 +24,7 @@ namespace MyGameModelNew.Domain
 
         public IEnumerable<string> TolkToPlayer()
         {
+            if (Messages == null) yield break;
             foreach (var message in Messages.Where(x => x != null))
             {
                 yield return message;

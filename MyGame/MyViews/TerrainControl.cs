@@ -29,6 +29,7 @@ namespace MyViews
         public TerrainControl(ScenePainter scenePainter)
         {
             TerrainClientSize = new Size(800, 800);
+            //TerrainClientSize = new Size(1000, 1000);
             painter = scenePainter;
             DoubleBuffered = true;
 

@@ -308,5 +308,23 @@
   <ItemGroup>
     <None Include="Resources\MapForTest2x2.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestSizeMap~20x20.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level5.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

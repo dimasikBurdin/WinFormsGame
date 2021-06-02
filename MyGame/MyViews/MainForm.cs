@@ -254,8 +254,14 @@ namespace MyViews
         private static IEnumerable<Map> LoadLevels()
         {
             //yield return Map.FromText(Properties.Resources.EnemyMoveTestMap1);
-            yield return Map.FromText(Properties.Resources.TestMap);
-            yield return Map.FromText(Properties.Resources.TestMap3);
+            //yield return Map.FromText(Properties.Resources.TestMap);
+            //yield return Map.FromText(Properties.Resources.TestSizeMap_20x20);
+            yield return Map.FromText(Properties.Resources.Level1);
+            yield return Map.FromText(Properties.Resources.Level2);
+            yield return Map.FromText(Properties.Resources.Level3);
+            yield return Map.FromText(Properties.Resources.Level4);
+            yield return Map.FromText(Properties.Resources.Level5);
+            //yield return Map.FromText(Properties.Resources.TestMap3);
             //yield return Map.FromText(Properties.Resources.TestMap_2);
         }
     }

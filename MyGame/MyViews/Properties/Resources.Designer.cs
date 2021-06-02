@@ -222,6 +222,124 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFFFFPFFFFFFF
+        ///FFFFGGTGGFFFFF
+        ///FFFFGGTGFFFFFF
+        ///FFFFGGTTTFFFFF
+        ///FFFFGTTF1FFFFF
+        ///FFFFGXFFOFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFF.
+        /// </summary>
+        internal static string Level1 {
+            get {
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFFFFPFFFFFFF
+        ///FFFWWGTTTTTTTH
+        ///FFFWGGTGGGGGGF
+        ///FFGGGGTGGGGGGG
+        ///FFGTTTTTGGGGGG
+        ///FFETTTTTTTTTT&lt;
+        ///FFTTTGGGGWWWWW
+        ///FFTTGGGGWWWWWW
+        ///FFTGGGGGWWWWWW
+        ///FFTGGGGGWWWWWW
+        ///FFTFGGGGWWWWWW
+        ///FTTFGGGGWWWWWW
+        ///FTFGGGGGWWWWWW
+        ///F\FGGGGWWWWWWW
+        ///FXFGWWWWWWWWWW.
+        /// </summary>
+        internal static string Level2 {
+            get {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FPFFEFFFFFFFFFF
+        ///FTFGTGGGGGGGEFF
+        ///FTTTTTGGGGGGTFF
+        ///FGTTTTTTTTTTT@F
+        ///FGTTGGGGGGWWWWF
+        ///FGTGGGT2GWWWWWF
+        ///FGTTTTTOGGWWWWF
+        ///FGTTGGTHGWWWWWF
+        ///FFTGGGGGWWWWWWF
+        ///FFTGGGGGGFFFFFF
+        ///FFTTGGGGFFFFFFF
+        ///FFFTGGGGGFFFFFF
+        ///FFFTGGGGGFFFFFF
+        ///FFFTGGGGGFFFFFF
+        ///FFFXGGGGGFFFFFF.
+        /// </summary>
+        internal static string Level3 {
+            get {
+                return ResourceManager.GetString("Level3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFPFFWWWWWWWWW
+        ///FFFTFFFWWWWWWWW
+        ///FFGTFTTTWWWWWWW
+        ///FGTTTTFTTETFFFW
+        ///GTTGGGFFFFTET&gt;F
+        ///GTGGGGFFFFFFFFF
+        ///GTTTTTTTTTTGGGG
+        ///GGGGGGGGGGEGG!G
+        ///GGGGGGGGTTTGGFF
+        ///GGGTTTTTTGGGGGG
+        ///FFFTFFFTTGGGGGG
+        ///FFFTFFFTFGGGGGG
+        ///FFFTFFF|FGGGGGG
+        ///#T/TFFFTFGGGGGG
+        ///FFFFFFFTFGGGGGG
+        ///WWWWFFFXFGGGGGG
+        ///.
+        /// </summary>
+        internal static string Level4 {
+            get {
+                return ResourceManager.GetString("Level4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFXFFFFWWWWWWW
+        ///FFF\FFFWWWWWWWW
+        ///FFF|FFWWWWWWWWW
+        ///FFF/GFFFFWWWWWW
+        ///FFGTTTTTTETTTT&lt;
+        ///FGGTTGGGGGGGGGG
+        ///GGTTGGGGGEGGWWW
+        ///PTTTTTTGGGGGGWW
+        ///GGTGGGGGGGFFFFF
+        ///GGTGGGGGGFFFFFF
+        ///GGTTTTTTTEEE!HH
+        ///&gt;TETGGGGGFFFFFF
+        ///FGGGGGGGGGGGGGF
+        ///FFFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFFF
+        ///FFFFFFFFFFFFFFF
+        ///.
+        /// </summary>
+        internal static string Level5 {
+            get {
+                return ResourceManager.GetString("Level5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GP
         ///G&lt;.
         /// </summary>
@@ -516,6 +634,36 @@ namespace MyViews.Properties {
             get {
                 object obj = ResourceManager.GetObject("TestPng3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFFFFFFFPFFFFFFFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTTNGGGGFFFFFF
+        ///FFFGGGGGGTGOGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGGGTGGGGGGFFFFFF
+        ///FFFGGGGG [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string TestSizeMap_20x20 {
+            get {
+                return ResourceManager.GetString("TestSizeMap~20x20", resourceCulture);
             }
         }
         
