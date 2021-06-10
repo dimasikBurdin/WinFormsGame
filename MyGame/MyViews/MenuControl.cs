@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace MyViews
 {
     public partial class MenuControl : UserControl
-    {        
+    {
         public MenuControl()
         {
             DoubleBuffered = true;
@@ -64,11 +64,15 @@ namespace MyViews
         }
 
         private void StartButton_Click(object sender, EventArgs e)
-        {            
+        {
             MainForm.MainMenu.Hide();
-            MainForm.TerrainControl.Show();
-            MainForm.TerrainControl.Timer.Start();
-            MainForm.TerrainControl.Focus();
+            if (MainForm.PrologueControl.IsFinished)
+            {
+                MainForm.TerrainControl.Show();
+                MainForm.TerrainControl.Timer.Start();
+                MainForm.TerrainControl.Focus();
+            }
+            MainForm.PrologueControl.Show();            
         }
     }
 }

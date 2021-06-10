@@ -29,7 +29,8 @@ namespace MyViews
             label.Top = ClientSize.Height / 2 - 40;
             label.Font = new Font(FontFamily.GenericSerif, 15, FontStyle.Regular);
             label.ForeColor = Color.GhostWhite;
-            label.Text = "              Вы проиграли. \nНажмите любую клавишу для \n            продолжения...";
+            label.Text = "Вы проиграли. \nНажмите любую клавишу для \nпродолжения...";
+            label.TextAlign = ContentAlignment.MiddleCenter;
             Controls.Add(label);
 
             KeyPress += MessageBoxControl_KeyPress;

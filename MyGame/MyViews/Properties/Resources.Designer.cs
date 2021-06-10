@@ -500,6 +500,87 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Порой, тяга к деньгам может все испорить. В погоне за хорошей работой человек может потерять все. Именно так и произошло с нашим персонажем..
+        /// </summary>
+        internal static string Prologue1 {
+            get {
+                return ResourceManager.GetString("Prologue1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Наш герой стремился к богатству. Он жертвовал практически всем, ради денег. Он считал, что они его сделают счастливым. Однако он ошибался..
+        /// </summary>
+        internal static string Prologue2 {
+            get {
+                return ResourceManager.GetString("Prologue2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Однажды он заметил, что у него никого нет. Нет друзей, нет близого человека, да и родители находятся очень далеко и контакт с ними давно не поддерживался..
+        /// </summary>
+        internal static string Prologue3 {
+            get {
+                return ResourceManager.GetString("Prologue3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на И однажды, идя по какому то старому рынку, он находит очень странного человека, который предлагает ему купить книгу, говоря, что в ней есть то, что нужно нашему персонажу..
+        /// </summary>
+        internal static string Prologue4 {
+            get {
+                return ResourceManager.GetString("Prologue4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Наш герой не долго думаю решается купить эту книгу. Придя домой он начинает рассматривать покупку: нет обложки, старые потрепанные страницы пахнут сыростью и пылью..
+        /// </summary>
+        internal static string Prologue5 {
+            get {
+                return ResourceManager.GetString("Prologue5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Изучив ее, наш герой осознает, что где то очень далеко, где никого нет, где страшно и одиноко, находится то, что может изменить его жизнь..
+        /// </summary>
+        internal static string Prologue6 {
+            get {
+                return ResourceManager.GetString("Prologue6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Посмотрев на свою жизнь, герой решает бросить все и отправиться искать &quot;То, не знаю что&quot;, в надежде изменить свою жизнь и обрести простое человеческое счастье..
+        /// </summary>
+        internal static string Prologue7 {
+            get {
+                return ResourceManager.GetString("Prologue7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Потратив около недели на сборы, покупку билетов, дорогу, наш персонаж прибывает на место, указанное в книге. Именно отсюда должен начаться его длинный путь....
+        /// </summary>
+        internal static string Prologue8 {
+            get {
+                return ResourceManager.GetString("Prologue8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дойдя до первого места, отмеченного в книге, наш герой видит загадочного старца, желающего рассказать ему что то важное....
+        /// </summary>
+        internal static string Prologue9 {
+            get {
+                return ResourceManager.GetString("Prologue9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RedGate {
@@ -674,6 +755,17 @@ namespace MyViews.Properties {
         internal static string TestSizeMap_20x20 {
             get {
                 return ResourceManager.GetString("TestSizeMap~20x20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на СПРАВКА:
+        ///Чтобы передвигаться, используйте w / a / s / d
+        ///Чтобы поговорить со старцем, подойдите к нему и нажмите T (на английской раскладке).
+        /// </summary>
+        internal static string Training {
+            get {
+                return ResourceManager.GetString("Training", resourceCulture);
             }
         }
         

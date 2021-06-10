@@ -30,20 +30,21 @@ namespace MyViews
         public static Label LabelSteelSwoardImage { get; set; }
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
-        public static GameOverControl MessageBox { get; set; }
+        public static GameOverControl GaemOverControl { get; set; }
         public static NpcMessage NpcMessage { get; set; }
         public static Game Game { get; set; }
+        public static PrologueControl PrologueControl { get; set; } 
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
 
-            MessageBox = new GameOverControl(); //пригодится для диалогов с npc и не только
-            MessageBox.Location = new Point(TerrainControl.ClientSize.Width / 2 - MessageBox.ClientSize.Width / 2,
-                TerrainControl.ClientSize.Height / 2 - MessageBox.ClientSize.Height / 2);
-            Controls.Add(MessageBox);
-            MessageBox.Hide();
+            GaemOverControl = new GameOverControl();
+            GaemOverControl.Location = new Point(TerrainControl.ClientSize.Width / 2 - GaemOverControl.ClientSize.Width / 2,
+                TerrainControl.ClientSize.Height / 2 - GaemOverControl.ClientSize.Height / 2);
+            Controls.Add(GaemOverControl);
+            GaemOverControl.Hide();
 
             NpcMessage = new NpcMessage();
             NpcMessage.Location = new Point(TerrainControl.ClientSize.Width / 2 - NpcMessage.ClientSize.Width / 2,
@@ -55,12 +56,18 @@ namespace MyViews
             MainMenu = new MenuControl();
             MainMenu.ClientSize = TerrainControl.ClientSize;
             MainMenu.Show();
-            Controls.Add(MainMenu);
+            Controls.Add(MainMenu);           
 
             ClientSize = new Size(TerrainControl.ClientSize.Width + 100, TerrainControl.ClientSize.Height);
             TerrainControl.Hide();
             TerrainControl.Timer.Stop();
-            
+
+            PrologueControl = new PrologueControl();
+            PrologueControl.ClientSize = TerrainControl.ClientSize;
+            PrologueControl.Show();
+            PrologueControl.BringToFront();
+            Controls.Add(PrologueControl);
+
         }
 
         public MainForm()
@@ -242,9 +249,9 @@ namespace MyViews
         public static void Over()
         {
             TerrainControl.Timer.Stop();
-            MessageBox.Show();
-            TerrainControl.SendToBack();//-> в mainForm
-            MessageBox.Focus();            
+            GaemOverControl.Show();
+            TerrainControl.SendToBack();
+            GaemOverControl.Focus();            
         }
 
         private static IEnumerable<Map> LoadLevels()
