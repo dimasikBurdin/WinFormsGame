@@ -40,7 +40,7 @@ namespace MyViews
             nextButton.Size = new Size(60, 30);
             nextButton.Left = label.Right / 2 + nextButton.Width / 2;
             nextButton.Top = label.Bottom + 20;
-            nextButton.BackColor = Color.White;
+            nextButton.BackColor = Color.LightGray;
             nextButton.Text = "Далее";
 
             nextButton.Click += Button_Click;
@@ -50,7 +50,7 @@ namespace MyViews
             skipButton.Size = new Size(80, 30);
             skipButton.Left = label.Right - skipButton.Width;
             skipButton.Top = label.Bottom + 20;
-            skipButton.BackColor = Color.White;
+            skipButton.BackColor = Color.LightGray;
             skipButton.Text = "Пропустить";
 
             skipButton.Click += SkipButton_Click;
