@@ -1,5 +1,4 @@
 ﻿using MyGameModelNew.Domain;
-//using MyGameModel.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +13,6 @@ namespace MyViews
 {
     public partial class MainForm : Form
     {
-        //size +
-        //index / zIndex +
-        //в форме есть событие, принимающее нажатие клавиш. Для управления написать методы в моделе (в игроке например), которые будут реагировать на эти нажатия +
         public static Label LabelHp { get; set; }
         public static Label LabelHealerText { get; set; }
         public static Label LabelHealerImage { get; set; }
@@ -34,7 +30,7 @@ namespace MyViews
         public static Label LabelSteelSwoardImage { get; set; }
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
-        public static MessageBoxControl MessageBox { get; set; }
+        public static GameOverControl MessageBox { get; set; }
         public static NpcMessage NpcMessage { get; set; }
         public static Game Game { get; set; }
 
@@ -43,7 +39,7 @@ namespace MyViews
             base.OnLoad(e);
             DoubleBuffered = true;
 
-            MessageBox = new MessageBoxControl(); //пригодится для диалогов с npc и не только
+            MessageBox = new GameOverControl(); //пригодится для диалогов с npc и не только
             MessageBox.Location = new Point(TerrainControl.ClientSize.Width / 2 - MessageBox.ClientSize.Width / 2,
                 TerrainControl.ClientSize.Height / 2 - MessageBox.ClientSize.Height / 2);
             Controls.Add(MessageBox);
@@ -247,8 +243,8 @@ namespace MyViews
         {
             TerrainControl.Timer.Stop();
             MessageBox.Show();
-            MessageBox.Focus();
             TerrainControl.SendToBack();//-> в mainForm
+            MessageBox.Focus();            
         }
 
         private static IEnumerable<Map> LoadLevels()

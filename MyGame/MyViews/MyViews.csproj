@@ -73,11 +73,11 @@
     <Compile Include="MenuControl.Designer.cs">
       <DependentUpon>MenuControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxControl.cs">
+    <Compile Include="GameOverControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MessageBoxControl.Designer.cs">
-      <DependentUpon>MessageBoxControl.cs</DependentUpon>
+    <Compile Include="GameOverControl.Designer.cs">
+      <DependentUpon>GameOverControl.cs</DependentUpon>
     </Compile>
     <Compile Include="NpcMessage.cs">
       <SubType>UserControl</SubType>
