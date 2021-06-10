@@ -6,9 +6,6 @@ namespace MyGameModelNew.Domain
 {
     public class Npc
     {
-        /// <summary>
-        /// создаем каждого npc с определенными позицией и набором фраз, которые хранятся в массиве строк и выводятся по очереди по нажатию клавиши/клику мышки
-        /// </summary>
         public Point Position { get; private set; }
         public List<string> Messages { get; private set; }
         public GameObject Item { get; private set; }
@@ -26,9 +23,7 @@ namespace MyGameModelNew.Domain
         {
             if (Messages == null) yield break;
             foreach (var message in Messages.Where(x => x != null))
-            {
                 yield return message;
-            }
             MessagesIsEmpty = true;
         }
 
@@ -36,7 +31,5 @@ namespace MyGameModelNew.Domain
         {
 
         }
-
-
     }
 }

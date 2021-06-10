@@ -4,7 +4,7 @@ namespace MyGameModelNew.Domain
 {
     public class Puzzle
     {
-        public Point Position;// { get; private set; }
+        public Point Position { get; set; }
         public bool IsFinished;
 
         //public Puzzle(Point position)

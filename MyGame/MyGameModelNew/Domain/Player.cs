@@ -1,11 +1,9 @@
-﻿//using MyGameModel.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-//using System.Windows.Forms;
 
 namespace MyGameModelNew.Domain
 {
@@ -39,6 +37,21 @@ namespace MyGameModelNew.Domain
             CurrentWeapon = GameObjectType.Hand;
         }
 
+        public void Act(Map currentMap)
+        {
+            if (IsCanGo(Position.Add(Delta), currentMap))
+                Position = Position.Add(Delta);
+            Animation();
+            KeyCollision(currentMap);
+            SwoardCollision(currentMap);
+            GateCollision(currentMap);
+            NpcCollision(currentMap);
+            FireCollision(currentMap);
+            HealerCollision(currentMap);
+            EnemyCollision(currentMap);
+            HitEnemy(currentMap);
+        }
+
         public void UseHealer()
         {
             Health = Inventory.PlayerUseHealer(Health, MaxHealth);
@@ -46,11 +59,7 @@ namespace MyGameModelNew.Domain
 
         public void OpenGate(Map currentMap)//класс ключей -> write keys on display
         {
-            var gate = currentMap.Gates.Where(x =>
-            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            var gate = currentMap.Gates.Where(x => CheckPosition(x.Position)).FirstOrDefault();
             if (gate != null && Inventory.Keys.Any(x => x.Type == gate.Type))
             {
                 gate.Open();
@@ -60,15 +69,9 @@ namespace MyGameModelNew.Domain
 
         public void TalkToNpc(Map currentMap)
         {
-            var npc = currentMap.Npcs.Where(x =>
-            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+            var npc = currentMap.Npcs.Where(x => CheckPosition(x.Position)).FirstOrDefault();
             if(npc != null)
-            {
                 TalkedMessage = npc.TolkToPlayer().ToList();
-            }
         }
 
         public void SwapWeapon(int numberWeapon)
@@ -87,24 +90,13 @@ namespace MyGameModelNew.Domain
                         CurrentWeapon = GameObjectType.SteelSword;
                     break;
             }
-        }
+        }        
 
-        public void Act(Map currentMap)//
-        {
-            //if (Health <= 0)
-            //      Game.CurrentGameStage = GameStage.GameOver;
-            if (IsCanGo(Position.Add(Delta), currentMap))
-                Position = Position.Add(Delta);
-            Animation();
-            KeyCollision(currentMap);
-            SwoardCollision(currentMap);
-            GateCollision(currentMap);
-            NpcCollision(currentMap);
-            FireCollision(currentMap);
-            HealerCollision(currentMap);
-            EnemyCollision(currentMap);
-            HitEnemy(currentMap);
-        }
+        private bool CheckPosition(Point position)
+            => new Point() { X = Position.X + 1, Y = Position.Y } == position
+                || new Point() { X = Position.X - 1, Y = Position.Y } == position
+                || new Point() { X = Position.X, Y = Position.Y + 1 } == position
+                || new Point() { X = Position.X, Y = Position.Y - 1 } == position;
 
         private void SwoardCollision(Map currentMap)
         {
@@ -137,25 +129,15 @@ namespace MyGameModelNew.Domain
         private void Animation()
         {
             if(Delta.X == 0 && Delta.Y == 1)
-            {
                 CurrentAnimation = 15;
-                CurrentFrame += 7;
-            }
             if (Delta.X == 0 && Delta.Y == -1)
-            {
                 CurrentAnimation = 1;
-                CurrentFrame += 7;
-            }
             if (Delta.X == 1 && Delta.Y == 0)
-            {
                 CurrentAnimation = 22;
-                CurrentFrame += 7;
-            }
             if (Delta.X == -1 && Delta.Y == 0)
-            {
                 CurrentAnimation = 8;
-                CurrentFrame += 7;                
-            }
+
+            if (Delta != Point.Empty) CurrentFrame += 7;
             if (CurrentFrame == 29) CurrentFrame = 1;
         }
 
@@ -182,12 +164,8 @@ namespace MyGameModelNew.Domain
         }
 
         private void HitEnemy(Map currentMap)
-        {            
-            var enemy = currentMap.Enemies.Where(x =>
-            new Point() { X = Position.X + 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X - 1, Y = Position.Y } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y + 1 } == x.Position
-            || new Point() { X = Position.X, Y = Position.Y - 1 } == x.Position).FirstOrDefault();
+        {
+            var enemy = currentMap.Enemies.Where(x => CheckPosition(x.Position)).FirstOrDefault();
             if (CanHit && enemy != null)
             {
                 switch(CurrentWeapon)
@@ -202,7 +180,6 @@ namespace MyGameModelNew.Domain
                         currentMap.Enemies.Where(x => x == enemy).First().Health -= 50;
                         break;
                 }
-                
             }
             CanHit = false;
         }
@@ -212,30 +189,6 @@ namespace MyGameModelNew.Domain
             if (currentMap.Enemies.Any(x => x.Position == Position))
                 Position = Position.SubStract(Delta);
         }
-
-        //public void MovePlayer(KeyEventArgs e)
-        //{
-        //    switch (e.KeyCode)
-        //    {                
-        //        case Keys.D:
-        //            //Health -= 20;//fast test view health value
-        //            if (IsCanGo(new Point() { X = Position.X + 1, Y = Position.Y }))
-        //                Position = new Point() { X = Position.X + 1, Y = Position.Y };
-        //            break;
-        //        case Keys.A:
-        //            if (IsCanGo(new Point() { X = Position.X - 1, Y = Position.Y }))
-        //                Position = new Point() { X = Position.X - 1, Y = Position.Y };
-        //            break;
-        //        case Keys.W:
-        //            if (IsCanGo(new Point() { X = Position.X, Y = Position.Y - 1 }))
-        //                Position = new Point() { X = Position.X, Y = Position.Y - 1 };
-        //            break;
-        //        case Keys.S:
-        //            if (IsCanGo(new Point() { X = Position.X, Y = Position.Y + 1 }))
-        //                Position = new Point() { X = Position.X, Y = Position.Y + 1 };
-        //            break;
-        //    }
-        //}
 
         private bool IsCanGo(Point position, Map currentMap)
         {

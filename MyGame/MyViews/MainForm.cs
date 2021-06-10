@@ -245,10 +245,10 @@ namespace MyViews
 
         public static void Over()
         {
-            MainForm.TerrainControl.Timer.Stop();
-            MainForm.MessageBox.Show();
-            MainForm.MessageBox.Focus();
-            MainForm.TerrainControl.SendToBack();//-> в mainForm
+            TerrainControl.Timer.Stop();
+            MessageBox.Show();
+            MessageBox.Focus();
+            TerrainControl.SendToBack();//-> в mainForm
         }
 
         private static IEnumerable<Map> LoadLevels()

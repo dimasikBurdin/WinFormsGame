@@ -9,17 +9,17 @@ namespace MyGameModelNew.Domain
         public Player Player { get; set; }
         public MapCell[,] Terrain { get; private set; }
         public Point InitialPosition { get; private set; }
-        public Point ExitPosition { get; private set; }//точки перехода с одной части карты на другую
+        public Point ExitPosition { get; private set; }
         public List<GameObject> Objects { get; private set; }
         public List<Enemy> Enemies { get; private set; }
-        public Npc[] Npcs { get; private set; }
-        public Puzzle[] Puzzles { get; private set; }//???
+        public List<Npc> Npcs { get; private set; }
+        public Puzzle[] Puzzles { get; private set; }
         public List<Fire> Fires { get; private set; }
         public List<Gate> Gates { get; private set; }
         public List<Key> Keys { get; private set; }
 
         public Map(MapCell[,] terrain, Player player, Point initialPosition,Point exitPosition, List<GameObject> objects,
-            List<Enemy> enemies, Npc[] npc, Puzzle[] puzzles, List<Fire> fires, List<Gate> gates, List<Key> keys)
+            List<Enemy> enemies, List<Npc> npc, Puzzle[] puzzles, List<Fire> fires, List<Gate> gates, List<Key> keys)
         {
             Terrain = terrain;
             Player = player;
@@ -55,7 +55,7 @@ namespace MyGameModelNew.Domain
             var keys = new List<Key>();
             for(var y = 0; y < lines.Length; y++)
             {
-                for(var x = 0; x < lines[0].Length; x++)//если у всего нестатичного текстуры будут не квадратные, а нормальные, то мб и не стоит на место этих сущностей ставить пустую клетку
+                for(var x = 0; x < lines[0].Length; x++)
                 {
                     switch (lines[y][x])
                     {
@@ -189,13 +189,10 @@ namespace MyGameModelNew.Domain
                             terrain[x, y] = MapCell.Trail;
                             exitPosition = new Point(x, y);
                             break;
-                        //default:
-                        //    terrain[x, y] = MapCell.Empty;
-                        //    break;
                     }
                 }            
             }
-            return new Map(terrain, player, initialPosition, exitPosition, objects, enemies, npcS.ToArray(), puzzles.ToArray(), fires, gates, keys);
+            return new Map(terrain, player, initialPosition, exitPosition, objects, enemies, npcS, puzzles.ToArray(), fires, gates, keys);
         }
     }
 }

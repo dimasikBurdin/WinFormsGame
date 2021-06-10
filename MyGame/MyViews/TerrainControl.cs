@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using Point = MyGameModel.Domain.Point;
 
 namespace MyViews
 {
@@ -18,18 +17,17 @@ namespace MyViews
         private float zoomScale = 1;
         private int tickCount;
         private int EnemyTickCount;
+        private readonly List<Enemy> deadEnemy = new List<Enemy>();
+        private readonly List<GameObject> pickedHealers = new List<GameObject>();
+        private readonly List<GameObject> pickedSwoard = new List<GameObject>();
+        private readonly List<Key> pickedKeys = new List<Key>();
         public Size TerrainClientSize { get; private set; }
         public Timer Timer { get; private set; }
         public static Enemy RemoveEnemyFromList { get; set; }
-        private List<Enemy> deadEnemy = new List<Enemy>();
-        private List<GameObject> pickedHealers = new List<GameObject>();
-        private List<GameObject> pickedSwoard = new List<GameObject>();
-        private List<Key> pickedKeys = new List<Key>();
 
         public TerrainControl(ScenePainter scenePainter)
         {
             TerrainClientSize = new Size(800, 800);
-            //TerrainClientSize = new Size(1000, 1000);
             painter = scenePainter;
             DoubleBuffered = true;
 
@@ -44,12 +42,12 @@ namespace MyViews
 
         private void TimerTick(object sender, EventArgs args)
         {
-            var map = ScenePainter.currentMap;
+            var map = ScenePainter.CurrentMap;
             var player = map.Player;
 
             if (player != null && tickCount == 0)
             {
-                player.Act(ScenePainter.currentMap);
+                player.Act(ScenePainter.CurrentMap);
                 if (player.PikedHealer != null)
                     pickedHealers.Add(player.PikedHealer);
                 if (player.PikedKey != null)
@@ -61,10 +59,11 @@ namespace MyViews
             RemovePickedHealers();
             RemovePickedKeys();
             RemovePickedSwoard();
+
             if (EnemyTickCount == 0)
                 foreach (var enemy in map.Enemies)
                 {
-                    enemy.Act(ScenePainter.currentMap);
+                    enemy.Act(ScenePainter.CurrentMap);
                     if (enemy.IsDeadEnemy)
                         deadEnemy.Add(enemy);                    
                 }
@@ -95,78 +94,69 @@ namespace MyViews
         private void RemovePickedSwoard()
         {
             foreach (var swoard in pickedSwoard)
-                ScenePainter.currentMap.Objects.Remove(swoard);
+                ScenePainter.CurrentMap.Objects.Remove(swoard);
         }
 
         private void RemovePickedKeys()
         {
             foreach (var key in pickedKeys)
-                ScenePainter.currentMap.Keys.Remove(key);
+                ScenePainter.CurrentMap.Keys.Remove(key);
         }
 
         private void RemovePickedHealers()
         {
             foreach(var healer in pickedHealers)
-                ScenePainter.currentMap.Objects.Remove(healer);
+                ScenePainter.CurrentMap.Objects.Remove(healer);
         }
         private void RemoveEnemy()
         {
             foreach (var enemy in deadEnemy)
-                ScenePainter.currentMap.Enemies.Remove(enemy);
+                ScenePainter.CurrentMap.Enemies.Remove(enemy);
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
-            var player = ScenePainter.currentMap.Player;
+            var player = ScenePainter.CurrentMap.Player;
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    //player.Delta.Y = 0;
                     player.Delta = new Point() { X = player.Delta.X, Y = 0 };
                     break;
                 case Keys.S:
-                    //player.Delta.Y = 0;
                     player.Delta = new Point() { X = player.Delta.X, Y = 0 };
                     break;
                 case Keys.A:
-                    //player.Delta.X = 0;
                     player.Delta = new Point() { X = 0, Y = player.Delta.Y };
                     break;
                 case Keys.D:
-                    //player.Delta.X = 0;
                     player.Delta = new Point() { X = 0, Y = player.Delta.Y };                    
                     break;
             }
             if(player.Delta == Point.Empty)
             {
                 player.IsMoving = false;
-                //player.CurrentAnimation = 15;
             }
         }
 
         private void TerrainControl_KeyDown(object sender, KeyEventArgs e)
         {
-            var player = ScenePainter.currentMap.Player;
+            var player = ScenePainter.CurrentMap.Player;
             switch (e.KeyCode)
             {
                 case Keys.D:
                     player.Delta = new Point { X = 1, Y = 0 };
-                    //player.Delta.X = 1;
                     player.IsMoving = true;
                     break;
                 case Keys.A:
                     player.Delta = new Point { X = -1, Y = 0 };
-                    //player.Delta.X = -1;
                     player.IsMoving = true;
                     break;
                 case Keys.W:
                     player.Delta = new Point { X = 0, Y = -1 };
-                    //player.Delta.Y = -1;
                     player.IsMoving = true;
                     break;
                 case Keys.S:
                     player.Delta = new Point { X = 0, Y = 1 };
-                    //player.Delta.Y = 1;
                     player.IsMoving = true;
                     break;
                 case Keys.Escape:
@@ -181,10 +171,10 @@ namespace MyViews
                     player.UseHealer();
                     break;
                 case Keys.E:
-                    player.OpenGate(ScenePainter.currentMap);
+                    player.OpenGate(ScenePainter.CurrentMap);
                     break;
                 case Keys.T:
-                    player.TalkToNpc(ScenePainter.currentMap);
+                    player.TalkToNpc(ScenePainter.CurrentMap);
                     if (player.TalkedMessage.Count != 0) 
                         MainForm.ShowNpcMessages(player.TalkedMessage);
                     break;
@@ -198,12 +188,7 @@ namespace MyViews
                     player.SwapWeapon(3);
                     break;
             }
-        }
-
-        private void TerrainControl_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        }       
 
         private float ZoomScale
         {

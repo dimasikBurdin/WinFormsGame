@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyGameModelNew.Domain
 {
-    class FirstPuzzle : Puzzle
+    class FirstPuzzle : Puzzle//TODO
     {
         public FirstPuzzle(Point position)
         {
             Position = position;
             IsFinished = false;
         }
-        //надо свой собственный controll...
     }
 }

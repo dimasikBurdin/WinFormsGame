@@ -1,5 +1,4 @@
-﻿//using MyGameModel.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +10,10 @@ namespace MyGameModelNew.Domain
         private Map currentMap;
         private bool canMove = true;
         private List<Point> resTrack = new List<Point>();
-        private Random rnd;
+        private readonly Random rnd;
+        private Point lastPosition;
+        private int hitTick;
+        private Point delta;
         public const int MaxHealth = 100;
         public int Health { get; set; }
         public double Damage { get; private set; }
@@ -19,7 +21,6 @@ namespace MyGameModelNew.Domain
         public bool IsDeadEnemy { get; private set; }
         public int CurrentAnimation { get; set; }
         public int CurrentFrame { get; set; }
-        private Point delta;
 
         public Enemy(int health, double damage, Point position)
         {
@@ -30,32 +31,11 @@ namespace MyGameModelNew.Domain
             CurrentAnimation = 46;
         }
 
-        //#region
-        //bool isLeftEnd;
-
-        //public void Move()//test
-        //{
-        //    if (IsCanGo(new Point(Position.X - 1, Position.Y)) && !isLeftEnd)
-        //        Position = new Point { X = Position.X - 1, Y = Position.Y };
-        //    else if (IsCanGo(new Point(Position.X + 1, Position.Y)))
-        //    {
-        //        isLeftEnd = true;
-        //        Position = new Point { X = Position.X + 1, Y = Position.Y };
-        //        if (Position.X == ScenePainter.currentMap.Terrain.GetLength(0)) isLeftEnd = false;
-        //    }
-        //    else isLeftEnd = false;
-        //}
-        //#endregion
-
-        private Point lastPosition;
-        private int hitTick;
-
         public void Act(Map map)
         {
             currentMap = map;
             if (Health <= 0)
             {
-                //TerrainControl.RemoveEnemyFromList = this;
                 IsDeadEnemy = true;
                 return;
             }
@@ -74,6 +54,7 @@ namespace MyGameModelNew.Domain
                 if (Position == playerPos || currentMap.Enemies.Where(x => this != x).Any(x => x.Position == Position))
                     Position = lastPosition;
             }
+            else delta = Point.Empty;
             Animation();
             HitPlayer(playerPos);
         }
@@ -81,25 +62,15 @@ namespace MyGameModelNew.Domain
         private void Animation()
         {
             if (delta.X == 0 && delta.Y == 1)
-            {
                 CurrentAnimation = 92;
-                CurrentFrame += 40;
-            }
             if (delta.X == 0 && delta.Y == -1)
-            {
                 CurrentAnimation = 0;
-                CurrentFrame += 40;
-            }
             if (delta.X == 1 && delta.Y == 0)
-            {
                 CurrentAnimation = 138;
-                CurrentFrame += 40;
-            }
             if (delta.X == -1 && delta.Y == 0)
-            {
                 CurrentAnimation = 46;
-                CurrentFrame += 40;
-            }
+            
+            if(delta != Point.Empty) CurrentFrame += 40;
             if (CurrentFrame == 120) CurrentFrame = 0;
         }
 
@@ -136,7 +107,6 @@ namespace MyGameModelNew.Domain
             queue.Enqueue(Position);
             while (queue.Count != 0)
             {
-                //if (track.Count > 5) return null;
                 var currentPosition = queue.Dequeue();
                 for (var dx = -1; dx <= 1; dx++)
                     for (var dy = -1; dy <= 1; dy++)

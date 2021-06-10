@@ -7,39 +7,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-//using Point = MyGameModel.Domain.Point;
 
 namespace MyViews
 {
     public class ScenePainter
     {
         private int mapNumber;
-        private Map[] maps = null;
+        private readonly Map[] maps = null;
         private Bitmap bitmap;
         private bool open = false;
-        public SizeF Size => new SizeF(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
-        public Size LevelSize => new Size(currentMap.Terrain.GetLength(0), currentMap.Terrain.GetLength(1));
-
-        public static Map currentMap {get; set;}
-        
+        public SizeF Size => new SizeF(CurrentMap.Terrain.GetLength(0), CurrentMap.Terrain.GetLength(1));
+        public Size LevelSize => new Size(CurrentMap.Terrain.GetLength(0), CurrentMap.Terrain.GetLength(1));
+        public static Map CurrentMap {get; set;}        
         public static Player Player { get; set; }
 
         public ScenePainter(Map[] maps)
         {
             this.maps = maps;
-            currentMap = maps[0];        
-            Player = currentMap.Player;
+            CurrentMap = maps[0];        
+            Player = CurrentMap.Player;
             CreateMap();
         }
 
-        public void NextMap()
+        public void Paint(Graphics g)
         {
-            if (mapNumber >= 0 && mapNumber < maps.Length)
-                currentMap = maps[mapNumber];
-            currentMap.Player.Health = Player.Health;
-            currentMap.Player.Inventory = Player.Inventory;
-            Player = currentMap.Player;
-            CreateMap();
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            DrawLevel(g);
+            DrawPlayer(g);
+            UpdateInterface();
         }
 
         private void CreateMap()
@@ -49,12 +44,12 @@ namespace MyViews
             bitmap = new Bitmap(LevelSize.Width * cellWidth, LevelSize.Height * cellHeight);
             using(var graphics = Graphics.FromImage(bitmap))
             {
-                for(int x = 0; x < currentMap.Terrain.GetLength(0); x++)
+                for(int x = 0; x < CurrentMap.Terrain.GetLength(0); x++)
                 {
-                    for(int y = 0; y < currentMap.Terrain.GetLength(1); y++)
+                    for(int y = 0; y < CurrentMap.Terrain.GetLength(1); y++)
                     {
                         Bitmap image = default;
-                        switch(currentMap.Terrain[x, y])
+                        switch(CurrentMap.Terrain[x, y])
                         {
                             case MapCell.Forest:
                                 image = Properties.Resources.Tree1;
@@ -83,25 +78,16 @@ namespace MyViews
             }
         }
 
-        public void Paint(Graphics g)
-        {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            DrawLevel(g);
-            DrawPlayer(g);
-            UpdateInterface();
-        }
-
         private void DrawLevel(Graphics graphics)
         {
             graphics.DrawImage(bitmap, 0, 0, LevelSize.Width, LevelSize.Height);
-            foreach(var enemy in currentMap.Enemies)
+            foreach(var enemy in CurrentMap.Enemies)
             {
                 var image = Properties.Resources.ghosts;
-                //graphics.DrawImage(Properties.Resources.ghost, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1));
                 //1 -> 0 += 40 || 2 -> 0 += 46
                 graphics.DrawImage(image, new Rectangle(enemy.Position.X, enemy.Position.Y, 1, 1), enemy.CurrentFrame, enemy.CurrentAnimation, 40, 45, GraphicsUnit.Pixel);
             }
-            foreach(var e in currentMap.Objects)
+            foreach(var e in CurrentMap.Objects)
             {
                 switch(e.ObjectType)
                 {
@@ -116,20 +102,20 @@ namespace MyViews
                         break;
                 }
             }
-            foreach(var e in currentMap.Puzzles)
+            foreach(var e in CurrentMap.Puzzles)
             {
 
             }
-            foreach(var e in currentMap.Npcs)
+            foreach(var e in CurrentMap.Npcs)
             {
                 graphics.DrawImage(Properties.Resources.npc, new Rectangle(e.Position.X, e.Position.Y, 1, 1));
             }
-            foreach(var e in currentMap.Fires)
+            foreach(var e in CurrentMap.Fires)
             {
                 var image = Properties.Resources.fire;
                 graphics.DrawImage(image, new Rectangle(e.Position.X, e.Position.Y, 1, 1), 0, e.CurrentAnimation, 35, 35, GraphicsUnit.Pixel);
             }
-            foreach(var e in currentMap.Keys)
+            foreach(var e in CurrentMap.Keys)
             {
                 switch(e.Type)
                 {
@@ -144,7 +130,7 @@ namespace MyViews
                         break;
                 }
             }
-            foreach (var e in currentMap.Gates)
+            foreach (var e in CurrentMap.Gates)
             {
                 switch (e.State)
                 {
@@ -190,9 +176,20 @@ namespace MyViews
             }
         }
 
+        private void NextMap()
+        {
+            if (mapNumber >= 0 && mapNumber < maps.Length)
+                CurrentMap = maps[mapNumber];
+            CurrentMap.Player.Health = Player.Health;
+            CurrentMap.Player.Inventory = Player.Inventory;
+            CurrentMap.Player.CurrentWeapon = Player.CurrentWeapon;
+            Player = CurrentMap.Player;
+            CreateMap();
+        }
+
         private void DrawPlayer(Graphics graphics)
         {
-            if (currentMap.ExitPosition == Player?.Position && open)
+            if (CurrentMap.ExitPosition == Player?.Position && open)
             {
                 mapNumber++;
                 NextMap();
@@ -200,7 +197,7 @@ namespace MyViews
                 Player.Delta = Point.Empty;
             }
 
-            if (currentMap.InitialPosition == Player.Position && currentMap != maps[0] && open)
+            if (CurrentMap.InitialPosition == Player.Position && CurrentMap != maps[0] && open)
             {
                 mapNumber--;
                 NextMap();
@@ -211,9 +208,8 @@ namespace MyViews
             if (Player != null)
             {                    
                 var image = Properties.Resources.soldier;
-                //graphics.DrawImage(Properties.Resources.up0, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1));///
-                graphics.DrawImage(image, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1), 9 * Player.CurrentFrame, 9 * Player.CurrentAnimation, 55, 56, GraphicsUnit.Pixel);///
-                if (currentMap.InitialPosition != Player.Position && currentMap.ExitPosition != Player.Position) open = true;
+                graphics.DrawImage(image, new Rectangle(Player.Position.X, Player.Position.Y, 1, 1), 9 * Player.CurrentFrame, 9 * Player.CurrentAnimation, 55, 56, GraphicsUnit.Pixel);
+                if (CurrentMap.InitialPosition != Player.Position && CurrentMap.ExitPosition != Player.Position) open = true;
             }
         }
 
