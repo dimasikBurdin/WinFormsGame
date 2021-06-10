@@ -36,15 +36,25 @@ namespace MyViews
 
             Controls.Add(label);
 
-            var button = new Button();
-            button.Size = new Size(60, 30);
-            button.Left = label.Right / 2 + button.Width / 2;
-            button.Top = label.Bottom + 20;
-            button.BackColor = Color.White;
-            button.Text = "Далее";
+            var nextButton = new Button();
+            nextButton.Size = new Size(60, 30);
+            nextButton.Left = label.Right / 2 + nextButton.Width / 2;
+            nextButton.Top = label.Bottom + 20;
+            nextButton.BackColor = Color.White;
+            nextButton.Text = "Далее";
 
-            button.Click += Button_Click;
-            Controls.Add(button);
+            nextButton.Click += Button_Click;
+            Controls.Add(nextButton);
+
+            var skipButton = new Button();
+            skipButton.Size = new Size(80, 30);
+            skipButton.Left = label.Right - skipButton.Width;
+            skipButton.Top = label.Bottom + 20;
+            skipButton.BackColor = Color.White;
+            skipButton.Text = "Пропустить";
+
+            skipButton.Click += SkipButton_Click;
+            Controls.Add(skipButton);
         }
 
         private static IEnumerable<string> LoadPrologueMessage()
@@ -65,15 +75,26 @@ namespace MyViews
         {
             if (messages.Count == 0)
             {
-                MainForm.PrologueControl.Hide();
-                MainForm.TerrainControl.Show();
-                MainForm.TerrainControl.Timer.Start();
-                MainForm.TerrainControl.Focus();
-                IsFinished = true;
+                StartGame();
                 return;
             }
+
             label.Text = messages.First();
             messages.RemoveAt(0);
+        }
+
+        private void SkipButton_Click(object sender, EventArgs e)
+        {
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            MainForm.PrologueControl.Hide();
+            MainForm.TerrainControl.Show();
+            MainForm.TerrainControl.Timer.Start();
+            MainForm.TerrainControl.Focus();
+            IsFinished = true;
         }
     }
 }

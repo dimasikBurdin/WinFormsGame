@@ -160,9 +160,10 @@ namespace MyViews
                     player.IsMoving = true;
                     break;
                 case Keys.Escape:
-                    MainForm.TerrainControl.Hide();
-                    MainForm.MainMenu.Show();                        
-                    Timer.Stop();
+                    MainForm.MainMenu.GamePause();
+                    //MainForm.TerrainControl.Hide();
+                    //MainForm.MainMenu.Show();                        
+                    //Timer.Stop();
                     break;
                 case Keys.Space:
                     player.CanHit = true;
