@@ -19,7 +19,7 @@ namespace MyViews
         {
             Messages = new List<string>();
             DoubleBuffered = true;
-            BackColor = Color.Transparent;
+            BackColor = Color.Gray;
             BackgroundImage = Properties.Resources.BackMessage;
             BackgroundImageLayout = ImageLayout.Stretch;
             Size = new Size(400, 150);            
