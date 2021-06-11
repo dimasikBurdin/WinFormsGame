@@ -1,7 +1,7 @@
 ﻿
 namespace MyViews
 {
-    partial class NpcMessage
+    partial class NpcMessageControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

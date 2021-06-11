@@ -31,7 +31,7 @@ namespace MyViews
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
         public static GameOverControl GaemOverControl { get; set; }
-        public static NpcMessage NpcMessage { get; set; }
+        public static NpcMessageControl NpcMessage { get; set; }
         public static Game Game { get; set; }
         public static PrologueControl PrologueControl { get; set; } 
 
@@ -46,7 +46,7 @@ namespace MyViews
             Controls.Add(GaemOverControl);
             GaemOverControl.Hide();
 
-            NpcMessage = new NpcMessage();
+            NpcMessage = new NpcMessageControl();
             NpcMessage.Location = new Point(TerrainControl.ClientSize.Width / 2 - NpcMessage.ClientSize.Width / 2,
                 TerrainControl.Bottom - NpcMessage.ClientSize.Height);
             NpcMessage.Hide();

@@ -113,11 +113,11 @@
     <Compile Include="GameOverControl.Designer.cs">
       <DependentUpon>GameOverControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="NpcMessage.cs">
+    <Compile Include="NpcMessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NpcMessage.Designer.cs">
-      <DependentUpon>NpcMessage.cs</DependentUpon>
+    <Compile Include="NpcMessageControl.Designer.cs">
+      <DependentUpon>NpcMessageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="PrologueControl.cs">

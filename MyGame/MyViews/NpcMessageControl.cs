@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace MyViews
 {
-    public partial class NpcMessage : UserControl
+    public partial class NpcMessageControl : UserControl
     {
         public Label Label { get; set; }
         public List<string> Messages { get; set; }
 
-        public NpcMessage()
+        public NpcMessageControl()
         {
             Messages = new List<string>();
             DoubleBuffered = true;
