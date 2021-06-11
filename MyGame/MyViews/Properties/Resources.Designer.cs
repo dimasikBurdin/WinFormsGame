@@ -233,17 +233,17 @@ namespace MyViews.Properties {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на FFFFFFPFFFFFFF
-        ///FFFFGGTGGFFFFF
-        ///FFFFGGTGFFFFFF
+        ///FFFFFGTGFFFFFF
+        ///FFFFFGTGFFFFFF
+        ///FFFFFGTGFFFFFF
+        ///FFFFFGTGFFFFFF
+        ///FFFFFGTGFFFFFF
         ///FFFFGGTTTFFFFF
-        ///FFFFGTTF1FFFFF
-        ///FFFFGXFFOFFFFF
-        ///FFFFFFFFFFFFFF
-        ///FFFFFFFFFFFFFF
-        ///FFFFFFFFFFFFFF
-        ///FFFFFFFFFFFFFF
-        ///FFFFFFFFFFFFFF
-        ///FFFFFFFFFFFFFF
+        ///FFFFGGTG1FFFFF
+        ///FFFFGGTFOFFFFF
+        ///FFFFTTTFFFFFFF
+        ///FFFFTFFFFFFFFF
+        ///FFFFXFFFFFFFFF
         ///FFFFFFFFFFFFFF
         ///FFFFFFFFFFFFFF.
         /// </summary>
@@ -430,6 +430,32 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFPFFF
+        ///FFFTFFF
+        ///FFGTGFF
+        ///FFGTT1F
+        ///FGTTGOF
+        ///FGTTWWF
+        ///FGXWWWF
+        ///
+        ///.
+        /// </summary>
+        internal static string NewLevel1 {
+            get {
+                return ResourceManager.GetString("NewLevel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        internal static string NewLevel2 {
+            get {
+                return ResourceManager.GetString("NewLevel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap newTrail {
@@ -500,7 +526,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Порой, тяга к деньгам может все испорить. В погоне за хорошей работой человек может потерять все. Именно так и произошло с нашим персонажем..
+        ///   Ищет локализованную строку, похожую на Порой тяга к деньгам может всё испортить. В погоне за хорошей работой человек может потерять все. Именно так и произошло с нашим персонажем..
         /// </summary>
         internal static string Prologue1 {
             get {
@@ -509,7 +535,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Наш герой стремился к богатству. Он жертвовал практически всем, ради денег. Он считал, что они его сделают счастливым. Однако он ошибался..
+        ///   Ищет локализованную строку, похожую на Наш герой стремился к богатству. Он жертвовал практически всем ради денег. Он считал, что они сделают его счастливым. Однако он ошибался..
         /// </summary>
         internal static string Prologue2 {
             get {
@@ -518,7 +544,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Однажды он заметил, что у него никого нет. Нет друзей, нет близого человека, да и родители находятся очень далеко и контакт с ними давно не поддерживался..
+        ///   Ищет локализованную строку, похожую на Однажды он заметил, что у него никого нет. Нет друзей, нет близого человека, родители находятся очень далеко, да и контакт с ними давно не поддерживается..
         /// </summary>
         internal static string Prologue3 {
             get {
@@ -527,7 +553,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на И однажды, идя по какому то старому рынку, он находит очень странного человека, который предлагает ему купить книгу, говоря, что в ней есть то, что нужно нашему персонажу..
+        ///   Ищет локализованную строку, похожую на И однажды, идя по какому-то старому рынку, он находит очень странного человека, который предлагает ему купить книгу, говоря, что в ней есть то, что нужно нашему персонажу..
         /// </summary>
         internal static string Prologue4 {
             get {
@@ -536,7 +562,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Наш герой не долго думаю решается купить эту книгу. Придя домой он начинает рассматривать покупку: нет обложки, старые потрепанные страницы пахнут сыростью и пылью..
+        ///   Ищет локализованную строку, похожую на Наш герой, не долго думая, решается купить эту книгу. Придя домой, он начинает рассматривать покупку: нет обложки, старые потрепанные страницы пахнут сыростью и пылью..
         /// </summary>
         internal static string Prologue5 {
             get {
@@ -545,7 +571,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Изучив ее, наш герой осознает, что где то очень далеко, где никого нет, где страшно и одиноко, находится то, что может изменить его жизнь..
+        ///   Ищет локализованную строку, похожую на Изучив ее, наш герой осознает, что где-то очень далеко, где никого нет, где страшно и одиноко, находится то, что может изменить его жизнь..
         /// </summary>
         internal static string Prologue6 {
             get {
@@ -554,7 +580,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Посмотрев на свою жизнь, герой решает бросить все и отправиться искать &quot;То, не знаю что&quot;, в надежде изменить свою жизнь и обрести простое человеческое счастье..
+        ///   Ищет локализованную строку, похожую на Посмотрев на свою жизнь, герой решает бросить все и отправиться искать &quot;то, не знаю что&quot;, в надежде изменить свою жизнь и обрести простое человеческое счастье..
         /// </summary>
         internal static string Prologue7 {
             get {
@@ -572,7 +598,7 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дойдя до первого места, отмеченного в книге, наш герой видит загадочного старца, желающего рассказать ему что то важное....
+        ///   Ищет локализованную строку, похожую на Дойдя до первого места, отмеченного в книге, наш герой видит загадочного старца, желающего рассказать ему что-то важное....
         /// </summary>
         internal static string Prologue9 {
             get {
@@ -729,28 +755,11 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на FFFFFFFFFPFFFFFFFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTTNGGGGFFFFFF
-        ///FFFGGGGGGTGOGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGGGTGGGGGGFFFFFF
-        ///FFFGGGGG [остаток строки не уместился]&quot;;.
+        ///   Ищет локализованную строку, похожую на FF
+        ///FF
+        ///
+        ///
+        ///.
         /// </summary>
         internal static string TestSizeMap_20x20 {
             get {
@@ -760,8 +769,10 @@ namespace MyViews.Properties {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на СПРАВКА:
-        ///Чтобы передвигаться, используйте w / a / s / d
-        ///Чтобы поговорить со старцем, подойдите к нему и нажмите T (на английской раскладке).
+        ///Чтобы передвигаться, используйте 
+        ///w / a / s / d
+        ///Чтобы поговорить со старцем, подойдите к нему и нажмите T 
+        ///(русская Е).
         /// </summary>
         internal static string Training {
             get {

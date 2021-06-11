@@ -69,7 +69,7 @@ namespace MyViews
                 }
             RemoveEnemy();
 
-            if (player.Health <= 0)
+            if (player?.Health <= 0)
             {
                 MainForm.Game.CurrentGameStage = GameStage.GameOver;
                 MainForm.Over();

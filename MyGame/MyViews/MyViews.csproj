@@ -390,5 +390,11 @@
   <ItemGroup>
     <None Include="Resources\Training.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewLevel1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewLevel2.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

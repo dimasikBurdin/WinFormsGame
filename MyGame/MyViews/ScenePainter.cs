@@ -197,7 +197,7 @@ namespace MyViews
                 Player.Delta = Point.Empty;
             }
 
-            if (CurrentMap.InitialPosition == Player.Position && CurrentMap != maps[0] && open)
+            if (Player != null && CurrentMap.InitialPosition == Player.Position && CurrentMap != maps[0] && open)
             {
                 mapNumber--;
                 NextMap();
