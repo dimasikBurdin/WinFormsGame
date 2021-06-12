@@ -56,6 +56,7 @@ namespace MyGameModelNew.Domain
             }
             else delta = Point.Empty;
             Animation();
+            GateCollision(currentMap);
             HitPlayer(playerPos);
         }
 
@@ -72,6 +73,12 @@ namespace MyGameModelNew.Domain
             
             if(delta != Point.Empty) CurrentFrame += 40;
             if (CurrentFrame == 120) CurrentFrame = 0;
+        }
+
+        private void GateCollision(Map currentMap)
+        {
+            if (currentMap.Gates.Any(x => x.Position == Position && x.State == GateState.Lock))
+                Position = Position.SubStract(delta);
         }
 
         private void HitPlayer(Point playerPos)

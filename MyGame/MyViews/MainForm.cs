@@ -258,11 +258,9 @@ namespace MyViews
         {
             yield return Map.FromText(Properties.Resources.NewLevel1);
             yield return Map.FromText(Properties.Resources.NewLevel2);
-            //yield return Map.FromText(Properties.Resources.Level1);
-            //yield return Map.FromText(Properties.Resources.Level2);
-            yield return Map.FromText(Properties.Resources.Level3);
-            yield return Map.FromText(Properties.Resources.Level4);
-            yield return Map.FromText(Properties.Resources.Level5);         
+            yield return Map.FromText(Properties.Resources.NewLevel3);
+            yield return Map.FromText(Properties.Resources.NewLevel4);
+            yield return Map.FromText(Properties.Resources.NewLevel5);            
         }
     }
 }

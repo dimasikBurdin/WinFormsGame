@@ -447,11 +447,89 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
+        ///   Ищет локализованную строку, похожую на FFPWWWFFFF
+        ///FFTWWWWGHF
+        ///FGTGGGGGTF
+        ///FGTTTTTTTF
+        ///FGTGGGTGGF
+        ///FETGGGTGGF
+        ///F&lt;GGGGTGGF
+        ///FGGGGFTFGF
+        ///FGGGGF\FGF 
+        ///WWWFFFXFFF.
         /// </summary>
         internal static string NewLevel2 {
             get {
                 return ResourceManager.GetString("NewLevel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на WWWWWFFFPFFFFFF
+        ///WWWWWFLLTLLFFFF
+        ///W!TTTTTTTTTTTTF
+        ///WLLLLLLLTLGFFEF
+        ///WGGGGGGLTLGGF&gt;F
+        ///WWGGGGGLTLGGFFF
+        ///WWGGGGGLTLLLLLF
+        ///WWGGLLLLTTTTTEF
+        ///WGGGLTTTTLLLFTF
+        ///WLLLLTLLLLGGFTF
+        ///W2TTTTLGGGGGF@F
+        ///WOGGGTLLLFFFFFF
+        ///WHTTTTTTTTTTT|X
+        ///WLLLLLLLLLLLLLF
+        ///WWWWFFFFFFFFFFF.
+        /// </summary>
+        internal static string NewLevel3 {
+            get {
+                return ResourceManager.GetString("NewLevel3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFFFFFFFFFFFFFF
+        ///FFHTTGGGGGGGFFF
+        ///FFFGTTTETTTTT\X
+        ///FFFFGGGGWWGTFFF
+        ///FFGGGGGWWGGTGGL
+        ///FWWWGGWWGGGTGGL
+        ///FWWWFFFFGGGTGLL
+        ///FWWW#/TTTTGTGLL
+        ///FFFFFFFFGTGTGLL
+        ///FFGGGWWWGTTTGLL
+        ///FFGGGGE&lt;GGGTGLL
+        ///FFGGGGTGGGGTGGL
+        ///PTTTTTTTTTTTGGL
+        ///FFGWWWWWWGGGFFL
+        ///FFFFFFFFFFFFFFF.
+        /// </summary>
+        internal static string NewLevel4 {
+            get {
+                return ResourceManager.GetString("NewLevel4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FFWWWFFFFFFFFFF
+        ///FWWWWWGGTTT|G&lt;H
+        ///TTTTTTTTTWWTGET
+        ///FGGGGGTGGGWTETW
+        ///FFFFFFTGGGWWWWW
+        ///ETTTTTTGGGWWWWW
+        ///&gt;FFFFFTTTTTTTTG
+        ///WWGGGFTLLLLLLTH
+        ///WWGLLF/FFFFFFFW
+        ///LGGLTTTLFFFFFFF
+        ///LETTTLLLFFEFFFF
+        ///LGFFTLLFFFTFFFF
+        ///LGFLTTTTTTTET\3
+        ///F!FLLLLETFFFFFO
+        ///FFFFFFWWWWWFFFF.
+        /// </summary>
+        internal static string NewLevel5 {
+            get {
+                return ResourceManager.GetString("NewLevel5", resourceCulture);
             }
         }
         

@@ -396,5 +396,14 @@
   <ItemGroup>
     <None Include="Resources\NewLevel2.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewLevel3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewLevel4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewLevel5.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
