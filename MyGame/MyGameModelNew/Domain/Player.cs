@@ -55,7 +55,7 @@ namespace MyGameModelNew.Domain
 
         public void FinishGame(Map currentMap)
         {
-            if (currentMap.Npcs.Last().MessagesIsEmpty)
+            if (currentMap.Npcs.Last().MessagesIsEmpty && currentMap.ExitPosition == new Point(int.MinValue, int.MinValue))
                 PlayerIsFinished = true;
         }
 
