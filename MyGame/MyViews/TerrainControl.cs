@@ -75,6 +75,9 @@ namespace MyViews
                 MainForm.Over();
             }
 
+            if (player.PlayerIsFinished) 
+                MainForm.Finish();
+
             if (tickCount == 0)
             {
                 foreach (var e in map.Fires)
@@ -187,6 +190,9 @@ namespace MyViews
                     break;
                 case Keys.D3:
                     player.SwapWeapon(3);
+                    break;
+                case Keys.F:
+                    player.FinishGame(ScenePainter.CurrentMap);
                     break;
             }
         }       

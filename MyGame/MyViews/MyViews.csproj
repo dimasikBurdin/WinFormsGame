@@ -95,6 +95,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EpilogueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EpilogueControl.Designer.cs">
+      <DependentUpon>EpilogueControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -404,6 +410,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NewLevel5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Epilogue1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Epilogue2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Epilogue3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Epilogue4.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

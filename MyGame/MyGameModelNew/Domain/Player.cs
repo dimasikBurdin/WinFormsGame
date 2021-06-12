@@ -23,6 +23,7 @@ namespace MyGameModelNew.Domain
         public int CurrentFrame { get; set; }
         public List<string> TalkedMessage { get; set; }
         public GameObjectType CurrentWeapon { get; set; }
+        public bool PlayerIsFinished { get; private set; }
 
 
         public Player(int health,Point position, Inventory inventory)
@@ -50,6 +51,12 @@ namespace MyGameModelNew.Domain
             HealerCollision(currentMap);
             EnemyCollision(currentMap);
             HitEnemy(currentMap);
+        }
+
+        public void FinishGame(Map currentMap)
+        {
+            if (currentMap.Npcs.Last().MessagesIsEmpty)
+                PlayerIsFinished = true;
         }
 
         public void UseHealer()

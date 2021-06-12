@@ -23,8 +23,12 @@ namespace MyGameModelNew.Domain
         {
             if (Messages == null) yield break;
             foreach (var message in Messages.Where(x => x != null))
+            {
+                if (message == Messages.Last())
+                    MessagesIsEmpty = true;
                 yield return message;
-            MessagesIsEmpty = true;
+            }
+            //MessagesIsEmpty = true;
         }
 
         public void GiveItem()

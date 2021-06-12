@@ -133,6 +133,18 @@
   <data name="EnemyMoveTestMap1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EnemyMoveTestMap1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="Epilogue1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Epilogue1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Epilogue2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Epilogue2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Epilogue3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Epilogue3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="Epilogue4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Epilogue4.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -112,6 +112,43 @@ namespace MyViews.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Пройдя через различные трудности, наш герой смог добраться до указанного в книге места и найти то, что ему было нужно..
+        /// </summary>
+        internal static string Epilogue1 {
+            get {
+                return ResourceManager.GetString("Epilogue1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на После этого его жизнь резко измениалсь. Он осознал, что действительно важно в жизни и обрел счастье....
+        /// </summary>
+        internal static string Epilogue2 {
+            get {
+                return ResourceManager.GetString("Epilogue2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Порой человеку стоит приложить немало усилий, чтобы понять себя, понять то, что важно в жизни. Только после этого можно обрести настоящее счастье..
+        /// </summary>
+        internal static string Epilogue3 {
+            get {
+                return ResourceManager.GetString("Epilogue3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Спасибо, что уделили время и прошли данную игру.
+        ///To be continued....
+        /// </summary>
+        internal static string Epilogue4 {
+            get {
+                return ResourceManager.GetString("Epilogue4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fire {
@@ -513,11 +550,11 @@ namespace MyViews.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на FFWWWFFFFFFFFFF
         ///FWWWWWGGTTT|G&lt;H
-        ///TTTTTTTTTWWTGET
+        ///PTTTTTTTTWWTGET
         ///FGGGGGTGGGWTETW
         ///FFFFFFTGGGWWWWW
         ///ETTTTTTGGGWWWWW
-        ///&gt;FFFFFTTTTTTTTG
+        ///&gt;FFFFFTTTTTTTTO
         ///WWGGGFTLLLLLLTH
         ///WWGLLF/FFFFFFFW
         ///LGGLTTTLFFFFFFF

@@ -30,21 +30,22 @@ namespace MyViews
         public static Label LabelSteelSwoardImage { get; set; }
         public static TerrainControl TerrainControl { get; set; }
         public static MenuControl MainMenu { get; set; }
-        public static GameOverControl GaemOverControl { get; set; }
+        public static GameOverControl GameOverControl { get; set; }
         public static NpcMessageControl NpcMessage { get; set; }
         public static Game Game { get; set; }
         public static PrologueControl PrologueControl { get; set; } 
+        public static EpilogueControl EpilogueControl { get; set; } 
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
 
-            GaemOverControl = new GameOverControl();
-            GaemOverControl.Location = new Point(TerrainControl.ClientSize.Width / 2 - GaemOverControl.ClientSize.Width / 2,
-                TerrainControl.ClientSize.Height / 2 - GaemOverControl.ClientSize.Height / 2);
-            Controls.Add(GaemOverControl);
-            GaemOverControl.Hide();
+            GameOverControl = new GameOverControl();
+            GameOverControl.Location = new Point(TerrainControl.ClientSize.Width / 2 - GameOverControl.ClientSize.Width / 2,
+                TerrainControl.ClientSize.Height / 2 - GameOverControl.ClientSize.Height / 2);
+            Controls.Add(GameOverControl);
+            GameOverControl.Hide();
 
             NpcMessage = new NpcMessageControl();
             NpcMessage.Location = new Point(TerrainControl.ClientSize.Width / 2 - NpcMessage.ClientSize.Width / 2,
@@ -68,6 +69,10 @@ namespace MyViews
             PrologueControl.BringToFront();
             Controls.Add(PrologueControl);
 
+            EpilogueControl = new EpilogueControl();
+            EpilogueControl.ClientSize = TerrainControl.ClientSize;
+            EpilogueControl.Hide();
+            Controls.Add(EpilogueControl);
         }
 
         public MainForm()
@@ -246,12 +251,21 @@ namespace MyViews
             }
         }
 
+        public static void Finish()
+        {
+            TerrainControl.Timer.Stop();
+            TerrainControl.SendToBack();
+            EpilogueControl.Show();
+            EpilogueControl.BringToFront();
+            EpilogueControl.Focus();
+        }
+
         public static void Over()
         {
             TerrainControl.Timer.Stop();
-            GaemOverControl.Show();
+            GameOverControl.Show();
             TerrainControl.SendToBack();
-            GaemOverControl.Focus();            
+            GameOverControl.Focus();            
         }
 
         private static IEnumerable<Map> LoadLevels()
@@ -260,7 +274,7 @@ namespace MyViews
             yield return Map.FromText(Properties.Resources.NewLevel2);
             yield return Map.FromText(Properties.Resources.NewLevel3);
             yield return Map.FromText(Properties.Resources.NewLevel4);
-            yield return Map.FromText(Properties.Resources.NewLevel5);            
+            yield return Map.FromText(Properties.Resources.NewLevel5);
         }
     }
 }
